@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 
 public class CustomerUI : MonoBehaviour {
+
+    public Image m_bg;
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_dataUsage;
     public TextMeshProUGUI m_dateStarted;
@@ -23,6 +25,11 @@ public class CustomerUI : MonoBehaviour {
         m_dataUsage.text = string.Format("Usage: {0:N2} GB", dataUsage);
         System.DateTime dateStarted = System.DateTime.Now.AddDays(-1 * daysActive);
         m_dateStarted.text = dateStarted.Month + "/" + dateStarted.Day + "/" + dateStarted.Year;
+    }
+
+    public void SetBGColor(Color c)
+    {
+        m_bg.color = c;
     }
 
     public void Copy(CustomerUI toCopy)
