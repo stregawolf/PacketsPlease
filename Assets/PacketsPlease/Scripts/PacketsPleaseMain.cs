@@ -9,9 +9,11 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public NotificationListUI m_notificationUI;
     public CustomerUI m_customerDisplay;
 
-    public float m_timeBetweenCustomers = 1.0f;
+    public float m_timeBetweenCustomers = 2.0f;
     public float m_customerTimer = 0.0f;
     public int m_maxNumCustomer = 10;
+    public float m_minTimeBetweenNotifications = 1.0f;
+    public float m_notificationTimer = 0.0f;
 
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
@@ -30,6 +32,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected void Update()
     {
         m_customerTimer += Time.deltaTime;
+        m_notificationTimer += Time.deltaTime;
         if(m_customerTimer >= m_timeBetweenCustomers)
         {
             m_customerTimer -= m_timeBetweenCustomers;
@@ -55,6 +58,18 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             UpdateCustomer(m_customerListUI.GetTopCustomer());
         }
+
+        if (m_notificationTimer >= m_minTimeBetweenNotifications)
+        {
+            m_notificationTimer = 0;
+            if (Random.value < 0.1f)
+            {
+                NotificationData testData = ScriptableObject.CreateInstance<NotificationData>();
+                testData.Generate();
+                m_notificationUI.AddNotification(testData);
+            }
+        }
+
     }
 
     protected void UpdateCustomer(CustomerUI newCustomer)
