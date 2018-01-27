@@ -25,7 +25,8 @@ public class RuleData {
 
     private enum ConstraintType
     {
-        MAX_USAGE,
+        MAX_USAGE_HIGHER,
+        MAX_USAGE_LOWER,
         ACTIVITY_NAME,
         ACTIVITY_TYPE,
         CUSTOMER_NAME,
@@ -62,8 +63,12 @@ public class RuleData {
                     if(customer.m_activity.m_type != m_activity.m_type)
                         ruleApplies = false;
                     break;
-                case ConstraintType.MAX_USAGE:
+                case ConstraintType.MAX_USAGE_HIGHER:
                     if(customer.m_dataUsage < m_bandwidth)
+                        ruleApplies = false;
+                    break;
+                case ConstraintType.MAX_USAGE_LOWER:
+                    if(customer.m_dataUsage >= m_bandwidth)
                         ruleApplies = false;
                     break;
                 case ConstraintType.CUSTOMER_NAME:
@@ -99,7 +104,8 @@ public class RuleData {
     }
 
     // Helper functions for Constraint set
-    public RuleData AddBandwidthConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE); return this; }
+    public RuleData AddBandwidthHigherConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE_HIGHER); return this; }
+    public RuleData AddBandwidthLowerConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE_LOWER); return this; }
     public RuleData AddActivityConstraint(ActivityData.Activity activity) { this.m_activity = activity; AddConstraint(ConstraintType.ACTIVITY_NAME); return this; }
     public RuleData AddActivityTypeConstraint(ActivityData.Activity activity) { this.m_activity = activity; AddConstraint(ConstraintType.ACTIVITY_TYPE); return this; }
     public RuleData AddCustomerNameConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_NAME); return this; }

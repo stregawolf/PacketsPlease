@@ -19,10 +19,12 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected void Start()
     {
-        RuleData maxData50Rule = new RuleData(RuleData.HIGHEST_PRIORITY, ActionType.Throttle).AddBandwidthConstraint(50f);
+        RuleData throttleOver50 = new RuleData(RuleData.HIGHEST_PRIORITY, ActionType.Throttle).AddBandwidthHigherConstraint(50f);
+        RuleData boostUnder50 = new RuleData(RuleData.HIGHEST_PRIORITY, ActionType.Boost).AddBandwidthLowerConstraint(50f);
 
         RuleManager.Instance.ClearAllRules();
-        RuleManager.Instance.AddRule(maxData50Rule);
+        RuleManager.Instance.AddRule(throttleOver50);
+        RuleManager.Instance.AddRule(boostUnder50);
     }
 
     protected void Update()
