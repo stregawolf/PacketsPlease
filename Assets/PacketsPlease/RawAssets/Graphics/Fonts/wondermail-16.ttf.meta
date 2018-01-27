@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9eae5835ac83775468375810542b1d4c
-timeCreated: 1517030755
+guid: dae1549e675dc4c95bcadcd1e1dabf65
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Eight-Bit Madness
+  fontName: Wonder Mail
   fontNames:
-  - Eight-Bit Madness
+  - Wonder Mail
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
