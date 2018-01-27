@@ -72,7 +72,7 @@ MonoBehaviour:
   m_strikeNoficationPrefab: {fileID: 1779924710841524, guid: b8147d9af6b954f42bcdaa00a58791ab,
     type: 2}
   m_notificationUIs: []
-  m_separationDist: -50
+  m_separationDist: 10
   m_slideSpeed: 3
 --- !u!222 &222068625822520684
 CanvasRenderer:
