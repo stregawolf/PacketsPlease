@@ -11,30 +11,15 @@ public class CustomerUI : MonoBehaviour {
 
     public CustomerData m_data { get; protected set; }
     
-    public void Init(CustomerData data)
+    public virtual void Init(CustomerData data)
     {
         m_data = data;
-        Init(data.m_name.LastFirst, data.m_dataUsage, data.m_daysActive);
-    }
+        // Set Text Fields
+        m_name.text = data.m_name.LastFirst;
+        m_dataUsage.text = string.Format("Usage: {0:N2} GB", data.m_dataUsage);
 
-    public void Init(string name = "", float dataUsage = 0.0f, int daysActive = 0)
-    {
-        m_name.text = name;
-        m_dataUsage.text = string.Format("Usage: {0:N2} GB", dataUsage);
-        System.DateTime dateStarted = System.DateTime.Now.AddDays(-1 * daysActive);
+        System.DateTime dateStarted = System.DateTime.Now.AddDays(-1 * data.m_daysActive);
         m_dateStarted.text = dateStarted.Month + "/" + dateStarted.Day + "/" + dateStarted.Year;
-    }
-
-    public void Copy(CustomerUI toCopy)
-    {
-        if(toCopy == null)
-        {
-            m_name.text = "";
-            m_dataUsage.text = "";
-            m_dateStarted.text = "";
-        }
-        else
-            Init(toCopy.m_data);
     }
 
     public void DestroySelf()

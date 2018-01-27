@@ -446,12 +446,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1098704885}
   m_Script: {fileID: 11500000, guid: 3f86ab1d8bad9d547bf9d5c66f8c9507, type: 3}
---- !u!114 &938260970 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114976927472998054, guid: cd4a239ab5eb13f43a7c47f40059e479,
-    type: 2}
-  m_PrefabInternal: {fileID: 1576034080}
-  m_Script: {fileID: 11500000, guid: ce3e47f4d072e8743ae77133f2c9634d, type: 3}
 --- !u!1001 &1098704885
 Prefab:
   m_ObjectHideFlags: 0
@@ -654,12 +648,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1288682922 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1486038019}
-  m_Script: {fileID: 11500000, guid: e16a2c187bc048944b6371912d1c6be0, type: 3}
 --- !u!1001 &1486038019
 Prefab:
   m_ObjectHideFlags: 0
@@ -718,7 +706,7 @@ Prefab:
         type: 2}
       propertyPath: m_customerDisplay
       value: 
-      objectReference: {fileID: 938260970}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
   m_IsPrefabParent: 0
@@ -819,24 +807,54 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114011335876319904, guid: cd4a239ab5eb13f43a7c47f40059e479,
+    - target: {fileID: 114636723900271964, guid: cd4a239ab5eb13f43a7c47f40059e479,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1288682922}
-    - target: {fileID: 114087945083734390, guid: cd4a239ab5eb13f43a7c47f40059e479,
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114636723900271964, guid: cd4a239ab5eb13f43a7c47f40059e479,
         type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1288682922}
-    - target: {fileID: 114983333368869834, guid: cd4a239ab5eb13f43a7c47f40059e479,
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114529477079933846, guid: cd4a239ab5eb13f43a7c47f40059e479,
         type: 2}
-      propertyPath: m_Sprite
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114529477079933846, guid: cd4a239ab5eb13f43a7c47f40059e479,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114446053339982184, guid: cd4a239ab5eb13f43a7c47f40059e479,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114446053339982184, guid: cd4a239ab5eb13f43a7c47f40059e479,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114475863105199564, guid: cd4a239ab5eb13f43a7c47f40059e479,
+        type: 2}
+      propertyPath: m_customerDetails
       value: 
-      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 1576034085}
+    - target: {fileID: 1999569170012692, guid: cd4a239ab5eb13f43a7c47f40059e479, type: 2}
+      propertyPath: m_Name
+      value: Panel-CustomerDetails
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd4a239ab5eb13f43a7c47f40059e479, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1576034085 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114079053558527764, guid: cd4a239ab5eb13f43a7c47f40059e479,
+    type: 2}
+  m_PrefabInternal: {fileID: 1576034080}
+  m_Script: {fileID: 11500000, guid: e1d9448ff3e177143b80d2b1f9941b8c, type: 3}
 --- !u!224 &1681287928 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224252040281716564, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
