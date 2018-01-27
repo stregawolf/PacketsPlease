@@ -16,18 +16,19 @@ using UnityEngine;
  */
 public class RuleData {
 
+    // TODO: MAKE GETTERS FOR THESE
     public int m_priority; // Higher priority number is more important
     public float m_bandwidth; // Bandwidth of 0 or less = ignore
     public float m_daysActive;
-    private string m_activityName;
-    private ActivityData.Activity.Type m_activityType;
-    private string m_customerName;
-    private ActionType m_correctActionType;
+    public string m_activityName;
+    public ActivityData.Activity.Type m_activityType;
+    public string m_customerName;
+    public ActionType m_correctActionType;
 
     public const int HIGHEST_PRIORITY = 999;
     public const int LOWEST_PRIORITY = 0;
 
-    private enum ConstraintType
+    public enum ConstraintType
     {
         MAX_USAGE_HIGHER,
         MAX_USAGE_LOWER,
@@ -39,6 +40,7 @@ public class RuleData {
         LOCATION
     }
 
+    public HashSet<ConstraintType> Constraints { get { return m_constraints; } }
     private HashSet<ConstraintType> m_constraints;
 
     // Minimal constructor; constraints can be applied by chaining the Add***Constraint() functions

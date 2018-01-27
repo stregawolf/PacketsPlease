@@ -24,6 +24,34 @@ public class ActivityData {
         }
     }
 
+    public static Activity GetActivityByType(Type type)
+    {
+        int[] randIndex = Shuffle.MakeShuffledArray<int>(Activites.Count);
+
+        for(int i = 0; i < randIndex; i++)
+        {
+            if(Activities[i].m_type == type)
+            {
+                return Activities[i];
+            }
+        }
+
+        throw new Exception("GetActivityByType: Could not find activity of type " + type);
+    }
+
+    public static Activity GetActivityByName(string name)
+    {
+        for(int i = 0; i < Activities.Count; i++)
+        {
+            if(Activities[i].m_name == name)
+            {
+                return Activities[i];
+            }
+        }
+
+        throw new Exception("GetActivityByName: Could not find activitiy with name " + name);
+    }
+
     public static Activity[] Activies =
     {
         new Activity("Tremblr",                     Activity.Type.SITE),
