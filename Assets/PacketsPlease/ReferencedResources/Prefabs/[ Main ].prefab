@@ -102,3 +102,4 @@ MonoBehaviour:
   m_maxNumCustomer: 10
   m_minTimeBetweenNotifications: 1
   m_notificationTimer: 0
+  m_actionFeedbackTime: 0.5

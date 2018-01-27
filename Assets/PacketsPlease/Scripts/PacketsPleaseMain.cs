@@ -16,6 +16,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public float m_minTimeBetweenNotifications = 1.0f;
     public float m_notificationTimer = 0.0f;
 
+    public float m_actionFeedbackTime = 1.0f;
+
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
     protected CustomerData currentCustomer;
@@ -48,11 +50,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 // give strike for max customers reached
                 GiveStrike();
             }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            m_customerListUI.RemoveCustomerTopCustomer();
         }
 
         if(currentCustomer != m_customerListUI.GetTopCustomer())
@@ -105,7 +102,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             GiveStrike();
         }
-        yield return new WaitForSeconds(0.33f);
+        m_actionPanelUI.DoThrottleFeedback();
+        yield return new WaitForSeconds(m_actionFeedbackTime);
         m_customerListUI.RemoveCustomerTopCustomer();
         m_isHandlingCustomer = false;
     }
@@ -126,7 +124,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             GiveStrike();
         }
-        yield return new WaitForSeconds(0.33f);
+        m_actionPanelUI.DoBoostFeedback();
+        yield return new WaitForSeconds(m_actionFeedbackTime);
         m_customerListUI.RemoveCustomerTopCustomer();
         m_isHandlingCustomer = false;
     }
@@ -137,5 +136,15 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             return;
         }
+        StartCoroutine(HandleDisconnectTopCustomer());
+    }
+
+    protected IEnumerator HandleDisconnectTopCustomer()
+    {
+        m_isHandlingCustomer = true;
+        m_actionPanelUI.DoDisconnectFeedback();
+        yield return new WaitForSeconds(m_actionFeedbackTime);
+        m_customerListUI.RemoveCustomerTopCustomer();
+        m_isHandlingCustomer = false;
     }
 }
