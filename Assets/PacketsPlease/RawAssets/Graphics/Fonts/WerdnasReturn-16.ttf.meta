@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: dfdb82bfac8c15e4ca9c30f8e00aba01
-timeCreated: 1517025732
+guid: b1e49cb3f706f4649b38a6038898c35d
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: pixelFJ8pt1
+  fontName: WerdnasReturn
   fontNames:
-  - pixelFJ8pt1
+  - WerdnasReturn
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

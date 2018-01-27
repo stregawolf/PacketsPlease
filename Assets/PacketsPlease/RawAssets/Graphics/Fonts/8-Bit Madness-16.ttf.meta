@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 61154eae68f11f847a4cb9374e0f13a5
-timeCreated: 1517030755
+guid: 43943ad52ff394fcbb95766c8ecf58d0
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: WerdnasReturn
+  fontName: Eight-Bit Madness
   fontNames:
-  - WerdnasReturn
+  - Eight-Bit Madness
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

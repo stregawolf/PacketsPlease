@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c6071b78c7b0dd24995da9b122320136
-timeCreated: 1517030755
+guid: ba073cd05432b47bb98bda23a08b6fb3
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Wonder Mail
+  fontName: Thixel
   fontNames:
-  - Wonder Mail
+  - Thixel
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
