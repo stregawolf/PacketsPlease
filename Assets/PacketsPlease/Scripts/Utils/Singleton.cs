@@ -11,7 +11,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         Instance = this as T;
     }
 
-    protected virtual void OnDestory()
+    protected virtual void OnDestroy()
     {
         if(Instance == this)
         {

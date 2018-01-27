@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: a3278ac9b0aca0c4aa9e8f42a9a6f118
-timeCreated: 1517037397
-licenseType: Pro
-=======
-guid: 368259649b118fc4b8fd3e16e76d94de
-timeCreated: 1517034281
+guid: e7b59e65b5651ba43a527f8bd6c7bcf2
+timeCreated: 1517035530
 licenseType: Free
->>>>>>> Stashed changes
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
