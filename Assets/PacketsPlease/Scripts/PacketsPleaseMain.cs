@@ -7,7 +7,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public CustomerListUI m_customerListUI;
     public ActionPanelUI m_actionPanelUI;
     public NotificationListUI m_notificationUI;
-    // public NotificationDetailsUI m_notificationDetaulsUI;
+    public NotificationPanelUI m_notificationPanelUI;
     public CustomerUI m_customerDisplay;
 
     public float m_timeBetweenCustomers = 2.0f;
@@ -78,11 +78,10 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_actionPanelUI.SetCustomer(newCustomer);
     }
 
-    protected void UpdateNotification(NotificationUI newNotification)
+    public void UpdateNotification(NotificationUI newNotification)
     {
-        //m_notificationDetails.SetNotifcation(newNotification);
+        m_notificationPanelUI.SetNotification(newNotification);
     }
-
 
     protected void GiveStrike()
     {
