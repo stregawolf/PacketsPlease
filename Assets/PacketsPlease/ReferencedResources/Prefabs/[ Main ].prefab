@@ -51,3 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16a2c187bc048944b6371912d1c6be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_customerListUI: {fileID: 0}
+  m_actionPanelUI: {fileID: 0}
+  m_notificationUI: {fileID: 0}
+  m_testData: {fileID: 11400000, guid: 7661105c7bc52f544b4f55b5f198e8e2, type: 2}
+  m_timeBetweenCustomers: 3
+  m_customerTimer: 0
+  m_maxNumCustomer: 10

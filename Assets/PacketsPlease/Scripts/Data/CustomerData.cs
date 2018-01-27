@@ -9,6 +9,7 @@ public class CustomerData : ScriptableObject {
 
     public void Generate()
     {
+        m_name = "McPoopyPants";
         m_dataUsage = Random.Range(0.0f, 100.0f);
     }
 }

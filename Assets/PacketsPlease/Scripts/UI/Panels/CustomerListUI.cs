@@ -7,7 +7,6 @@ public class CustomerListUI : MonoBehaviour {
     public float m_separationDist = 10.0f;
     public float m_slideSpeed = 3.0f;
 
-
     protected Queue<CustomerUI> m_customerUIs = new Queue<CustomerUI>();
     
     protected void Update()
@@ -17,8 +16,19 @@ public class CustomerListUI : MonoBehaviour {
         {
             // update positioning
             ui.transform.localPosition = Vector3.Lerp(ui.transform.localPosition, new Vector3(0.0f, i * m_separationDist, 0.0f), Time.deltaTime * m_slideSpeed);
+            /*
+            if (i == 0)
+            {
+                ui.transform.localScale = Vector3.Lerp(ui.transform.localScale, Vector3.one * 1.15f, Time.deltaTime * m_slideSpeed);
+            }
+            */
             i++;
         }
+    }
+
+    public int GetNumCustomers()
+    {
+        return m_customerUIs.Count;
     }
 
     public void AddCustomer(CustomerData data)
@@ -29,6 +39,11 @@ public class CustomerListUI : MonoBehaviour {
         customerUI.Init(data);
         m_customerUIs.Enqueue(customerUI);
         customerUI.transform.localPosition = Vector3.up * Screen.height *2;
+    }
+
+    public CustomerUI GetTopCustomer()
+    {
+        return m_customerUIs.Peek();
     }
 
     public void RemoveCustomerTopCustomer()

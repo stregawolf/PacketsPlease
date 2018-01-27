@@ -48,7 +48,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -67,6 +67,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9039988f0a00447bbb23562124edc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_notificationPrefab: {fileID: 1779924710841524, guid: 2ca7f5c2db502124cbb8496fc8a431f9,
+    type: 2}
+  m_strikeNoficationPrefab: {fileID: 1779924710841524, guid: b8147d9af6b954f42bcdaa00a58791ab,
+    type: 2}
+  m_notificationUIs: []
+  m_separationDist: -50
+  m_slideSpeed: 3
 --- !u!222 &222068625822520684
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -90,4 +97,4 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
