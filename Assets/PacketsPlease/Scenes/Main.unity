@@ -214,6 +214,11 @@ Prefab:
       propertyPath: m_Name
       value: Panel-NotificationList
       objectReference: {fileID: 0}
+    - target: {fileID: 114842239650578040, guid: b2e8600f875a9ba49b42ac1ffed0a598,
+        type: 2}
+      propertyPath: m_separationDist
+      value: -30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2e8600f875a9ba49b42ac1ffed0a598, type: 2}
   m_IsPrefabParent: 0

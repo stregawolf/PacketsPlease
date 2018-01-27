@@ -15,7 +15,8 @@ public class RuleData {
 
     public int m_priority; // Higher priority number is more important
     public float m_bandwidth; // Bandwidth of 0 or less = ignore
-    private ActivityData.Activity.Type m_activityType;
+    public float m_daysActive;
+    private ActivityData.Activity m_activity;
     private CustomerData m_customer;
     private ActionType m_correctActionType;
 
@@ -24,9 +25,13 @@ public class RuleData {
 
     private enum ConstraintType
     {
-        Bandwidth,
-        Activity,
-        Customer
+        MAX_USAGE,
+        ACTIVITY_NAME,
+        ACTIVITY_TYPE,
+        CUSTOMER_NAME,
+        CUSTOMER_START,
+        CUSTOMER_CLASS,
+        LOCATION
     }
 
     private HashSet<ConstraintType> m_constraints;
@@ -49,17 +54,32 @@ public class RuleData {
             // Compare constraints to customer data
             switch(constraint)
             {
-                case ConstraintType.Activity:
-                    if(customer.m_activity.m_type != m_activityType)
-                    ruleApplies = false;
+                case ConstraintType.ACTIVITY_NAME:
+                    if(customer.m_activity.m_name != m_activity.m_name)
+                        ruleApplies = false;
                     break;
-                case ConstraintType.Bandwidth:
+                case ConstraintType.ACTIVITY_TYPE:
+                    if(customer.m_activity.m_type != m_activity.m_type)
+                        ruleApplies = false;
+                    break;
+                case ConstraintType.MAX_USAGE:
                     if(customer.m_dataUsage < m_bandwidth)
-                    ruleApplies = false;
+                        ruleApplies = false;
                     break;
-                case ConstraintType.Customer:
-                    if(customer != m_customer)
-                    ruleApplies = false;
+                case ConstraintType.CUSTOMER_NAME:
+                    if (customer.name != m_customer.name)
+                        ruleApplies = false;
+                    break;
+                case ConstraintType.CUSTOMER_START:
+                    if (customer.m_daysActive > m_daysActive)
+                        ruleApplies = false;
+                    break;
+                // TODO: Define addtl constraints
+                case ConstraintType.CUSTOMER_CLASS:
+                    throw new System.NotImplementedException();
+                    break;
+                case ConstraintType.LOCATION:
+                    throw new System.NotImplementedException();
                     break;
                 default:
                     throw new System.Exception("RuleData: Missing constraint types in IsViolatedBy()");
@@ -79,9 +99,12 @@ public class RuleData {
     }
 
     // Helper functions for Constraint set
-    public RuleData AddBandwidthConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.Bandwidth); return this; }
-    public RuleData AddActivityConstraint(ActivityData.Activity.Type activity) { this.m_activityType = activity; AddConstraint(ConstraintType.Activity); return this; }
-    public RuleData AddCustomerConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.Customer); return this; }
+    public RuleData AddBandwidthConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE); return this; }
+    public RuleData AddActivityConstraint(ActivityData.Activity activity) { this.m_activity = activity; AddConstraint(ConstraintType.ACTIVITY_NAME); return this; }
+    public RuleData AddActivityTypeConstraint(ActivityData.Activity activity) { this.m_activity = activity; AddConstraint(ConstraintType.ACTIVITY_TYPE); return this; }
+    public RuleData AddCustomerNameConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_NAME); return this; }
+    public RuleData AddCustomerClassConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_CLASS); return this; }
+    public RuleData AddCustomerLocationConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.LOCATION); return this; }
 
     private void AddConstraint(ConstraintType constraint) { m_constraints.Add(constraint); }
 
