@@ -19,10 +19,10 @@ public class RuleData {
     // TODO: MAKE GETTERS FOR THESE
     public int m_priority; // Higher priority number is more important
     public float m_bandwidth; // Bandwidth of 0 or less = ignore
-    public float m_daysActive;
+    public int m_daysActive;
     public string m_activityName;
     public ActivityData.Activity.Type m_activityType;
-    public string m_customerName;
+    public NameGen.Name m_customerName;
     public ActionType m_correctActionType;
 
     public const int HIGHEST_PRIORITY = 999;
@@ -78,7 +78,7 @@ public class RuleData {
                         ruleApplies = false;
                     break;
                 case ConstraintType.CUSTOMER_NAME:
-                    if (customer.name != m_customerName)
+                    if (customer.m_name != m_customerName)
                         ruleApplies = false;
                     break;
                 case ConstraintType.CUSTOMER_START:
@@ -114,7 +114,7 @@ public class RuleData {
     public RuleData AddBandwidthLowerConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE_LOWER); return this; }
     public RuleData AddActivityNameConstraint(string name) { this.m_activityName = name; AddConstraint(ConstraintType.ACTIVITY_NAME); return this; }
     public RuleData AddActivityTypeConstraint(ActivityData.Activity.Type type) { this.m_activityType = type; AddConstraint(ConstraintType.ACTIVITY_TYPE); return this; }
-    public RuleData AddCustomerNameConstraint(string name) { this.m_customerName = name; AddConstraint(ConstraintType.CUSTOMER_NAME); return this; }
+    public RuleData AddCustomerNameConstraint(NameGen.Name name) { this.m_customerName = name; AddConstraint(ConstraintType.CUSTOMER_NAME); return this; }
     // public RuleData AddCustomerClassConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_CLASS); return this; }
     // public RuleData AddCustomerLocationConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.LOCATION); return this; }
 

@@ -19,17 +19,19 @@ public class CustomerData : ScriptableObject {
     {
         List<RuleData> rules = RuleManager.Instance.Rules;
 
+        GenerateTrueRandom();
+
         if(rules.Count == 0)
         {
             // If there are no rules available, just generate a totally random Customer
-            GenerateTrueRandom();
+            return;
         }
         else
         {
             // Decide if a rule should apply to this Customer
             if(Random.Range(0f,1f) < noRulesWeight)
             {
-                GenerateTrueRandom();
+                return;
             }
 
             // Pick a random rule and make sure the Customer fits the constraints
@@ -41,29 +43,29 @@ public class CustomerData : ScriptableObject {
                 //TODO: FIX THIS
                 switch(constraint)
                 {
-                    case ConstraintType.ACTIVITY_NAME:
+                    case RuleData.ConstraintType.ACTIVITY_NAME:
                         m_activity = ActivityData.GetActivityByName(rule.m_activityName);
                         break;
-                    case ConstraintType.ACTIVITY_TYPE:
+                    case RuleData.ConstraintType.ACTIVITY_TYPE:
                         m_activity = ActivityData.GetActivityByType(rule.m_activityType);
                         break;
-                    case ConstraintType.MAX_USAGE_HIGHER:
-                        m_dataUsage = Random.Range(rule.m_dataUsage, MAX_DATA_USAGE)
+                    case RuleData.ConstraintType.MAX_USAGE_HIGHER:
+                        m_dataUsage = Random.Range(rule.m_bandwidth, MAX_DATA_USAGE);
                         break;
-                    case ConstraintType.MAX_USAGE_LOWER:
-                        m_dataUsage = Random.Range(0f, rule.m_dataUsage);
+                    case RuleData.ConstraintType.MAX_USAGE_LOWER:
+                        m_dataUsage = Random.Range(0f, rule.m_bandwidth);
                         break;
-                    case ConstraintType.CUSTOMER_NAME:
+                    case RuleData.ConstraintType.CUSTOMER_NAME:
                         m_name = rule.m_customerName;
                         break;
-                    case ConstraintType.CUSTOMER_START:
+                    case RuleData.ConstraintType.CUSTOMER_START:
                         m_daysActive = rule.m_daysActive;
                         break;
                     // TODO: Define addtl constraints
-                    case ConstraintType.CUSTOMER_CLASS:
+                    case RuleData.ConstraintType.CUSTOMER_CLASS:
                         throw new System.NotImplementedException();
                         break;
-                    case ConstraintType.LOCATION:
+                    case RuleData.ConstraintType.LOCATION:
                         throw new System.NotImplementedException();
                         break;
                     default:
@@ -80,7 +82,7 @@ public class CustomerData : ScriptableObject {
         m_name = NameGen.GetName(m_male);
         m_dataUsage = Random.Range(0.0f, MAX_DATA_USAGE);
         m_daysActive = Random.Range(0, MAX_DAYS_ACTIVE);
-        m_activity = ActivityData.Activies[Random.Range(0, ActivityData.Activies.Length)];
+        m_activity = ActivityData.Activities[Random.Range(0, ActivityData.Activities.Length)];
     }
 
 }

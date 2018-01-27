@@ -24,11 +24,11 @@ public class ActivityData {
         }
     }
 
-    public static Activity GetActivityByType(Type type)
+    public static Activity GetActivityByType(ActivityData.Activity.Type type)
     {
-        int[] randIndex = Shuffle.MakeShuffledArray<int>(Activites.Count);
+        int[] randIndex = ShuffleUtils.MakeShuffledIntArray(Activities.Length);
 
-        for(int i = 0; i < randIndex; i++)
+        for(int i = 0; i < randIndex.Length; i++)
         {
             if(Activities[i].m_type == type)
             {
@@ -36,12 +36,12 @@ public class ActivityData {
             }
         }
 
-        throw new Exception("GetActivityByType: Could not find activity of type " + type);
+        throw new System.Exception("GetActivityByType: Could not find activity of type " + type);
     }
 
     public static Activity GetActivityByName(string name)
     {
-        for(int i = 0; i < Activities.Count; i++)
+        for(int i = 0; i < Activities.Length; i++)
         {
             if(Activities[i].m_name == name)
             {
@@ -49,10 +49,10 @@ public class ActivityData {
             }
         }
 
-        throw new Exception("GetActivityByName: Could not find activitiy with name " + name);
+        throw new System.Exception("GetActivityByName: Could not find activitiy with name " + name);
     }
 
-    public static Activity[] Activies =
+    public static Activity[] Activities =
     {
         new Activity("Tremblr",                     Activity.Type.SITE),
         new Activity("2Chains",                     Activity.Type.SITE),

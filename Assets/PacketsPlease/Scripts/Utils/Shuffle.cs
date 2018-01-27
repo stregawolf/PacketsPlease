@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shuffle<T> : MonoBehaviour where T : MonoBehaviour
+public class ShuffleUtils
 {
-    public static T[] MakeShuffledArray(int size)
+    public static int[] MakeShuffledIntArray(int size)
     {
-        T[] array = new T[size];
+        int[] array = new int[size];
         for(int i = 0; i < size; i++)
         {
             array[i] = i;
         }
 
-        Shuffle<T>(array);
+        Shuffle<int>(array);
 
         return array;
     }
+
+    static System.Random _random = new System.Random();
 
     public static void Shuffle<T>(T[] array)
     {

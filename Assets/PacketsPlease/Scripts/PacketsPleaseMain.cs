@@ -22,12 +22,16 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected void Start()
     {
-        RuleData throttleOver50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
-        RuleData boostUnder50 = new UsageLowerRule(50f, ActionType.Boost, RuleData.HIGHEST_PRIORITY);
+        //RuleData throttleOver50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
+        //RuleData boostUnder50 = new UsageLowerRule(50f, ActionType.Boost, RuleData.HIGHEST_PRIORITY);
+
+        RuleData throttleAjitPai = new CustomerNameRule(new NameGen.Name("Ajit", "Pai"), ActionType.Throttle);
+
 
         RuleManager.Instance.ClearAllRules();
-        RuleManager.Instance.AddRule(throttleOver50);
-        RuleManager.Instance.AddRule(boostUnder50);
+        //RuleManager.Instance.AddRule(throttleOver50);
+        //RuleManager.Instance.AddRule(boostUnder50);
+        RuleManager.Instance.AddRule(throttleAjitPai);
     }
 
     protected void Update()
@@ -123,7 +127,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         m_isHandlingCustomer = true;
         if (m_customerListUI.GetTopCustomer().m_data.m_dataUsage >= 50.0f)
-        {
+         {
             GiveStrike();
         }
         yield return new WaitForSeconds(0.33f);
