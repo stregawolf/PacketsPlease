@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: dfdb82bfac8c15e4ca9c30f8e00aba01
+timeCreated: 1517025732
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: pixelFJ8pt1
+  fontNames:
+  - pixelFJ8pt1
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

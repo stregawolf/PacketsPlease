@@ -40,6 +40,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f86ab1d8bad9d547bf9d5c66f8c9507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_customerUIPrefab: {fileID: 1786069455822158, guid: ff25c3482bad4534facc310e5869d4c1,
+    type: 2}
+  m_separationDist: 50
+  m_slideSpeed: 5
+  m_testData: {fileID: 11400000, guid: 7661105c7bc52f544b4f55b5f198e8e2, type: 2}
 --- !u!114 &114940972261866946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,4 +95,4 @@ RectTransform:
   m_AnchorMax: {x: 0.25, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
