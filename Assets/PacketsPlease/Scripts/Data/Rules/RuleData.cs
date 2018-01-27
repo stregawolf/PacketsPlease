@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    RuleData is initialized by using the minimal constructor and chaining AddXXXConstraint() functions:
+    RuleData can be initialized in two ways:
 
+    1. By using the subclasses such as MinUsageRuleData, etc.
+
+    2. By using the RuleData base constructor and chaining AddXXXConstraint() methods to it
     example:
         new RuleData(0, ActivityType.Throttle).AddActivityConstraint(ActivityType.Streaming)
 
@@ -16,12 +19,13 @@ public class RuleData {
     public int m_priority; // Higher priority number is more important
     public float m_bandwidth; // Bandwidth of 0 or less = ignore
     public float m_daysActive;
-    private ActivityData.Activity m_activity;
-    private CustomerData m_customer;
+    private string m_activityName;
+    private ActivityData.Activity.Type m_activityType;
+    private string m_customerName;
     private ActionType m_correctActionType;
 
-    public static readonly int HIGHEST_PRIORITY = 999;
-    public static readonly int LOWEST_PRIORITY = 0;
+    public const int HIGHEST_PRIORITY = 999;
+    public const int LOWEST_PRIORITY = 0;
 
     private enum ConstraintType
     {
@@ -39,7 +43,7 @@ public class RuleData {
 
     // Minimal constructor; constraints can be applied by chaining the Add***Constraint() functions
     // As is, it would say "apply this action to everyone"
-    public RuleData(int priority, ActionType correctActionType)
+    public RuleData(ActionType correctActionType, int priority = LOWEST_PRIORITY)
     {
         m_priority = priority;
         m_correctActionType = correctActionType;
@@ -56,11 +60,11 @@ public class RuleData {
             switch(constraint)
             {
                 case ConstraintType.ACTIVITY_NAME:
-                    if(customer.m_activity.m_name != m_activity.m_name)
+                    if(customer.m_activity.m_name != m_activityName)
                         ruleApplies = false;
                     break;
                 case ConstraintType.ACTIVITY_TYPE:
-                    if(customer.m_activity.m_type != m_activity.m_type)
+                    if(customer.m_activity.m_type != m_activityType)
                         ruleApplies = false;
                     break;
                 case ConstraintType.MAX_USAGE_HIGHER:
@@ -72,7 +76,7 @@ public class RuleData {
                         ruleApplies = false;
                     break;
                 case ConstraintType.CUSTOMER_NAME:
-                    if (customer.name != m_customer.name)
+                    if (customer.name != m_customerName)
                         ruleApplies = false;
                     break;
                 case ConstraintType.CUSTOMER_START:
@@ -106,11 +110,11 @@ public class RuleData {
     // Helper functions for Constraint set
     public RuleData AddBandwidthHigherConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE_HIGHER); return this; }
     public RuleData AddBandwidthLowerConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE_LOWER); return this; }
-    public RuleData AddActivityConstraint(ActivityData.Activity activity) { this.m_activity = activity; AddConstraint(ConstraintType.ACTIVITY_NAME); return this; }
-    public RuleData AddActivityTypeConstraint(ActivityData.Activity activity) { this.m_activity = activity; AddConstraint(ConstraintType.ACTIVITY_TYPE); return this; }
-    public RuleData AddCustomerNameConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_NAME); return this; }
-    public RuleData AddCustomerClassConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_CLASS); return this; }
-    public RuleData AddCustomerLocationConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.LOCATION); return this; }
+    public RuleData AddActivityNameConstraint(string name) { this.m_activityName = name; AddConstraint(ConstraintType.ACTIVITY_NAME); return this; }
+    public RuleData AddActivityTypeConstraint(ActivityData.Activity.Type type) { this.m_activityType = type; AddConstraint(ConstraintType.ACTIVITY_TYPE); return this; }
+    public RuleData AddCustomerNameConstraint(string name) { this.m_customerName = name; AddConstraint(ConstraintType.CUSTOMER_NAME); return this; }
+    // public RuleData AddCustomerClassConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_CLASS); return this; }
+    // public RuleData AddCustomerLocationConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.LOCATION); return this; }
 
     private void AddConstraint(ConstraintType constraint) { m_constraints.Add(constraint); }
 
