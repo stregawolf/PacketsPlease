@@ -5,6 +5,7 @@ using System.Linq;
 
 public class RuleManager : Singleton<RuleManager> {
 
+    public List<RuleData> Rules { get { return m_rules; } }
     private List<RuleData> m_rules;
 
     protected override void Awake()
