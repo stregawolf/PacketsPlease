@@ -15,6 +15,7 @@ public class RuleData : ScriptableObject {
 
     public int m_priority; // Higher priority number is more important
     public float m_bandwidth; // Bandwidth of 0 or less = ignore
+    public float m_daysActive;
     private ActivityData.Activity.Type m_activityType;
     private CustomerData m_customer;
     private ActionType m_correctActionType;
@@ -24,9 +25,13 @@ public class RuleData : ScriptableObject {
 
     private enum ConstraintType
     {
-        Bandwidth,
-        Activity,
-        Customer
+        USAGE,
+        ACTIVITY,
+        ACTIVITY_TYPE,
+        CUSTOMER_NAME,
+        CUSTOMER_START,
+        CUSTOMER_CLASS,
+        LOCATION
     }
 
     private HashSet<ConstraintType> m_constraints;
@@ -48,17 +53,26 @@ public class RuleData : ScriptableObject {
             // Compare constraints to customer data
             switch(constraint)
             {
-                case ConstraintType.Activity:
+                case ConstraintType.ACTIVITY:
                     if(actionTaken.customer.m_activity.m_type != m_activityType)
-                    ruleApplies = false;
+                        ruleApplies = false;
                     break;
-                case ConstraintType.Bandwidth:
+                case ConstraintType.USAGE:
                     if(actionTaken.customer.m_dataUsage < m_bandwidth)
-                    ruleApplies = false;
+                        ruleApplies = false;
                     break;
-                case ConstraintType.Customer:
-                    if(actionTaken.customer != m_customer)
-                    ruleApplies = false;
+                case ConstraintType.CUSTOMER_NAME:
+                    if (actionTaken.customer.name == m_customer.name)
+                        ruleApplies = false;
+                    break;
+                case ConstraintType.CUSTOMER_START:
+                    if (actionTaken.customer.m_daysActive > m_daysActive)
+                        ruleApplies = false;
+                    break;
+                // TODO: Define addtl constraints
+                case ConstraintType.CUSTOMER_CLASS:
+                    break;
+                case ConstraintType.LOCATION:
                     break;
                 default:
                     throw new System.Exception("RuleData: Missing constraint types in IsViolatedBy()");
@@ -78,9 +92,9 @@ public class RuleData : ScriptableObject {
     }
 
     // Helper functions for Constraint set
-    public RuleData AddBandwidthConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.Bandwidth); return this; }
-    public RuleData AddActivityConstraint(ActivityData.Activity.Type activity) { this.m_activityType = activity; AddConstraint(ConstraintType.Activity); return this; }
-    public RuleData AddCustomerConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.Customer); return this; }
+    public RuleData AddBandwidthConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.USAGE); return this; }
+    public RuleData AddActivityConstraint(ActivityData.Activity.Type activity) { this.m_activityType = activity; AddConstraint(ConstraintType.ACTIVITY); return this; }
+    public RuleData AddCustomerConstraint(CustomerData customer) { this.m_customer = customer; AddConstraint(ConstraintType.CUSTOMER_NAME); return this; }
 
     private void AddConstraint(ConstraintType constraint) { m_constraints.Add(constraint); }
 
