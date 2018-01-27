@@ -62,7 +62,6 @@ public class RuleData : ScriptableObject {
                     break;
                 default:
                     throw new System.Exception("RuleData: Missing constraint types in IsViolatedBy()");
-                    break;
             }
         }
 

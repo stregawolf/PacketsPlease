@@ -13,7 +13,7 @@ public class CustomerUI : MonoBehaviour {
     public void Init(CustomerData data)
     {
         m_data = data;
-        Init(data.m_name, data.m_dataUsage);
+        Init(data.m_name.LastFirst, data.m_dataUsage);
     }
 
     public void Init(string name = "", float dataUsage = 0.0f)
