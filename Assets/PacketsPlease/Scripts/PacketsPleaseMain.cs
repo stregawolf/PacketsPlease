@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PacketsPleaseMain : MonoBehaviour {
+public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
+    
+    protected void Update()
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }
