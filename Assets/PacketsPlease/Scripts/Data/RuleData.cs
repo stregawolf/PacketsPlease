@@ -11,7 +11,7 @@ using UnityEngine;
     will create a rule to throttle all streaming activities
 
  */
-public class RuleData : ScriptableObject {
+public class RuleData {
 
     public int m_priority; // Higher priority number is more important
     public float m_bandwidth; // Bandwidth of 0 or less = ignore
@@ -37,10 +37,11 @@ public class RuleData : ScriptableObject {
     {
         m_priority = priority;
         m_correctActionType = correctActionType;
+        m_constraints = new HashSet<ConstraintType>();
     }
 
     // Check if action taken violates any constraints of the rule
-    public bool IsViolatedBy(ActionData actionTaken)
+    public bool IsViolated(CustomerData customer, ActionType actionTaken)
     {
         bool ruleApplies = true;
         foreach(ConstraintType constraint in m_constraints)
@@ -49,15 +50,15 @@ public class RuleData : ScriptableObject {
             switch(constraint)
             {
                 case ConstraintType.Activity:
-                    if(actionTaken.customer.m_activity.m_type != m_activityType)
+                    if(customer.m_activity.m_type != m_activityType)
                     ruleApplies = false;
                     break;
                 case ConstraintType.Bandwidth:
-                    if(actionTaken.customer.m_dataUsage < m_bandwidth)
+                    if(customer.m_dataUsage < m_bandwidth)
                     ruleApplies = false;
                     break;
                 case ConstraintType.Customer:
-                    if(actionTaken.customer != m_customer)
+                    if(customer != m_customer)
                     ruleApplies = false;
                     break;
                 default:
@@ -68,7 +69,7 @@ public class RuleData : ScriptableObject {
         // Check for violation
         if(ruleApplies)
         {
-            if(actionTaken.actionType != m_correctActionType)
+            if(actionTaken != m_correctActionType)
             {
                 return true;
             }

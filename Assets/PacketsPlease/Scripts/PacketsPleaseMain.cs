@@ -15,6 +15,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
 
+    protected void Start()
+    {
+        RuleData maxData50Rule = new RuleData(RuleData.HIGHEST_PRIORITY, ActionType.Throttle).AddBandwidthConstraint(50f);
+
+        RuleManager.Instance.ClearAllRules();
+        RuleManager.Instance.AddRule(maxData50Rule);
+    }
+
     protected void Update()
     {
         m_customerTimer += Time.deltaTime;
@@ -58,7 +66,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleThrottlingTopCustomer()
     {
         m_isHandlingCustomer = true;
-        if(m_customerListUI.GetTopCustomer().m_data.m_dataUsage < 50.0f)
+        if(RuleManager.Instance.GetHighestViolatedRule(m_customerListUI.GetTopCustomer().m_data, ActionType.Throttle) != null)
         {
             GiveStrike();
         }

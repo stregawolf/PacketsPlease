@@ -9,16 +9,16 @@ public enum ActionType
     Disconnect
 }
 
-public class ActionData : ScriptableObject {
+// public class ActionData : ScriptableObject {
 
-    public CustomerData customer;
+//     public CustomerData customer;
 
-    public ActionType actionType;
+//     public ActionType actionType;
 
-    public ActionData(CustomerData customer, ActionType actionType)
-    {
-        this.customer = customer;
-        this.actionType = actionType;
-    }
+//     public ActionData(CustomerData customer, ActionType actionType)
+//     {
+//         this.customer = customer;
+//         this.actionType = actionType;
+//     }
 
-}
+// }
