@@ -7,6 +7,8 @@ public class NotificationData : ScriptableObject
 {
     public string m_title;
     public string m_message;
+    public string m_ResponseA;
+    public string m_ResponseB;
 
     public void Generate()
     {

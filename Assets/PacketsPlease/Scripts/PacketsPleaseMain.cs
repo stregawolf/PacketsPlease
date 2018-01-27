@@ -7,6 +7,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public CustomerListUI m_customerListUI;
     public ActionPanelUI m_actionPanelUI;
     public NotificationListUI m_notificationUI;
+    public CustomerUI m_customerDisplay;
 
     public float m_timeBetweenCustomers = 1.0f;
     public float m_customerTimer = 0.0f;
@@ -14,6 +15,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
+    protected CustomerData currentCustomer;
 
     protected void Start()
     {
@@ -46,7 +48,18 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             m_customerListUI.RemoveCustomerTopCustomer();
         }
+
+        if(currentCustomer != m_customerListUI.GetTopCustomer())
+        {
+            UpdateCustomer(m_customerListUI.GetTopCustomer());
+        }
     }
+
+    protected void UpdateCustomer(CustomerUI newCustomer)
+    {
+        m_customerDisplay.Copy(newCustomer);
+    }
+
 
     protected void GiveStrike()
     {

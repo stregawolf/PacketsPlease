@@ -43,6 +43,8 @@ public class CustomerListUI : MonoBehaviour {
 
     public CustomerUI GetTopCustomer()
     {
+        if (m_customerUIs.Count == 0)
+            return null;
         return m_customerUIs.Peek();
     }
 

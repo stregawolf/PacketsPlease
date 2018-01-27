@@ -25,6 +25,18 @@ public class CustomerUI : MonoBehaviour {
         m_dateStarted.text = dateStarted.Month + "/" + dateStarted.Day + "/" + dateStarted.Year;
     }
 
+    public void Copy(CustomerUI toCopy)
+    {
+        if(toCopy == null)
+        {
+            m_name.text = "";
+            m_dataUsage.text = "";
+            m_dateStarted.text = "";
+        }
+        else
+            Init(toCopy.m_data);
+    }
+
     public void DestroySelf()
     {
         StartCoroutine(HandleDestroySelf());
