@@ -7,6 +7,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public CustomerListUI m_customerListUI;
     public ActionPanelUI m_actionPanelUI;
     public NotificationListUI m_notificationUI;
+    public NotificationPanelUI m_notificationPanelUI;
     public CustomerUI m_customerDisplay;
 
     public float m_timeBetweenCustomers = 2.0f;
@@ -56,7 +57,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
         if(currentCustomer != m_customerListUI.GetTopCustomer())
         {
-            UpdateCustomer(m_customerListUI.GetTopCustomer());
+            UpdateCustomerDisplay(m_customerListUI.GetTopCustomer());
         }
 
         if (m_notificationTimer >= m_minTimeBetweenNotifications)
@@ -72,11 +73,15 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     }
 
-    protected void UpdateCustomer(CustomerUI newCustomer)
+    protected void UpdateCustomerDisplay(CustomerUI newCustomer)
     {
-        m_customerDisplay.Copy(newCustomer);
+        m_actionPanelUI.SetCustomer(newCustomer);
     }
 
+    public void UpdateNotification(NotificationUI newNotification)
+    {
+        m_notificationPanelUI.SetNotification(newNotification);
+    }
 
     protected void GiveStrike()
     {

@@ -7,17 +7,18 @@ public class NotificationData : ScriptableObject
 {
     public string m_title;
     public string m_message;
+    public string m_sender;
     public bool m_pinned;         // Pinned notifications go back to the top of the stack when closed
 
-    public struct Response
+    public class Response
     {
         public enum CorrectResponse
         {
             CHOICE_A = 0, CHOICE_B, NONE
         };
 
-        string m_ChoiceA;
-        string m_ChoiceB;
+        public string m_ChoiceA;
+        public string m_ChoiceB;
         CorrectResponse m_correctResponse;
 
         public Response(string choiceA, string choiceB, CorrectResponse correctResponse)
@@ -26,7 +27,7 @@ public class NotificationData : ScriptableObject
         }
     }
 
-    public Response? m_response;
+    public Response m_response = null;
 
     public void Generate()
     {
@@ -55,11 +56,15 @@ public class NotificationData : ScriptableObject
             m_message = "This should just be showing the cancel button";
             m_response = null;
         }
+        m_sender = "TestBot 3000";
         ////////////////////////////////////////////////////////////////////
     }
 
     public void GenerateStrike(int number)
     {
         m_title = string.Format("This is strike #{0}", number);
+        m_message = string.Format("You've got #{0} strikes!", number);
+        m_response = new Response("I'm sorry", "Eat my butt", Response.CorrectResponse.CHOICE_A);
+        m_sender = "Mr. Bossman Your Boss";
     }
 }
