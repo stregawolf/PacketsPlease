@@ -22,6 +22,13 @@ public static class NameGen {
         public string LastFirst { get { return m_last + ", " + m_first; } }
         public string FirstLast { get { return m_first + ", " + m_last; } }
 
+        public static bool operator ==(Name n1, Name n2) {
+            return (n1.m_first.Equals(n2.m_first) && n1.m_last.Equals(n2.m_last));
+        }
+
+        public static bool operator !=(Name n1, Name n2) {
+            return (!n1.m_first.Equals(n2.m_first) || !n1.m_last.Equals(n2.m_last));
+        }
     }
 
     static NameGen() {
