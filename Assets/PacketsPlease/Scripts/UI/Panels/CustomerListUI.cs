@@ -21,7 +21,6 @@ public class CustomerListUI : MonoBehaviour {
             
             if (i == 0)
             {
-                // ui.transform.localScale = Vector3.Lerp(ui.transform.localScale, Vector3.one * 1.15f, Time.deltaTime * m_slideSpeed);
                 ui.SetBGColor(m_activeUIColor);
             }
             i++;

@@ -7,9 +7,9 @@ using TMPro;
 public class CustomerUI : MonoBehaviour {
 
     public Image m_bg;
+    public Image m_profileImg;
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_dataUsage;
-    public TextMeshProUGUI m_dateStarted;
 
     public CustomerData m_data { get; protected set; }
     
@@ -18,10 +18,7 @@ public class CustomerUI : MonoBehaviour {
         m_data = data;
         // Set Text Fields
         m_name.text = data.m_name.LastFirst;
-        m_dataUsage.text = string.Format("Usage: {0:N2} GB", data.m_dataUsage);
-
-        System.DateTime dateStarted = System.DateTime.Now.AddDays(-1 * data.m_daysActive);
-        m_dateStarted.text = dateStarted.Month + "/" + dateStarted.Day + "/" + dateStarted.Year;
+        m_dataUsage.text = string.Format("{0:N2} GB", data.m_dataUsage);
     }
     
     public void SetBGColor(Color c)
@@ -35,7 +32,6 @@ public class CustomerUI : MonoBehaviour {
         {
             m_name.text = "";
             m_dataUsage.text = "";
-            m_dateStarted.text = "";
         }
         else
             Init(toCopy.m_data);

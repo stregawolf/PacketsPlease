@@ -130,4 +130,12 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_customerListUI.RemoveCustomerTopCustomer();
         m_isHandlingCustomer = false;
     }
+
+    public void DisconnectCustomer()
+    {
+        if (m_isHandlingCustomer || m_customerListUI.GetNumCustomers() <= 0)
+        {
+            return;
+        }
+    }
 }
