@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: ReptileCharacterData
   m_EditorClassIdentifier: 
   m_race: 1
-  m_bodies: []
+  m_bodies:
+  - {fileID: 21300000, guid: 07dd1125c91f3774daf356754a0259d7, type: 3}
   m_heads:
   - {fileID: 21300000, guid: 9feab58f9a9ca482f9f166642e2ea1d3, type: 3}
   m_neutralFaces:
