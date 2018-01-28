@@ -20,7 +20,7 @@ public class CustomerDetailsUI : CustomerUI {
         m_dataUsage.text = string.Format("{0:N2} GB used", data.m_dataUsage);
 
         System.DateTime dateStarted = System.DateTime.Now.AddDays(-1 * data.m_daysActive);
-        m_customerStartDate.text = string.Format("Custer Since:\n{0}/{1}/{2}", dateStarted.Month, dateStarted.Day, dateStarted.Year);
+        m_customerStartDate.text = string.Format("{0}/{1}/{2}", dateStarted.Month, dateStarted.Day, dateStarted.Year);
 
         m_activityImg.sprite = m_activitySprites[(int)data.m_activity.m_type];
         m_activityName.text = data.m_activity.m_name;

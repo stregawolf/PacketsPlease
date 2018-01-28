@@ -8,9 +8,11 @@ public class ActionPanelUI : MonoBehaviour {
     public SpeedIndicatorUI m_speedIndiciator;
 
     protected CustomerUI m_currentCustomer;
+    public Color m_activeUIColor = Color.green;
+    public Color m_activeNameColor = Color.gray;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         m_customerDetails.gameObject.SetActive(false);
 	}
 	
@@ -27,6 +29,8 @@ public class ActionPanelUI : MonoBehaviour {
         }
         else
         {
+            customer.SetNameColor(m_activeNameColor);
+            customer.SetBGColor(m_activeUIColor);
             m_customerDetails.gameObject.SetActive(true);
             m_customerDetails.Init(customer.m_data);
             m_speedIndiciator.Reset();
