@@ -20,6 +20,11 @@ public class CustomerUI : MonoBehaviour {
         m_name.text = data.m_name.LastFirst;
         m_dataUsage.text = string.Format("{0:N2} GB", data.m_dataUsage);
     }
+
+    public void SetNameColor(Color c)
+    {
+        m_name.color = c;
+    }
     
     public void SetBGColor(Color c)
     {
@@ -34,7 +39,9 @@ public class CustomerUI : MonoBehaviour {
             m_dataUsage.text = "";
         }
         else
+        {
             Init(toCopy.m_data);
+        }
     }
 
     public void DestroySelf()
@@ -45,7 +52,7 @@ public class CustomerUI : MonoBehaviour {
 
     protected IEnumerator HandleDestroySelf()
     {
-        LeanTween.moveLocalX(gameObject, -Screen.width*0.5f, 1.0f).setEaseInOutBack();
+        LeanTween.moveLocalX(gameObject, -Screen.width*0.25f, 1.0f).setEaseInOutBack();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }
