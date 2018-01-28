@@ -69,58 +69,22 @@ public class CustomerData : ScriptableObject {
         }
         else
         {
-            // Decide if a rule should apply to this Customer
-            if(Random.Range(0f,1f) < noRulesWeight)
+            // Make character pass all rules
+            foreach(RuleData rule in RuleManager.Instance.Rules)
             {
-                return;
+                rule.MakePass(this);
             }
 
-            // Pick a random rule and make sure the Customer fits the constraints
-            RuleData rule = rules[Random.Range(0, rules.Count)];
-           /* HashSet<RuleData.ConstraintType> constraints = rule.Constraints;
-
-            foreach(RuleData.ConstraintType constraint in constraints)
-            {
-                //TODO: FIX THIS
-                switch(constraint)
-                {
-                    case RuleData.ConstraintType.ACTIVITY_NAME:
-                        m_activity = ActivityData.GetActivityByName(rule.m_activityName);
-                        break;
-                    case RuleData.ConstraintType.ACTIVITY_TYPE:
-                        m_activity = ActivityData.GetActivityByType(rule.m_activityType);
-                        break;
-                    case RuleData.ConstraintType.MAX_USAGE_HIGHER:
-                        m_dataUsage = Random.Range(rule.m_bandwidth, MAX_DATA_USAGE);
-                        break;
-                    case RuleData.ConstraintType.MAX_USAGE_LOWER:
-                        m_dataUsage = Random.Range(0f, rule.m_bandwidth);
-                        break;
-                    case RuleData.ConstraintType.CUSTOMER_NAME:
-                        m_name = rule.m_customerName;
-                        break;
-                    case RuleData.ConstraintType.CUSTOMER_START:
-                        m_daysActive = rule.m_daysActive;
-                        break;
-                    // TODO: Define addtl constraints
-                    case RuleData.ConstraintType.CUSTOMER_CLASS:
-                        throw new System.NotImplementedException();
-                        break;
-                    case RuleData.ConstraintType.LOCATION:
-                        m_location = (Location)Random.Range(0, (int)Location.NUM_LOCATIONS);
-                        break;
-                    default:
-                        throw new System.Exception("CustomerData: Missing constraint types in IsViolatedBy()");
-                }
-            }
-            */
+            // Make character fail one rule.
+            // TODO: Exclude Special Character Rules at some point
+            RuleManager.Instance.Rules[Random.RandomRange(0, RuleManager.Instance.Rules.Count)].MakeFail(this);
         }
     }
 
     public void GenerateTrueRandom()
     {
         m_male = Random.value > 0.5f;
-        m_name = NameGen.GetName(m_male);
+        m_name = NameGen.GetName();
         m_dataUsage = Random.Range(0.0f, MAX_DATA_USAGE);
         m_daysActive = Random.Range(0, MAX_DAYS_ACTIVE);
         m_activity = ActivityData.GetActivity();

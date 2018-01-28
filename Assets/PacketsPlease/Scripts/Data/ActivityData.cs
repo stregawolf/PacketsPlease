@@ -43,8 +43,18 @@ public class ActivityData {
         return GetActivity();
     }
 
-    public static Activity GetActivity()
+    public static Activity GetActivity(Activity? exclude = null)
     {
+        if (exclude != null)
+        {
+            for(int i=0; i<Activities.Length; i++)
+            {
+                if(((Activity)exclude).m_name == Activities[i].m_name)
+                {
+                    return Activities[(i + Random.Range(1, Activities.Length - 2)) % Activities.Length];
+                }
+            }
+        }
         return Activities[Random.Range(0, ActivityData.Activities.Length)];
     }
     

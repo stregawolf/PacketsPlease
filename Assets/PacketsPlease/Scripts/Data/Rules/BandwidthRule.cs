@@ -5,13 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BandwidthRule", menuName = "Rules/Bandwidth", order = 0)]
 public class BandwidthRule : RuleData
 {
-    public BandwidthRule() { }
 
-    public BandwidthRule(float usageLimit, ActionType correctResponse, int priority = 0) : base(priority)
+    public BandwidthRule(float usageLimit, ActionData.ActionType correctResponse, int priority = 0) : base(correctResponse, usageLimit, priority)
     {
         
-        m_usageLimit = usageLimit;
-        m_priority = priority;
         m_action = correctResponse;
     }
 
@@ -21,13 +18,25 @@ public class BandwidthRule : RuleData
         m_type = Type.Bandwidth;
     }
 
-    public override ActionType ActionRequired(CustomerData customer)
+    public override ActionData.ActionType ActionRequired(CustomerData customer)
     {
-        bool dataRequirement = (m_usageLimit <= 0 || customer.m_dataUsage > m_usageLimit);
-        if (customer.m_dataUsage > m_usageLimit && dataRequirement)
+        if (customer.m_dataUsage > m_usageLimit)
         {
             return m_action;
         }
-        return ActionType.None;
+        return ActionData.ActionType.None;
+    }
+
+    public override void MakePass(CustomerData customer)
+    {
+        if (customer.m_dataUsage > m_usageLimit)
+        {
+            customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), m_usageLimit);
+        }
+    }
+
+    public override void MakeFail(CustomerData customer)
+    {
+        base.MakeFail(customer);
     }
 }
