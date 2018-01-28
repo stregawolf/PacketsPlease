@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b685b2d82318a44ea348d8932d9aa60, type: 3}
-  m_Name: TWatchPartner
+  m_Name: BlockWoW
   m_EditorClassIdentifier: 
-  m_priority: 3
+  m_priority: 0
   m_skipAutoNotice: 0
-  m_action: 2
+  m_action: 3
   m_usageLimit: 0
-  m_activityName: TWatch
+  m_activityName: War of Worldcraft

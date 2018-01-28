@@ -19,6 +19,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
 
+    public float m_readRulesGracePeriod = 15f;
     public int m_maxStrikes = 3;
     public float m_timeBetweenCustomers = 2.0f;
     public float m_customerTimer = 0.0f;
@@ -191,6 +192,12 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         SetupDay();
         m_dayDisplay.FadeOut();
 
+        // Wait and start gameplay
+        float t = 0;
+        while(t < m_readRulesGracePeriod && !Input.GetKeyDown(KeyCode.Space)) {
+            t += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         EventManager.OnStartGameplay.Dispatch();
         m_currentGameState = GameState.GameStarted;
     }

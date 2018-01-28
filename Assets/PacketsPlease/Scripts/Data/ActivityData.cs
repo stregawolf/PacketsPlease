@@ -83,7 +83,7 @@ public class ActivityData {
             }
         }
 
-        throw new System.Exception("GetActivityByName: Could not find activitiy with name " + name);
+        return GetActivity();
     }
 
     public static Activity[] Activities =
@@ -107,6 +107,6 @@ public class ActivityData {
         new Activity("Person Unheard's Bubble Gum", Activity.Type.GAME),
         new Activity("Vapor",                       Activity.Type.GAME),
         new Activity("Uberwatch",                   Activity.Type.GAME),
-        new Activity("CosmoCAST",                   Activity.Type.GAME),
+        new Activity("CosmoCAST",                   Activity.Type.SELF),
     };
 }
