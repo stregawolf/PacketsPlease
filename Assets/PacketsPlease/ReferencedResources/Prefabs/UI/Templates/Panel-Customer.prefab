@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 222606769246482654}
   - component: {fileID: 114995317249881888}
   - component: {fileID: 114589566795047706}
+  - component: {fileID: 114528251533142242}
   m_Layer: 5
   m_Name: Panel-Customer
   m_TagString: Untagged
@@ -393,6 +394,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114528251533142242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786069455822158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.23529412}
+  m_EffectDistance: {x: 0, y: 6}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114589566795047706
 MonoBehaviour:
   m_ObjectHideFlags: 1
