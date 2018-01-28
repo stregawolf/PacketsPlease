@@ -1254,6 +1254,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.size
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4193810648781584, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1330,7 +1335,43 @@ Prefab:
         type: 2}
       propertyPath: m_days.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 43b2e659a4e94754eb6027b43bdb0d41,
+      objectReference: {fileID: 11400000, guid: aa09eff9d1d15c94fa4d380079a270dc,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: 41c7643d8125a9546929dabd1c8603b7,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c3dcf3f05f87774596f949d52f99cec,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 350a47409635e8a42b683809cc866905,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7ebc916e8aa952f44aec4118584f15d2,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 71a6b89b649169143ab6a2a913e09555,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2de255b30eafbfa409d46017708774ed,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
