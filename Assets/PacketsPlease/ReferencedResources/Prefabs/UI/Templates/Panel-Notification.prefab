@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcc2b11691dedc4d99986eaa54f25d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_bg: {fileID: 114776348314951996}
   m_title: {fileID: 114417641462830526}
 --- !u!114 &114776348314951996
 MonoBehaviour:
@@ -297,18 +298,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114776348314951996}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: UpdateNotification
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 114689445530311660}
-          m_ObjectArgumentAssemblyTypeName: NotificationUI, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &222118440691407810

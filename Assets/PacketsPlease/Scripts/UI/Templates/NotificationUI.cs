@@ -5,9 +5,19 @@ using UnityEngine.UI;
 using TMPro;
 
 public class NotificationUI : MonoBehaviour {
+    public Image m_bg;
     public TextMeshProUGUI m_title;
     public NotificationData m_data { get; protected set; }
     protected Button button;
+
+    protected Color m_originalTitleColor;
+    protected Color m_originalBGColor;
+
+    protected void Start()
+    {
+        m_originalTitleColor = m_title.color;
+        m_originalBGColor = m_bg.color;
+    }
 
     public virtual void Init(NotificationData data)
     {
@@ -26,7 +36,23 @@ public class NotificationUI : MonoBehaviour {
         }
     }
 
-    void SendToMain()
+    public void ResetColors()
+    {
+        SetTitleColor(m_originalTitleColor);
+        SetBGColor(m_originalBGColor);
+    }
+
+    public void SetTitleColor(Color c)
+    {
+        m_title.color = c;
+    }
+
+    public void SetBGColor(Color c)
+    {
+        m_bg.color = c;
+    }
+
+    protected void SendToMain()
     {
         EventManager.OnNotificationSelected.Dispatch(this);
     }

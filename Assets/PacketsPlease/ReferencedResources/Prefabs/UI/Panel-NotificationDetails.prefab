@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b7f6f90f1bcba4084c44eb72d62730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_bg: {fileID: 114378540430654106}
   m_title: {fileID: 114133258154420776}
   responseA: {fileID: 114398588332563562}
   responseB: {fileID: 114211200853340086}
@@ -828,6 +829,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_notificationDetails: {fileID: 114177700790781080}
   m_sourceNotification: {fileID: 0}
+  m_activeBGColor: {r: 0.26666668, g: 0.5882353, b: 0.9254902, a: 1}
+  m_activeTitleColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &114735726064896980
 MonoBehaviour:
   m_ObjectHideFlags: 1
