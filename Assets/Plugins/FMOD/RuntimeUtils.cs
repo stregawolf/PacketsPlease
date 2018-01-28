@@ -203,15 +203,15 @@ namespace FMODUnity
         {
             #if UNITY_EDITOR
             return FMODPlatform.PlayInEditor;
-            #elif UNITY_STANDALONE_WIN
+#elif UNITY_STANDALONE_WIN
             return FMODPlatform.Windows;
-            #elif UNITY_STANDALONE_OSX
+#elif UNITY_STANDALONE_OSX
             return FMODPlatform.Mac;
-            #elif UNITY_STANDALONE_LINUX
+#elif UNITY_STANDALONE_LINUX
             return FMODPlatform.Linux;
-            #elif UNITY_TVOS
+#elif UNITY_TVOS
             return FMODPlatform.AppleTV;
-            #elif UNITY_IOS
+#elif UNITY_IOS
             FMODPlatform result;
             switch (UnityEngine.iOS.Device.generation)
             {
@@ -233,7 +233,7 @@ namespace FMODUnity
 
             UnityEngine.Debug.Log(String.Format("FMOD Studio: Device {0} classed as {1}", SystemInfo.deviceModel, result.ToString()));
             return result;
-            #elif UNITY_ANDROID
+#elif UNITY_ANDROID
             FMODPlatform result;
             if (SystemInfo.processorCount <= 2)
             {
@@ -271,7 +271,7 @@ namespace FMODUnity
             
             UnityEngine.Debug.Log(String.Format("FMOD Studio: Device {0} classed as {1}", SystemInfo.deviceModel, result.ToString()));
             return result;
-            #elif UNITY_WINRT_8_1
+#elif UNITY_WINRT_8_1
             FMODPlatform result;
             if (SystemInfo.processorCount <= 2)
             {
@@ -285,19 +285,22 @@ namespace FMODUnity
             UnityEngine.Debug.Log(String.Format("FMOD Studio: Device {0} classed as {1}", SystemInfo.deviceModel, result.ToString()));
             return result;
 
-            #elif UNITY_PS4
+#elif UNITY_PS4
             return FMODPlatform.PS4;
-            #elif UNITY_XBOXONE
+#elif UNITY_XBOXONE
             return FMODPlatform.XboxOne;
-            #elif UNITY_PSP2
+#elif UNITY_PSP2
             return FMODPlatform.PSVita;
-            #elif (!UNITY_5_0 && !UNITY_5_1) && UNITY_WIIU
+#elif (!UNITY_5_0 && !UNITY_5_1) && UNITY_WIIU
             return FMODPlatform.WiiU;
-            #elif UNITY_WSA_10_0
+#elif UNITY_WSA_10_0
             return FMODPlatform.UWP;
-            #elif UNITY_SWITCH
+#elif UNITY_SWITCH
             return FMODPlatform.Switch;
-            #endif
+#elif UNITY_WEBGL
+            return FMODPlatform.None;
+#endif
+
         }
 
         const string BankExtension = ".bank";

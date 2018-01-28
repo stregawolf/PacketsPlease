@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
@@ -12,6 +13,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
+
+    public int m_maxStrikes = 3;
+    public float m_timeBetweenCustomers = 2.0f;
     public float m_customerTimer = 0.0f;
     public int m_maxNumCustomer = 10;
     public float m_minTimeBetweenNotifications = 1.0f;
@@ -98,7 +102,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_notificationTimer += Time.deltaTime;
         if (m_customerTimer >= 0)
         {
-            m_customerTimer -= m_minTimeBetweenCustomers + Random.Range(0f, m_maxTimeBetweenCustomers);
+            m_customerTimer -= m_minTimeBetweenCustomers + UnityEngine.Random.Range(0f, m_maxTimeBetweenCustomers);
             if (m_customerListUI.GetNumCustomers() < m_maxNumCustomer)
             {
                 CustomerData data = ScriptableObject.CreateInstance<CustomerData>();
@@ -124,7 +128,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         if (m_notificationTimer >= m_minTimeBetweenNotifications)
         {
             m_notificationTimer = 0;
-            if (Random.value < 0.1f)
+            if (UnityEngine.Random.value < 0.1f)
             {
                 NotificationData testData = ScriptableObject.CreateInstance<NotificationData>();
                 testData.Generate();
@@ -143,7 +147,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_currentStrike++;
         m_notificationUI.AddStrikeNotification(m_currentStrike);
         m_canvasShaker.Shake();
-        
+        EventManager.OnStrike.Dispatch(m_currentStrike);
     }
 
     public void ThrottleCustomer()

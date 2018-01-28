@@ -48,8 +48,7 @@ public class CustomerData : ScriptableObject {
 
     public enum SpeedTier: int
     {
-        Regular = 0,
-        Bronze, 
+        Bronze = 0, 
         Silver,
         Gold,
         NUM_TIERS,

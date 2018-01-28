@@ -6,6 +6,7 @@ using UnityEngine;
 public class EventManager {
     public static readonly CallBack<NotificationUI> OnNotificationSelected = new CallBack<NotificationUI>();
     public static readonly CallBack<NotificationUI> OnNotificationResolved = new CallBack<NotificationUI>();
+    public static readonly CallBack<int> OnStrike = new CallBack<int>();
 }
 
 public class CallBack<T>
