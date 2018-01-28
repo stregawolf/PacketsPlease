@@ -243,7 +243,19 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             m_numCorrectChoices++;
         }
-        m_actionPanelUI.DoDisconnectFeedback();
+
+        switch(actionType)
+        {
+            case ActionData.ActionType.Boost:
+                m_actionPanelUI.DoBoostFeedback();
+                break;
+            case ActionData.ActionType.Throttle:
+                m_actionPanelUI.DoThrottleFeedback();
+                break;
+            case ActionData.ActionType.Disconnect:
+                m_actionPanelUI.DoDisconnectFeedback();
+                break;
+        }
         yield return new WaitForSeconds(m_actionFeedbackTime);
         m_customerListUI.RemoveCustomerTopCustomer();
         m_isHandlingCustomer = false;

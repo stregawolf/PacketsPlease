@@ -15,7 +15,7 @@ MonoBehaviour:
   m_bodies: []
   m_heads:
   - {fileID: 21300000, guid: beef5efa2d090534e8bc4dceff8ab2fe, type: 3}
-  m_neutralFacess:
+  m_neutralFaces:
   - {fileID: 21300000, guid: c41e3f3e8ccd19248998a95c93bcda4c, type: 3}
   m_positiveFaces:
   - {fileID: 21300000, guid: 4890c87e533244e4f8f357fd447605ed, type: 3}

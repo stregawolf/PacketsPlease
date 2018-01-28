@@ -9,7 +9,7 @@ public class CharacterData : ScriptableObject {
 
     public Sprite[] m_bodies;
     public Sprite[] m_heads;
-    public Sprite[] m_neutralFacess;
+    public Sprite[] m_neutralFaces;
     public Sprite[] m_positiveFaces;
     public Sprite[] m_negativeFaces;
     public Sprite[] m_hairs;
@@ -18,12 +18,12 @@ public class CharacterData : ScriptableObject {
     {
         body.enabled = m_bodies.Length > 0;
         head.enabled = m_heads.Length > 0;
-        face.enabled = m_neutralFacess.Length > 0;
+        face.enabled = m_neutralFaces.Length > 0;
         hair.enabled = m_hairs.Length > 0;
 
         body.sprite = GetSprite(m_bodies, seed);
         head.sprite = GetSprite(m_heads, seed);
-        face.sprite = GetSprite(m_neutralFacess, seed);
+        face.sprite = GetSprite(m_neutralFaces, seed);
         hair.sprite = GetSprite(m_hairs, seed);
     }
 

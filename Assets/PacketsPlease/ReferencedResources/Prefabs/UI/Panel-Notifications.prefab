@@ -41,10 +41,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_notificationPrefab: {fileID: 1779924710841524, guid: 2ca7f5c2db502124cbb8496fc8a431f9,
     type: 2}
-  m_strikeNoficationPrefab: {fileID: 1779924710841524, guid: b8147d9af6b954f42bcdaa00a58791ab,
-    type: 2}
   m_notificationUIs: []
-  m_separationDist: -30
+  m_separationDist: -37
   m_slideSpeed: 3
 --- !u!222 &222068625822520684
 CanvasRenderer:
