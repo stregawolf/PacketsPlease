@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6588235ac486c743837c18e0f293abb, type: 3}
+  m_Name: LargeMammalCharacterData
+  m_EditorClassIdentifier: 
+  m_race: 3
+  m_bodies: []
+  m_heads:
+  - {fileID: 21300000, guid: cbc24e67e8449be428005c335cd7538c, type: 3}
+  m_neutralFacess: []
+  m_happyFaces: []
+  m_sadFaces: []
+  m_hairs: []
