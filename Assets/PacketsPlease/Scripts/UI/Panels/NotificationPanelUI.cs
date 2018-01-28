@@ -16,7 +16,12 @@ public class NotificationPanelUI : MonoBehaviour {
         EventManager.OnNotificationSelected.Register(SetNotification);
         gameObject.SetActive(false);
     }
-	
+
+    protected void OnDestroy()
+    {
+        EventManager.OnNotificationSelected.Unregister(SetNotification);
+    }
+
 
     public void SetNotification(NotificationUI sourceNotification)
     {
