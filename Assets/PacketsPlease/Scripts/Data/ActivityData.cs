@@ -23,16 +23,16 @@ public class ActivityData {
             m_type = type;
         }
     }
-
+    
     public static Activity GetActivity(string name)
     {
         if (name != "")
         {
-            for (int i = 0; i < Activies.Length; i++)
+            for (int i = 0; i < Activities.Length; i++)
             {
-                if (name.ToLower() == Activies[i].m_name.ToLower())
+                if (name.ToLower() == Activities[i].m_name.ToLower())
                 {
-                    return Activies[i];
+                    return Activities[i];
                 }
             }
         }
@@ -41,10 +41,38 @@ public class ActivityData {
 
     public static Activity GetActivity()
     {
-        return Activies[Random.Range(0, ActivityData.Activies.Length)];
+        return Activities[Random.Range(0, ActivityData.Activities.Length)];
+    }
+    
+    public static Activity GetActivityByType(ActivityData.Activity.Type type)
+    {
+        int[] randIndex = ShuffleUtils.MakeShuffledIntArray(Activities.Length);
+
+        for(int i = 0; i < randIndex.Length; i++)
+        {
+            if(Activities[i].m_type == type)
+            {
+                return Activities[i];
+            }
+        }
+
+        throw new System.Exception("GetActivityByType: Could not find activity of type " + type);
     }
 
-    public static Activity[] Activies =
+    public static Activity GetActivityByName(string name)
+    {
+        for(int i = 0; i < Activities.Length; i++)
+        {
+            if(Activities[i].m_name == name)
+            {
+                return Activities[i];
+            }
+        }
+
+        throw new System.Exception("GetActivityByName: Could not find activitiy with name " + name);
+    }
+
+    public static Activity[] Activities =
     {
         new Activity("Tremblr",                     Activity.Type.SITE),
         new Activity("2Chains",                     Activity.Type.SITE),

@@ -12,7 +12,7 @@ public class CustomerDetailsUI : CustomerUI {
         m_dataUsage.text = string.Format("Data Usage:\n{0:N2} GB", data.m_dataUsage);
 
         System.DateTime dateStarted = System.DateTime.Now.AddDays(-1 * data.m_daysActive);
-        m_customerStartDate.text = string.Format("Custer Since:\n{0}/{1}/{2}", dateStarted.Month, dateStarted.Day, dateStarted.Year);
+    
     }
 
 }
