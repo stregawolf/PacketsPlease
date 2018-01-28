@@ -160,7 +160,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         
         foreach(StoryData story in m_stories)
         {
-            if(story.m_startDay == m_currentDay)
+            if(story != null && story.m_startDay == m_currentDay)
             {
                 m_activeStories.Add(story);
             }
@@ -361,9 +361,60 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
         if(data.m_StoryParameters != null && data.m_StoryParameters.m_story != null)
         {
-            if(data.m_StoryParameters.m_endOnAction == actionType)
+            foreach(CustomerData.ParentStory.ResponseAction response in data.m_StoryParameters.m_responseActions)
             {
-                m_activeStories.Remove(data.m_StoryParameters.m_story);
+                if(response.m_action == actionType)
+                {
+                    switch (response.resolution)
+                    {
+                        case CustomerData.ResolutionAction.TransitionDay:
+                            TransitionDay();
+                            break;
+                        case CustomerData.ResolutionAction.GameOver:
+                            GameOver();
+                            break;
+                        case CustomerData.ResolutionAction.EndStory:
+                            m_activeStories.Remove(data.m_StoryParameters.m_story);
+                            break;
+                        case CustomerData.ResolutionAction.PostNotificationA:
+                            if (data.m_responseNotifications.Count >= 1)
+                            {
+                                m_notificationUI.AddNotification(data.m_responseNotifications[0]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostNotificationB:
+                            if (data.m_responseNotifications.Count >= 2)
+                            {
+                                m_notificationUI.AddNotification(data.m_responseNotifications[1]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostNotificationC:
+                            if (data.m_responseNotifications.Count >= 3)
+                            {
+                                m_notificationUI.AddNotification(data.m_responseNotifications[2]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostCustomerA:
+                            if (data.m_responseCustomers.Count >= 1)
+                            {
+                                m_customerListUI.AddCustomer(data.m_responseCustomers[0]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostCustomerB:
+                            if (data.m_responseCustomers.Count >= 2)
+                            {
+                                m_customerListUI.AddCustomer(data.m_responseCustomers[1]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostCustomerC:
+                            if (data.m_responseCustomers.Count >= 3)
+                            {
+                                m_customerListUI.AddCustomer(data.m_responseCustomers[2]);
+                            }
+                            break;
+                    }
+
+                }
             }
         }
 
@@ -391,6 +442,42 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                     break;
                 case NotificationData.ResolutionAction.EndStory:
                     m_activeStories.Remove(notification.m_data.m_parentStory);
+                    break;
+                case NotificationData.ResolutionAction.PostNotificationA:
+                    if (notification.m_data.m_responseNotifications.Count >= 1)
+                    {
+                        m_notificationUI.AddNotification(notification.m_data.m_responseNotifications[0]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostNotificationB:
+                    if (notification.m_data.m_responseNotifications.Count >= 2)
+                    {
+                        m_notificationUI.AddNotification(notification.m_data.m_responseNotifications[1]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostNotificationC:
+                    if (notification.m_data.m_responseNotifications.Count >= 3)
+                    {
+                        m_notificationUI.AddNotification(notification.m_data.m_responseNotifications[2]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostCustomerA:
+                    if (notification.m_data.m_responseCustomers.Count >= 1)
+                    {
+                        m_customerListUI.AddCustomer(notification.m_data.m_responseCustomers[0]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostCustomerB:
+                    if (notification.m_data.m_responseCustomers.Count >= 2)
+                    {
+                        m_customerListUI.AddCustomer(notification.m_data.m_responseCustomers[1]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostCustomerC:
+                    if (notification.m_data.m_responseCustomers.Count >= 3)
+                    {
+                        m_customerListUI.AddCustomer(notification.m_data.m_responseCustomers[2]);
+                    }
                     break;
             }
         }

@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: afa1d19bc402a40c9bfaead4aa21fab9
-timeCreated: 1517172816
+guid: a1a376c51d6da4026a5ad2dd79623291
+timeCreated: 1517172953
 licenseType: Pro
-=======
-guid: 07dd1125c91f3774daf356754a0259d7
-timeCreated: 1517171275
-licenseType: Free
->>>>>>> 01b0285504a6c91bfbcd0c2959ef2ca7aa8053dd
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -37,11 +31,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-<<<<<<< HEAD
     filterMode: -1
-=======
-    filterMode: 0
->>>>>>> 01b0285504a6c91bfbcd0c2959ef2ca7aa8053dd
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -76,49 +66,6 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-<<<<<<< HEAD
-=======
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
->>>>>>> 01b0285504a6c91bfbcd0c2959ef2ca7aa8053dd
   spriteSheet:
     serializedVersion: 2
     sprites: []
