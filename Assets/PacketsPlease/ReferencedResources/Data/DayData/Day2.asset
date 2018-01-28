@@ -9,8 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 301b04dbd991fa64384cf9f6868d338e, type: 3}
-  m_Name: Day1
+  m_Name: Day2
   m_EditorClassIdentifier: 
   rules:
   - {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e, type: 2}
+  - {fileID: 11400000, guid: b905c18a0b4122048b8fd2adef1ef077, type: 2}
   m_priortyRules: []

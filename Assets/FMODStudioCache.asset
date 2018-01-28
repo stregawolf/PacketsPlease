@@ -13,13 +13,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114413824015648008}
-  - {fileID: 114890968255227926}
+  - {fileID: 114101271123752894}
   EditorEvents:
   - {fileID: 114880903981111782}
-  MasterBankRef: {fileID: 114890968255227926}
+  MasterBankRef: {fileID: 114101271123752894}
   StringsBankRef: {fileID: 114413824015648008}
-  stringsBankWriteTime: 636526791897490082
+  stringsBankWriteTime: 636527036576350921
   cacheVersion: 2
+--- !u!114 &114101271123752894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: M:\Documents\GitHub\PacketsPlease\Assets\PacketsPlease\RawAssets\Audio\MODEM
+    FMOD BUILD\Desktop\Master Bank.bank
+  lastModified: 636527036576330870
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 9761216
+  Exists: 1
 --- !u!114 &114121676433985842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47,6 +66,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Melody
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114182713785419730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Start Game
   Min: 0
   Max: 1
   Default: 0
@@ -95,6 +129,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114251969062111028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Melody
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114260756721575278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,12 +186,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\PacketsPlease\RawAssets\Audio\MODEM FMOD BUILD\Desktop\Master Bank.strings.bank
-  lastModified: 636526791897490082
+  lastModified: 636527036576350921
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 684
   Exists: 1
+--- !u!114 &114431889745974470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Intensity
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114459086891150386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +301,21 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114571598208666648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: High Intensity
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114578522719922582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +343,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Lose
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114690977630226272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Lose
+  Min: 0
+  Max: 1
+  Default: 0
+--- !u!114 &114801242808500606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Low Intensity
   Min: 0
   Max: 1
   Default: 0
@@ -311,17 +420,17 @@ MonoBehaviour:
   Path: event:/Gameplay
   guid: d864ad4b1db0444294bf5bc2123e2ac3
   Banks:
-  - {fileID: 114890968255227926}
+  - {fileID: 114101271123752894}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114558404102172150}
-  - {fileID: 114812340908560280}
-  - {fileID: 114128916338188044}
-  - {fileID: 114496490788490614}
-  - {fileID: 114583497453559232}
-  - {fileID: 114385348309861818}
+  - {fileID: 114571598208666648}
+  - {fileID: 114801242808500606}
+  - {fileID: 114251969062111028}
+  - {fileID: 114182713785419730}
+  - {fileID: 114690977630226272}
+  - {fileID: 114431889745974470}
   MinDistance: 0
   MaxDistance: 0
   Length: 467924

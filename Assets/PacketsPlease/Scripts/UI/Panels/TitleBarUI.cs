@@ -16,7 +16,7 @@ public class TitleBarUI : MonoBehaviour {
 
     private void Start()
     {
-        m_timeScaler = 480.0f / m_realMinutesPerGameDay;
+        m_timeScaler = 180.0f / m_realMinutesPerGameDay;
     }
 
     public void SetDay(int day)

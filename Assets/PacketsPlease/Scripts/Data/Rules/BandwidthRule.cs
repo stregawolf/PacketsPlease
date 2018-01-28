@@ -29,14 +29,37 @@ public class BandwidthRule : RuleData
 
     public override void MakePass(CustomerData customer)
     {
-        if (customer.m_dataUsage > m_usageLimit)
+        float multiplier = 1f;
+        switch(customer.m_speedTier)
         {
-            customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), m_usageLimit);
+            case CustomerData.SpeedTier.Gold:
+                multiplier = 4;
+                break;
+            case CustomerData.SpeedTier.Silver:
+                multiplier = 2;
+                break;
+        }
+        if (customer.m_dataUsage > m_usageLimit * multiplier)
+        {
+            customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), m_usageLimit * multiplier);
         }
     }
 
     public override void MakeFail(CustomerData customer)
     {
-        base.MakeFail(customer);
+        float multiplier = 1f;
+        switch (customer.m_speedTier)
+        {
+            case CustomerData.SpeedTier.Gold:
+                multiplier = 4;
+                break;
+            case CustomerData.SpeedTier.Silver:
+                multiplier = 2;
+                break;
+        }
+        if (m_usageLimit > 0)
+        {
+            customer.m_dataUsage += m_usageLimit * multiplier + Random.Range(0.1f, 10f);
+        }
     }
 }

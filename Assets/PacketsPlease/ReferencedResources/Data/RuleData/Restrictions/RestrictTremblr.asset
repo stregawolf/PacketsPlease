@@ -8,9 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301b04dbd991fa64384cf9f6868d338e, type: 3}
-  m_Name: Day1
+  m_Script: {fileID: 11500000, guid: 1b685b2d82318a44ea348d8932d9aa60, type: 3}
+  m_Name: RestrictTremblr
   m_EditorClassIdentifier: 
-  rules:
-  - {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e, type: 2}
-  m_priortyRules: []
+  m_priority: 0
+  m_skipAutoNotice: 0
+  m_action: 1
+  m_usageLimit: 0
+  m_activityName: Tremblr
