@@ -1259,6 +1259,53 @@ Prefab:
       propertyPath: m_throttleClip
       value: 
       objectReference: {fileID: 8300000, guid: 7bb389e078cd4b14ea92385fafbb0269, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_lowIntensityClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d6430d236c4d3d4892a8d3e3edfdfbd, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_highIntensityClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e1c5627b1dfabf7419d6b6cc2faeb033, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_medIntensityClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f10dda381a70cf47a5aa00a74e3e2bd, type: 3}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_maxNumCustomer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_timeBetweenCustomers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_minTimeBetweenCustomers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_maxTimeBetweenCustomers
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: TEST_DAY
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
   m_IsPrefabParent: 0
