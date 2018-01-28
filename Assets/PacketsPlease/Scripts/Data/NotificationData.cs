@@ -88,7 +88,7 @@ public class NotificationData : ScriptableObject
     {
         m_title = "You're FIRED!";
         m_sender = SENDER_BOSS;
-        m_message = "You're not cut out to work at this company.\n\nYou're FIRE!";
+        m_message = "That's the last strike!\n\nYou're not cut out to work at this company.\n\nYOU ARE FIRE!!!";
         m_response = null;
         m_iconColor = Color.red;
         m_correctResponseAction = ResolutionAction.GameOver;
