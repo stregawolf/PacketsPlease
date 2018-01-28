@@ -8,6 +8,7 @@ public class RuleManager : Singleton<RuleManager> {
 
     public const ActionData.ActionType DEFAULT_ACTION = ActionData.ActionType.Boost;
     public List<RuleData> Rules { get { return m_rules; } }
+    [SerializeField]
     private List<RuleData> m_rules;
 
     protected override void Awake()

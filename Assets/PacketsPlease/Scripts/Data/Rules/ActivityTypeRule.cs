@@ -4,8 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Activity Type", menuName = "Rules/Activity Type", order = 0)]
 public class ActivityTypeRule : RuleData {
-
-    public ActivityData.Activity.Type m_activityType;
+    [SerializeField]
+    ActivityData.Activity.Type m_activityType;
 
     private List<ActivityData.Activity> passingActivites;
     private List<ActivityData.Activity> failingActivities;

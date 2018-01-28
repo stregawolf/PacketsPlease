@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DayData : ScriptableObject {
     public List<RuleData> rules;
-    public string m_dailyMessage;
+    [System.Serializable]
     public struct PriorityRule
     {
         public RuleData rule;
@@ -15,5 +15,11 @@ public class DayData : ScriptableObject {
 
     public List<PriorityRule> m_priortyRules;
 
-    private NotificationData m_dailyNotification;
+    public void ApplyRules()
+    {
+        foreach(RuleData rule in rules)
+        {
+            RuleManager.Instance.AddRule(rule);
+        }
+    }
 }

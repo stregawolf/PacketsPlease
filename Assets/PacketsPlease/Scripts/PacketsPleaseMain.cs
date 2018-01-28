@@ -43,6 +43,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected GameState m_currentGameState = GameState.Transitioning;
 
+
+    public DayData TEST_DAY;
     protected override void Awake()
     {
         base.Awake();
@@ -69,7 +71,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             return;
         }
-
+        
         m_currentGameState = GameState.EndOfDay;
         m_notificationUI.EmptyList();
         m_customerListUI.EmptyList();
@@ -124,6 +126,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
         //RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionData.ActionType.Throttle));
         RuleManager.Instance.AddRule(new ActivityTypeRule(ActivityData.Activity.Type.GAME, ActionData.ActionType.Disconnect, 100.0f, 0));
+
+        TEST_DAY.ApplyRules();
     }
 
     protected void Update()

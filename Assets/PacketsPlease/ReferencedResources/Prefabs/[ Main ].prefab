@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d352a57c7c550b94d8ef15c75c7bab11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rules: []
 --- !u!114 &114710476479389052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,3 +155,4 @@ MonoBehaviour:
   m_notificationTimer: 0
   m_dayTransitionTime: 2
   m_actionFeedbackTime: 0.33
+  TEST_DAY: {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}

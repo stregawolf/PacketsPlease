@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "IndividualRule", menuName = "Rules/Individual", order = 0)]
 public class IndividualRule : RuleData
 {
-    public string m_name;
+    [SerializeField]
+    string m_name;
 
     public IndividualRule(string name, ActionData.ActionType correctResponse, float usageLimit = 0, int priority = 0) : base(correctResponse, usageLimit, priority)
     {
