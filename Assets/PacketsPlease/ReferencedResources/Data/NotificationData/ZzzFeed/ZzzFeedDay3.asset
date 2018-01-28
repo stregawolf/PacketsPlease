@@ -9,31 +9,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
-  m_Name: ZzzFeedDay1
+  m_Name: ZzzFeedDay3
   m_EditorClassIdentifier: 
   m_title: ZzzFeed Daily Roundup
-  m_message: 'Welcome to your Daily Dose of ZzzFeed! We''ve got the hottest stories
-    coming to you right now!
+  m_message: 'Have no fear, ZzzFeed is here, bringing you the latest news from around
+    the web!
 
 
-    <b>Culture</b>
+    <b>Politics</b>
 
-    <u>You Won''t Believe What This Baby Did!
+    <u>Where are these Congressmen Now?
 
-    Who''s Cheating On Who? We Know But We Aren''t Telling!
+    Which Country Are You? Take this Quiz!
 
-    13 Hats That Look Like Celebrities
+    President Drumpf EXPOSE!</u>
 
 
-    <b> CLICK HERE FOR MORE!!!</b></u>'
+    <b><u>CLICK HERE FOR MORE</u></b>'
   m_sender: news@zzzfeed.net
   m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
-  m_parentStory: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
+  m_parentStory: {fileID: 0}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
+  m_responseNotifications: []
+  m_responseCustomers: []
   m_response:
-    m_ChoiceA: Unsubscribe
-    m_ChoiceB: Unsubscribe Harder
+    m_ChoiceA: Go Away
+    m_ChoiceB: Go Away Now
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
+    m_clearMe: 0

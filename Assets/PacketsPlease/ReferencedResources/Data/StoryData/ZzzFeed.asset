@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60216907004e56a4d9edb157cd60baeb, type: 3}
+  m_Name: ZzzFeed
+  m_EditorClassIdentifier: 
+  m_startDay: 1
+  m_days:
+  - m_name: Day1
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: a423a76bd8f6f7c4b8ec206d80010b92, type: 2}
+      m_time: 60
+  - m_name: Day2
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: 2c180d06aa8119e43ae93d4f9e968114, type: 2}
+      m_time: 60
+  - m_name: Day3
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: 62a111a9ff23ef04ba2af7495fb34e46, type: 2}
+      m_time: 60
+  - m_name: Day4
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: 2a7e6c03bf2b70f468cc1631b7ae5f21, type: 2}
+      m_time: 60
+  m_customersToShow: []
+  m_notificationsToShow: []

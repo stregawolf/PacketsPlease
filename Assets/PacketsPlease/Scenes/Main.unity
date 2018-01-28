@@ -1294,6 +1294,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_stories.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4193810648781584, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1366,6 +1371,12 @@ Prefab:
       propertyPath: m_canvasShaker
       value: 
       objectReference: {fileID: 1663261932}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_stories.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
   m_IsPrefabParent: 0

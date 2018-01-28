@@ -9,18 +9,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
-  m_Name: TEST B
+  m_Name: ZzzFeedDay4
   m_EditorClassIdentifier: 
-  m_title: TEST B
-  m_message: Haha, butts.
-  m_sender: Test Bot
+  m_title: 'ZzzFeed: Note From The Editors'
+  m_message: 'Hi Reader,
+
+
+    We here at ZzzFeed have always tried to report hard-hitting news, but some news
+    hits too hard. Due to a recent article, we''ve been asked to cease-and-desist
+    all publication for the forseeable future. We hope to serve you again soon. Remember,
+    when you can''t stay awake, get Zzz!'
+  m_sender: news@zzzfeed.net
   m_pinned: 0
-  m_iconColor: {r: 0.9862069, g: 1, b: 0, a: 1}
+  m_iconColor: {r: 1, g: 1, b: 1, a: 1}
   m_parentStory: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
+  m_responseNotifications: []
+  m_responseCustomers: []
   m_response:
-    m_ChoiceA: Gee, thanks
-    m_ChoiceB: Ugh
+    m_ChoiceA: 
+    m_ChoiceB: 
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
+    m_clearMe: 1
