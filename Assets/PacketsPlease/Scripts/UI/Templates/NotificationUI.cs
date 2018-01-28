@@ -14,7 +14,7 @@ public class NotificationUI : MonoBehaviour {
     protected Color m_originalTitleColor;
     protected Color m_originalBGColor;
 
-    protected void Start()
+    protected void Awake()
     {
         m_originalTitleColor = m_title.color;
         m_originalBGColor = m_bg.color;

@@ -99,8 +99,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
         NotificationData gameOverData = ScriptableObject.CreateInstance<NotificationData>();
         gameOverData.GenerateGameOver();
-        NotificationUI gameOver = m_notificationUI.AddNotification(gameOverData);
-        gameOver.SelectSelf();
+        m_notificationUI.AddNotification(gameOverData);
 
         NotificationData creditsData = ScriptableObject.CreateInstance<NotificationData>();
         creditsData.GenerateCredits();
@@ -133,8 +132,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
         NotificationData endOfDayData = ScriptableObject.CreateInstance<NotificationData>();
         endOfDayData.GenerateEndOfDay(m_currentDay, m_numCorrectChoices, m_customerListUI.m_totelCustomers);
-        NotificationUI endOfDay = m_notificationUI.AddNotification(endOfDayData);
-        endOfDay.SelectSelf();
+        m_notificationUI.AddNotification(endOfDayData);
     }
 
     public void TransitionDay()

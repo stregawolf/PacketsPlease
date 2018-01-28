@@ -13,6 +13,7 @@ public class NotificationData : ScriptableObject
     public string m_sender;
     public bool m_pinned;         // Pinned notifications go back to the top of the stack when closed
     public Color m_iconColor = Color.white;
+    public bool m_autoOpen = false;
 
     [HideInInspector]
     public StoryData m_parentStory;
@@ -71,6 +72,7 @@ public class NotificationData : ScriptableObject
         m_iconColor = Color.red;
         m_correctResponseAction = ResolutionAction.None;
         m_incorrectResponseAction = ResolutionAction.None;
+        m_autoOpen = false;
     }
 
     public void GenerateEndOfDay(int day, int numCorrectChoices, int totalNumCustomers)
@@ -83,6 +85,7 @@ public class NotificationData : ScriptableObject
         m_iconColor = Color.green;
         m_correctResponseAction = ResolutionAction.TransitionDay;
         m_incorrectResponseAction = ResolutionAction.None;
+        m_autoOpen = true;
     }
 
     public void GenerateGameOver()
@@ -94,6 +97,7 @@ public class NotificationData : ScriptableObject
         m_iconColor = Color.red;
         m_correctResponseAction = ResolutionAction.GameOver;
         m_incorrectResponseAction = ResolutionAction.None;
+        m_autoOpen = true;
     }
 
     public void GenerateCredits()
