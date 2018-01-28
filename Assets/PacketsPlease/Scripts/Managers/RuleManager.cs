@@ -285,11 +285,11 @@ public class RuleManager : Singleton<RuleManager> {
                             NotificationData notification = checkoff[RuleData.Type.Activity][rule.m_action];
                             if (rule.m_usageLimit > 0f)
                             {
-                                notification.m_message += string.Format("• Connections from {0} over {1}", lr.m_location.ToString(), lr.m_usageLimit);
+                                notification.m_message += string.Format("• Connections from {0} over {1}", CustomerData.LOCATION_NAMES[(int)lr.m_location], lr.m_usageLimit);
                             }
                             else
                             {
-                                notification.m_message += string.Format("• All connections from {0}\n", lr.m_location);
+                                notification.m_message += string.Format("• All connections from {0}\n", CustomerData.LOCATION_NAMES[(int)lr.m_location]);
                             }
                             #endregion
                         }

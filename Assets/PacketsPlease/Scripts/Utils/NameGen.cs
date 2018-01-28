@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 public static class NameGen {
-
+    [System.Serializable]
     public struct Name
     {
         public string m_first;

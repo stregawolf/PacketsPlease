@@ -4,8 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "CustomerData", menuName = "Data/CustomerData", order = 1)]
 public class CustomerData : ScriptableObject {
-
-    public static float noRulesWeight = 0.5f;
+    
     public const float MAX_DATA_USAGE = 100.0f;
     public const int MAX_DAYS_ACTIVE = 10000;
     public static readonly string[] LOCATION_NAMES = {
@@ -22,7 +21,18 @@ public class CustomerData : ScriptableObject {
     public float m_dataUsage;
     public int m_daysActive;
     public ActivityData.Activity m_activity;
-    public bool m_male = false; // Deprecated
+
+    [System.Serializable]
+    public class ParentStory
+    {
+        [HideInInspector]
+        public StoryData m_story;
+        public ActionData.ActionType m_endOnAction;
+        public bool m_ForcePassFail = false;
+        public string m_activityName;
+    }
+
+    public ParentStory m_StoryParameters;
 
     public enum Location : int
     {
@@ -58,11 +68,14 @@ public class CustomerData : ScriptableObject {
     // Generate new customer that somehow fits into one of the rule categories
     public void Generate()
     {
-        List<RuleData> rules = RuleManager.Instance.Rules;
-
         GenerateTrueRandom();
+        ForcePassFail();
+    }
 
-        if(rules.Count == 0)
+    public void ForcePassFail()
+    {
+        List<RuleData> rules = RuleManager.Instance.Rules;
+        if (rules.Count == 0)
         {
             // If there are no rules available, just generate a totally random Customer
             return;
@@ -70,7 +83,7 @@ public class CustomerData : ScriptableObject {
         else
         {
             // Make character pass all rules
-            foreach(RuleData rule in RuleManager.Instance.Rules)
+            foreach (RuleData rule in RuleManager.Instance.Rules)
             {
                 rule.MakePass(this);
             }
@@ -83,7 +96,6 @@ public class CustomerData : ScriptableObject {
 
     public void GenerateTrueRandom()
     {
-        m_male = Random.value > 0.5f;
         m_name = NameGen.GetName();
         m_dataUsage = Random.Range(0.0f, MAX_DATA_USAGE);
         m_daysActive = Random.Range(0, MAX_DAYS_ACTIVE);
@@ -97,7 +109,7 @@ public class CustomerData : ScriptableObject {
     {
         return string.Format(
             "Customer(Name {0} Male {1} DataUsg {2} DaysAct {3} ActType {4} Loc {5}",
-            m_name, m_male, m_dataUsage, m_daysActive, m_activity.ToString(), m_location
+            m_name, m_dataUsage, m_daysActive, m_activity.ToString(), m_location
         );
     }
 
