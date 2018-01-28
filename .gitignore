@@ -36,3 +36,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Assets/PacketsPlease/Resources/Story.meta
+
+# FMOD
+fmod*.log

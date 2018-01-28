@@ -345,6 +345,11 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114083669604351222, guid: 2883a3d0974fb2244aae4ad1c959fd15,
+        type: 2}
+      propertyPath: m_date
+      value: 
+      objectReference: {fileID: 1903681123}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2883a3d0974fb2244aae4ad1c959fd15, type: 2}
   m_IsPrefabParent: 0
@@ -1152,6 +1157,54 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1486038020 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4193810648781584, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1486038019}
+--- !u!1 &1586970306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1586970307}
+  - component: {fileID: 1586970308}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1586970307
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1586970306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1486038020}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586970308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1586970306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c3004a3025f9f47a7af4f15d244aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lowIntensityClip: {fileID: 8300000, guid: e1c5627b1dfabf7419d6b6cc2faeb033, type: 3}
+  m_medIntensityClip: {fileID: 8300000, guid: 8d6430d236c4d3d4892a8d3e3edfdfbd, type: 3}
+  m_highIntensityClip: {fileID: 8300000, guid: 7f10dda381a70cf47a5aa00a74e3e2bd, type: 3}
 --- !u!1 &1623201046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1328,12 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224252040281716564, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
     type: 2}
   m_PrefabInternal: {fileID: 1123473643}
+--- !u!114 &1903681123 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114398380887665450, guid: 2883a3d0974fb2244aae4ad1c959fd15,
+    type: 2}
+  m_PrefabInternal: {fileID: 150423713}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
 --- !u!1 &2023222722
 GameObject:
   m_ObjectHideFlags: 0
