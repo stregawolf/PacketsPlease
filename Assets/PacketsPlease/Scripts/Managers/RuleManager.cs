@@ -88,6 +88,7 @@ public class RuleManager : Singleton<RuleManager> {
         companyPolicy.m_title = string.Format("Company Policy for {0}", TitleBarUI.GameDate.ToShortDateString());
         companyPolicy.m_sender = "policy@cosmocast.com";
         companyPolicy.m_message = "These are the latest active policies. Please follow them to ensure the best experience for our customers.\n\n";
+        companyPolicy.m_autoOpen = true;
         m_dailyNotifications.Add(companyPolicy);
         Dictionary<RuleData.Type, Dictionary<ActionData.ActionType,NotificationData>> checkoff = new Dictionary<RuleData.Type, Dictionary<ActionData.ActionType, NotificationData>>();
 
