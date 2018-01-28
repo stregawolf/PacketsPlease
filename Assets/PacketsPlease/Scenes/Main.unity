@@ -1268,7 +1268,7 @@ Prefab:
         type: 2}
       propertyPath: m_stories.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5,
+      objectReference: {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}

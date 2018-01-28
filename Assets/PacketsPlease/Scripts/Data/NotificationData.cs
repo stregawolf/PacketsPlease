@@ -22,11 +22,20 @@ public class NotificationData : ScriptableObject
         None = 0,
         TransitionDay,
         GameOver,
-        EndStory
+        EndStory,
+        PostNotificationA,
+        PostNotificationB,
+        PostNotificationC,
+        PostCustomerA,
+        PostCustomerB,
+        PostCustomerC
     }
 
     public ResolutionAction m_correctResponseAction = ResolutionAction.None;
     public ResolutionAction m_incorrectResponseAction = ResolutionAction.None;
+
+    public List<NotificationData> m_responseNotifications;
+    public List<CustomerData> m_responseCustomers;
 
     [System.Serializable]
     public class Response
@@ -47,6 +56,7 @@ public class NotificationData : ScriptableObject
             m_ChoiceA = choiceA; m_ChoiceB = choiceB; m_correctResponse = correctResponse;
         }
         public bool m_strikeOnIncorrect = false;
+        public bool m_clearMe = true;
     }
 
     public Response m_response = null;
@@ -77,10 +87,5 @@ public class NotificationData : ScriptableObject
         m_iconColor = Color.green;
         m_correctResponseAction = ResolutionAction.TransitionDay;
         m_incorrectResponseAction = ResolutionAction.None;
-    }
-
-    public void EndStory()
-    {
-
     }
 }
