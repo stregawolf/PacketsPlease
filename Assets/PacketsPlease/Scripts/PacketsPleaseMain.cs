@@ -26,7 +26,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected void Start()
     {
-<<<<<<< HEAD
         // STORY PARSE TEST
         testData = new StoryData("Story/TEST_DATA");
         // Kick out all TEST data as POC

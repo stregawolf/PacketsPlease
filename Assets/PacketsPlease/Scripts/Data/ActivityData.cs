@@ -11,7 +11,7 @@ public class ActivityData {
             GAME = 0,
             SITE = 1,
             STREAM = 2,
-            SELF = 4
+            SELF = 3
         }
 
         public string m_name;
