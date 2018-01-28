@@ -5,6 +5,7 @@ using System.Text;
 
 public enum ActionType
 {
+    None,
     Throttle,
     Boost,
     Disconnect
