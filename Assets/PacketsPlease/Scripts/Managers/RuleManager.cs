@@ -5,6 +5,7 @@ using System.Linq;
 
 public class RuleManager : Singleton<RuleManager> {
 
+    public const ActionType DEFAULT_ACTION = ActionType.Boost;
     public List<RuleData> Rules { get { return m_rules; } }
     private List<RuleData> m_rules;
 
@@ -86,7 +87,7 @@ public class RuleManager : Singleton<RuleManager> {
 
     private void DumpRulesAndCrash(ActionData a, string msg)
     {
-        a.PrintAllRules();
+        Debug.Log(a.AllRulesToStr());
         throw new System.Exception(msg);
     }
 }

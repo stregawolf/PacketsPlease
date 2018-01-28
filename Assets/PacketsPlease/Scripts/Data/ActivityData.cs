@@ -95,4 +95,12 @@ public class ActivityData {
         new Activity("CosmoCAST",                   Activity.Type.GAME),
     };
 
+    public override string ToString()
+    {
+        return string.Format(
+            "Activity(Name {0} Type {1})",
+            m_name, m_type
+        );
+    }
+
 }
