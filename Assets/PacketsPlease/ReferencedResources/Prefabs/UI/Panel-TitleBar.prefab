@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 224289145522724130}
   - component: {fileID: 222083281586499712}
   - component: {fileID: 114522233788646216}
+  - component: {fileID: 114083669604351222}
   m_Layer: 5
   m_Name: Panel-TitleBar
   m_TagString: Untagged
@@ -62,6 +63,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114083669604351222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1610195671735278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8eb78bb72bfa8c44bbb1977dad26518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_date: {fileID: 0}
 --- !u!114 &114398380887665450
 MonoBehaviour:
   m_ObjectHideFlags: 1
