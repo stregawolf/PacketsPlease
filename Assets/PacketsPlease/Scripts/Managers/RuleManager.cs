@@ -6,7 +6,7 @@ using System.Linq;
 [ExecuteInEditMode]
 public class RuleManager : Singleton<RuleManager> {
 
-    public const ActionType DEFAULT_ACTION = ActionType.Boost;
+    public const ActionData.ActionType DEFAULT_ACTION = ActionData.ActionType.Boost;
     public List<RuleData> Rules { get { return m_rules; } }
     private List<RuleData> m_rules;
 
@@ -31,19 +31,19 @@ public class RuleManager : Singleton<RuleManager> {
     // Also populates actionTaken with sorted list of passed and violated rules
     public bool DoesViolateRules(ActionData actionTaken)
     {
-        ActionType requiredAction = GetRequiredAction(actionTaken.customer);
+        ActionData.ActionType requiredAction = GetRequiredAction(actionTaken.customer);
 
         return requiredAction != actionTaken.actionType;
     }
 
-    public ActionType GetRequiredAction(CustomerData customer)
+    public ActionData.ActionType GetRequiredAction(CustomerData customer)
     {
-        ActionType requiredAction = ActionType.None;
+        ActionData.ActionType requiredAction = ActionData.ActionType.None;
         int currPriority = int.MinValue;
         foreach(RuleData rule in Rules)
         {
-            ActionType thisReqAction = rule.ActionRequired(customer);
-            if (thisReqAction != ActionType.None && rule.m_priority > currPriority)
+            ActionData.ActionType thisReqAction = rule.ActionRequired(customer);
+            if (thisReqAction != ActionData.ActionType.None && rule.m_priority > currPriority)
             {
                 requiredAction = thisReqAction;
                 currPriority = rule.m_priority;

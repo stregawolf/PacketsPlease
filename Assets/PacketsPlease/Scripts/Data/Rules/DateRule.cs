@@ -6,9 +6,8 @@ using UnityEngine;
 public class DateRule : RuleData
 {
     int m_daysActive;
-    public DateRule() { }
 
-    public DateRule(int daysActive, ActionType correctResponse, float usageLimit, int priority = 0) : base(priority)
+    public DateRule(int daysActive, ActionData.ActionType correctResponse, float usageLimit, int priority = 0) : base(correctResponse, usageLimit, priority)
     {
         m_daysActive = daysActive;
         m_priority = priority;
@@ -22,13 +21,34 @@ public class DateRule : RuleData
         m_type = Type.Date;
     }
 
-    public override ActionType ActionRequired(CustomerData customer)
+    public override ActionData.ActionType ActionRequired(CustomerData customer)
     {
         bool dataRequirement = (m_usageLimit <= 0 || customer.m_dataUsage > m_usageLimit);
         if(customer.m_daysActive < m_daysActive && dataRequirement)
         {
             return m_action;
         }
-        return ActionType.None;
+        return ActionData.ActionType.None;
+    }
+
+    public override void MakePass(CustomerData customer)
+    {
+        if(customer.m_daysActive < m_daysActive)
+        {
+            if (m_usageLimit > 0 && Random.value < 0.5f)
+            {
+                customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), m_usageLimit);
+            }
+            else
+            {
+                customer.m_daysActive += m_daysActive;
+            }
+        }
+    }
+
+    public override void MakeFail(CustomerData customer)
+    {
+        customer.m_daysActive = Random.Range(0, m_daysActive);
+        base.MakeFail(customer);
     }
 }

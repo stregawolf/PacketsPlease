@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 
-public enum ActionType
-{
-    None,
-    Throttle,
-    Boost,
-    Disconnect
-}
-
 public class ActionData {
+
+    [System.Serializable]
+    public enum ActionType
+    {
+        None,
+        Throttle,
+        Boost,
+        Disconnect
+    }
 
     public CustomerData customer;
     public ActionType actionType;
@@ -24,10 +25,10 @@ public class ActionData {
     public RuleData HighestViolatedRule { get { return (violatedRules.Count == 0) ? null : violatedRules[0]; } }
     public RuleData HighestPassedRule { get { return (passedRules.Count == 0) ? null : passedRules[0]; } }
 
-    public ActionData(CustomerData customer, ActionType actionType)
+    public ActionData(CustomerData customer, ActionType ActionType)
     {
         this.customer = customer;
-        this.actionType = actionType;
+        this.actionType = ActionType;
 
         passedRules = new List<RuleData>();
         violatedRules = new List<RuleData>();

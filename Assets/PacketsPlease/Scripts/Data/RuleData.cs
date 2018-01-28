@@ -10,9 +10,12 @@ public class RuleData : ScriptableObject {
     public const int HIGHEST_PRIORITY = 999;
     public const int LOWEST_PRIORITY = 0;
 
-    public RuleData(int priority = LOWEST_PRIORITY)
+    public RuleData(ActionData.ActionType correctResponse, float usageLimit = 0f, int priority = LOWEST_PRIORITY)
     {
+        m_usageLimit = usageLimit;
         m_priority = priority;
+        m_action = correctResponse;
+        Init();
     }
 
     protected virtual void Init()
@@ -31,15 +34,28 @@ public class RuleData : ScriptableObject {
     }
 
     public Type m_type { get; protected set; }
-    
-    public ActionType m_action { get; protected set; }
+
+    public ActionData.ActionType m_action;
 
     public float m_usageLimit = 0f;
 
     // Check if action taken violates any constraints of the rule
-    public virtual ActionType ActionRequired(CustomerData customer)
+    public virtual ActionData.ActionType ActionRequired(CustomerData customer)
     {
-        return ActionType.None;
+        return ActionData.ActionType.None;
+    }
+
+    public virtual void MakePass(CustomerData customer)
+    {
+
+    }
+
+    public virtual void MakeFail(CustomerData customer)
+    {
+        if (m_usageLimit > 0)
+        {
+            customer.m_dataUsage += m_usageLimit + Random.Range(0.1f, 10f);
+        }
     }
    
     public override string ToString()

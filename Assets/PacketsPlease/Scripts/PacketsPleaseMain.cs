@@ -51,7 +51,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             m_notificationUI.AddNotification(sn.m_data);
         }
 
-        RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionType.Throttle));
+        //RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionData.ActionType.Throttle));
+        RuleManager.Instance.AddRule(new ActivityTypeRule(ActivityData.Activity.Type.GAME, ActionData.ActionType.Disconnect, 100.0f, 0));
 
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
         m_dayDispay.FadeIn(true);
@@ -157,7 +158,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleThrottlingTopCustomer()
     {
         m_isHandlingCustomer = true;
-        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionType.Throttle);
+        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionData.ActionType.Throttle);
         if(RuleManager.Instance.DoesViolateRules(action))
         {
             GiveStrike();
@@ -180,7 +181,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleBoostingTopCustomer()
     {
         m_isHandlingCustomer = true;
-        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionType.Boost);
+        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionData.ActionType.Boost);
         if(RuleManager.Instance.DoesViolateRules(action))
         {
             GiveStrike();
@@ -211,7 +212,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleDisconnectTopCustomer()
     {
         m_isHandlingCustomer = true;
-        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionType.Disconnect);
+        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionData.ActionType.Disconnect);
         if(RuleManager.Instance.DoesViolateRules(action))
         {
             GiveStrike();

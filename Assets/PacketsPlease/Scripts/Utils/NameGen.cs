@@ -53,7 +53,7 @@ public static class NameGen {
         "Kelly"
     };
 
-    public static Name GetName(bool boy) {
+    public static Name GetName() {
         string first = first_names[UnityEngine.Random.Range(0, first_names.Length)];
         string last = last_names[UnityEngine.Random.Range(0, last_names.Length)];
         return new Name(first, last);

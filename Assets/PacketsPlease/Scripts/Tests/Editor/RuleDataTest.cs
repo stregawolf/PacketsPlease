@@ -61,14 +61,14 @@ public class RuleDataTest {
         customer.m_activity = new ActivityData.Activity(ACTIVITY_NAME, ACTIVITY_TYPE);
         customer.m_male = IS_MALE;
             
-        boostCustomer = new ActionData(customer, ActionType.Boost);
-        throttleCustomer = new ActionData(customer, ActionType.Throttle);
-        disconnectCustomer = new ActionData(customer, ActionType.Disconnect);
+        boostCustomer = new ActionData(customer, ActionData.ActionType.Boost);
+        throttleCustomer = new ActionData(customer, ActionData.ActionType.Throttle);
+        disconnectCustomer = new ActionData(customer, ActionData.ActionType.Disconnect);
     }
 
     [Test]
     public void AddRulesAndClearThem() {
-        RuleData testRule = new ActivityTypeRule(ActivityData.Activity.Type.SITE, ActionType.Disconnect, 0);
+        RuleData testRule = new ActivityTypeRule(ActivityData.Activity.Type.SITE, ActionData.ActionType.Disconnect, 0);
 
         Debug.Assert(ruleManager.Rules.Count == 0, "ClearAtStart");
         ruleManager.AddRule(testRule);
@@ -81,21 +81,21 @@ public class RuleDataTest {
         Debug.Assert(ruleManager.Rules.Count == 0, "ClearAtEnd");
     }
 
-    private void AssertValidActionIs(ActionType type, CustomerData customer)
+    private void AssertValidActionIs(ActionData.ActionType type, CustomerData customer)
     {
-        ActionData boost = new ActionData(customer, ActionType.Boost);
-        ActionData throttle = new ActionData(customer, ActionType.Throttle);
-        ActionData disconnect = new ActionData(customer, ActionType.Disconnect);
+        ActionData boost = new ActionData(customer, ActionData.ActionType.Boost);
+        ActionData throttle = new ActionData(customer, ActionData.ActionType.Throttle);
+        ActionData disconnect = new ActionData(customer, ActionData.ActionType.Disconnect);
 
-        Debug.Assert(type != ActionType.Boost || !ruleManager.DoesViolateRules(boost), DumpActionInfo(customer, boost));
-        Debug.Assert(type != ActionType.Throttle || !ruleManager.DoesViolateRules(throttle), DumpActionInfo(customer, throttle));
-        Debug.Assert(type != ActionType.Disconnect || !ruleManager.DoesViolateRules(disconnect), DumpActionInfo(customer, disconnect));
+        Debug.Assert(type != ActionData.ActionType.Boost || !ruleManager.DoesViolateRules(boost), DumpActionInfo(customer, boost));
+        Debug.Assert(type != ActionData.ActionType.Throttle || !ruleManager.DoesViolateRules(throttle), DumpActionInfo(customer, throttle));
+        Debug.Assert(type != ActionData.ActionType.Disconnect || !ruleManager.DoesViolateRules(disconnect), DumpActionInfo(customer, disconnect));
     }
 
     private string DumpActionInfo(CustomerData customer, ActionData actionData)
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append(actionData.actionType)
+        sb.Append(actionData.ActionData.ActionType)
             .Append("\n")
             .Append(customer.ToString())
             .Append("\n")
@@ -128,23 +128,23 @@ public class RuleDataTest {
     [Test]
     public void BlanketRuleAppliesToEveryone() {
 
-        RuleData throttleEveryone = new ActivityTypeRule(ActivityData.Activity.Type.SITE, ActionType.Disconnect, 0);
+        RuleData throttleEveryone = new ActivityTypeRule(ActivityData.Activity.Type.SITE, ActionData.ActionType.Disconnect, 0);
         ruleManager.ClearAllRules();
         ruleManager.AddRule(throttleEveryone);
 
-        AssertValidActionIs(ActionType.Throttle, customer);
+        AssertValidActionIs(ActionData.ActionType.Throttle, customer);
 
         for(int i = 0; i < RANDOM_TEST_ITERATIONS; i++)
         {
             CustomerData c = GetRandomCustomer();
-            AssertValidActionIs(ActionType.Throttle, c);
+            AssertValidActionIs(ActionData.ActionType.Throttle, c);
         }
     }
 
     [Test]
     public void ThrottleAbove50() {
         
-        RuleData throttleAbove50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
+        RuleData throttleAbove50 = new UsageHigherRule(50f, ActionData.ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
         ruleManager.ClearAllRules();
         ruleManager.AddRule(throttleAbove50);
 
@@ -154,7 +154,7 @@ public class RuleDataTest {
 
             if(c.m_dataUsage >= 50f)
             {
-                AssertValidActionIs(ActionType.Throttle, c);
+                AssertValidActionIs(ActionData.ActionType.Throttle, c);
             }
             else
             {
@@ -166,19 +166,19 @@ public class RuleDataTest {
     [Test]
     public void ThrottleAboveBoostBelow50() {
 
-        RuleData throttleAbove50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
-        RuleData boostBelow50 = new UsageLowerRule(50f, ActionType.Boost, RuleData.HIGHEST_PRIORITY);
+        RuleData throttleAbove50 = new UsageHigherRule(50f, ActionData.ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
+        RuleData boostBelow50 = new UsageLowerRule(50f, ActionData.ActionType.Boost, RuleData.HIGHEST_PRIORITY);
         ruleManager.ClearAllRules();
         ruleManager.AddRule(throttleAbove50);
         ruleManager.AddRule(boostBelow50);
 
         CustomerData c = GetRandomCustomer();
         c.m_dataUsage = 49f;
-        AssertValidActionIs(ActionType.Boost, c);
+        AssertValidActionIs(ActionData.ActionType.Boost, c);
         c.m_dataUsage = 51f;
-        AssertValidActionIs(ActionType.Throttle, c);
+        AssertValidActionIs(ActionData.ActionType.Throttle, c);
         c.m_dataUsage = 50f;
-        AssertValidActionIs(ActionType.Throttle, c);
+        AssertValidActionIs(ActionData.ActionType.Throttle, c);
 
         for(int i = 0; i < RANDOM_TEST_ITERATIONS; i++)
         {
@@ -186,11 +186,11 @@ public class RuleDataTest {
 
             if(cc.m_dataUsage >= 50f)
             {
-                AssertValidActionIs(ActionType.Throttle, cc);
+                AssertValidActionIs(ActionData.ActionType.Throttle, cc);
             }
             else
             {
-                AssertValidActionIs(ActionType.Boost, cc);
+                AssertValidActionIs(ActionData.ActionType.Boost, cc);
             }
         }
     }
