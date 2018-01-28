@@ -30,6 +30,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     public float m_actionFeedbackTime = 1.0f;
 
+    public float m_customerTimeReductionPerDay = 0.5f;
+
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
     protected int m_currentDay = 0;
@@ -242,7 +244,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_notificationTimer += Time.deltaTime;
         if (m_customerTimer >= 0)
         {
-            m_customerTimer -= m_minTimeBetweenCustomers + UnityEngine.Random.Range(0f, m_maxTimeBetweenCustomers);
+            m_customerTimer -= m_minTimeBetweenCustomers + UnityEngine.Random.Range(0f, Mathf.Max(0.0f, m_maxTimeBetweenCustomers- m_customerTimeReductionPerDay * (m_currentDay-1)));
             if (m_customerListUI.GetNumCustomers() < m_maxNumCustomer)
             {
                 CustomerData data = ScriptableObject.CreateInstance<CustomerData>();
