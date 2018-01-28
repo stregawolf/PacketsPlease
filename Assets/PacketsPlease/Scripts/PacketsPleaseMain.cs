@@ -101,6 +101,10 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         NotificationUI gameOver = m_notificationUI.AddNotification(gameOverData);
         gameOver.SelectSelf();
 
+        NotificationData creditsData = ScriptableObject.CreateInstance<NotificationData>();
+        creditsData.GenerateCredits();
+        m_notificationUI.AddNotification(creditsData);
+
         EventManager.OnLose.Dispatch();
     }
 
