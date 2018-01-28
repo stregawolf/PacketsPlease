@@ -4,15 +4,39 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "CustomerData", menuName = "Data/CustomerData", order = 1)]
 public class CustomerData : ScriptableObject {
+
+    public static float noRulesWeight = 0.5f;
+    public const float MAX_DATA_USAGE = 999.99f;
+    public const int MAX_DAYS_ACTIVE = 999;
+    public static readonly string[] LOCATION_NAMES = {
+            "North America",
+            "South America",
+            "Europe",
+            "Asia",
+            "Africa",
+            "Australia",
+        };
+
+
     public NameGen.Name m_name;
     public float m_dataUsage;
     public int m_daysActive;
     public ActivityData.Activity m_activity;
     public bool m_male = false;
 
-    public static float noRulesWeight = 0.5f;
-    public const float MAX_DATA_USAGE = 999.99f;
-    public const int MAX_DAYS_ACTIVE = 999;
+    public enum Location : int
+    {
+        NorthAmerica = 0,
+        SouthAmerica,
+        Europe,
+        Asia,
+        Africa,
+        Australia,
+        NUM_LOCATIONS,
+    }
+
+    public Location m_location;
+
 
     // Generate new customer that somehow fits into one of the rule categories
     public void Generate()
@@ -66,7 +90,7 @@ public class CustomerData : ScriptableObject {
                         throw new System.NotImplementedException();
                         break;
                     case RuleData.ConstraintType.LOCATION:
-                        throw new System.NotImplementedException();
+                        m_location = (Location)Random.Range(0, (int)Location.NUM_LOCATIONS);
                         break;
                     default:
                         throw new System.Exception("CustomerData: Missing constraint types in IsViolatedBy()");
@@ -83,6 +107,7 @@ public class CustomerData : ScriptableObject {
         m_dataUsage = Random.Range(0.0f, MAX_DATA_USAGE);
         m_daysActive = Random.Range(0, MAX_DAYS_ACTIVE);
         m_activity = ActivityData.Activities[Random.Range(0, ActivityData.Activities.Length)];
+        m_location = (Location)Random.Range(0, (int)Location.NUM_LOCATIONS);
     }
 
 }
