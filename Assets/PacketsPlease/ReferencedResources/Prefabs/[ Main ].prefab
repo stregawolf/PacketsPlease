@@ -193,4 +193,5 @@ MonoBehaviour:
   m_notificationTimer: 0
   m_dayTransitionTime: 2
   m_actionFeedbackTime: 1
+  m_customerTimeReductionPerDay: 0.5
   TEST_DAY: {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}
