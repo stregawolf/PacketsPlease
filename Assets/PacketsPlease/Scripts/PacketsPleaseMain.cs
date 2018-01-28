@@ -10,6 +10,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public NotificationPanelUI m_notificationPanelUI;
     public DayDisplayUI m_dayDispay;
 
+    public Shaker m_canvasShaker;
+
     public float m_timeBetweenCustomers = 2.0f;
     public float m_customerTimer = 0.0f;
     public int m_maxNumCustomer = 10;
@@ -148,6 +150,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         m_currentStrike++;
         m_notificationUI.AddStrikeNotification(m_currentStrike);
+        m_canvasShaker.Shake();
         
     }
 

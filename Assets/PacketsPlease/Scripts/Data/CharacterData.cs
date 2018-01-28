@@ -10,8 +10,8 @@ public class CharacterData : ScriptableObject {
     public Sprite[] m_bodies;
     public Sprite[] m_heads;
     public Sprite[] m_neutralFacess;
-    public Sprite[] m_happyFaces;
-    public Sprite[] m_sadFaces;
+    public Sprite[] m_positiveFaces;
+    public Sprite[] m_negativeFaces;
     public Sprite[] m_hairs;
 
     public void GenerateCharacter(int seed, Image body, Image head, Image face, Image hair)
