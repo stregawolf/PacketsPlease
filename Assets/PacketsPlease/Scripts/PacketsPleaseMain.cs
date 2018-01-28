@@ -56,7 +56,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
 
         //RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionData.ActionType.Throttle));
-        RuleManager.Instance.AddRule(new ActivityTypeRule(ActivityData.Activity.Type.GAME, ActionData.ActionType.Disconnect, 100.0f, 0));
+        RuleManager.Instance.AddRule(new ActivityTypeRule(ActivityData.Activity.Type.GAME, ActionData.ActionType.Disconnect, 100.0f, 1));
+        RuleManager.Instance.AddRule(new BandwidthRule(150.0f, ActionData.ActionType.Throttle, 0));
+        RuleManager.Instance.AddRule(new DateRule(30, ActionData.ActionType.Boost, 0f, 10));
 
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
         m_dayDispay.FadeIn(true);
