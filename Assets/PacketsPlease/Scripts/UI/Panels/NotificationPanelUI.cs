@@ -27,4 +27,22 @@ public class NotificationPanelUI : MonoBehaviour {
             m_notificationDetails.Init(sourceNotification.m_data);
         }
     }
+
+    public void Respond(int response)
+    {
+        if(m_sourceNotification != null)
+        {
+            if (m_sourceNotification.m_data.m_response != null)
+            {
+                if ((int)m_sourceNotification.m_data.m_response.m_correctResponse == response)
+                {
+                    Debug.Log("Good Job!");
+                }
+                else
+                    Debug.Log("Wrong answer");
+            }
+            EventManager.OnNotificationResolved.Dispatch(m_sourceNotification);
+        }
+        SetNotification(null);
+    }
 }

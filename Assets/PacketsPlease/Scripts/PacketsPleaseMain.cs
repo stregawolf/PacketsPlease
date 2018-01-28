@@ -37,6 +37,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             m_notificationUI.AddNotification(sn.m_data);
         }
 
+        EventManager.OnNotificationResolved.Register(HandleResolveNotification);
+
         RuleData throttleOver50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
         RuleData boostUnder50 = new UsageLowerRule(50f, ActionType.Boost, RuleData.HIGHEST_PRIORITY);
         RuleData throttleAjitPai = new CustomerNameRule(new NameGen.Name("Ajit", "Pai"), ActionType.Throttle);
@@ -138,6 +140,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         yield return new WaitForSeconds(m_actionFeedbackTime);
         m_customerListUI.RemoveCustomerTopCustomer();
         m_isHandlingCustomer = false;
+    }
+
+    public void HandleResolveNotification(NotificationUI notification)
+    {
+        if (!notification.m_data.m_pinned)
+        {
+            m_notificationUI.RemoveNotification(notification);
+        }
     }
 
     public void DisconnectCustomer()
