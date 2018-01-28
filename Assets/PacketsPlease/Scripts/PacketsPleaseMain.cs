@@ -69,9 +69,13 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             }
         }
 
-        if(currentCustomer != m_customerListUI.GetTopCustomer())
+        CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
+        if(currentCustomer != topCustomer)
         {
-            UpdateCustomerDisplay(m_customerListUI.GetTopCustomer());
+            if (topCustomer == null || topCustomer.transform.localPosition.y < 5.0f)
+            {
+                UpdateCustomerDisplay(m_customerListUI.GetTopCustomer());
+            }
         }
 
         if (m_notificationTimer >= m_minTimeBetweenNotifications)

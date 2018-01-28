@@ -7,8 +7,6 @@ public class CustomerListUI : MonoBehaviour {
     public float m_separationDist = 10.0f;
     public float m_slideSpeed = 3.0f;
 
-    public Color m_activeUIColor = Color.green;
-    public Color m_activeNameColor = Color.gray;
 
     protected Queue<CustomerUI> m_customerUIs = new Queue<CustomerUI>();
     
@@ -19,12 +17,6 @@ public class CustomerListUI : MonoBehaviour {
         {
             // update positioning
             ui.transform.localPosition = Vector3.Lerp(ui.transform.localPosition, new Vector3(0.0f, i * m_separationDist, 0.0f), Time.deltaTime * m_slideSpeed);
-            
-            if (i == 0)
-            {
-                ui.SetNameColor(m_activeNameColor);
-                ui.SetBGColor(m_activeUIColor);
-            }
             i++;
         }
     }
