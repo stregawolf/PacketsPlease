@@ -22,7 +22,7 @@ public class ActivityTypeRule : RuleData {
     }
 
     private bool activityMatch(ActivityData.Activity activity) {
-        if(m_inverseOfActivity) {
+        if(!m_inverseOfActivity) {
             return activity.m_type == m_activityType;
         }
         else {

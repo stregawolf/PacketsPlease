@@ -43,6 +43,10 @@ public class NotificationListUI : MonoBehaviour {
         ui.Init(data);
         m_notificationUIs.Add(ui);
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;
+        if(data.m_autoOpen)
+        {
+            ui.SelectSelf();
+        }
         return ui;
     }
 
@@ -61,6 +65,10 @@ public class NotificationListUI : MonoBehaviour {
         ui.Init(data);
         m_notificationUIs.Add(ui);
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;
+        if (data.m_autoOpen)
+        {
+            ui.SelectSelf();
+        }
         return ui;
     }
 }

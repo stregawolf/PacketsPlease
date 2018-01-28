@@ -13,6 +13,7 @@ public class NotificationData : ScriptableObject
     public string m_sender;
     public bool m_pinned;         // Pinned notifications go back to the top of the stack when closed
     public Color m_iconColor = Color.white;
+    public bool m_autoOpen = false;
 
     [HideInInspector]
     public StoryData m_parentStory;
@@ -68,9 +69,9 @@ public class NotificationData : ScriptableObject
         m_sender = SENDER_BOSS;
         m_message = string.Format("You've got #{0} strikes!.\n\n{1} strikes and you're fired!", number, PacketsPleaseMain.Instance.m_maxStrikes);
         m_response = new Response("I'm sorry", "Eat my butt", Response.CorrectResponse.CHOICE_A);
+        m_response.m_strikeOnIncorrect = true;
         m_iconColor = Color.red;
-        m_correctResponseAction = ResolutionAction.None;
-        m_incorrectResponseAction = ResolutionAction.Strike;
+        m_autoOpen = false;
     }
 
     public void GenerateEndOfDay(int day, int numCorrectChoices, int totalNumCustomers)
@@ -83,17 +84,19 @@ public class NotificationData : ScriptableObject
         m_iconColor = Color.green;
         m_correctResponseAction = ResolutionAction.TransitionDay;
         m_incorrectResponseAction = ResolutionAction.None;
+        m_autoOpen = true;
     }
 
     public void GenerateGameOver()
     {
         m_title = "You're FIRED!";
         m_sender = SENDER_BOSS;
-        m_message = "That's the last strike!\n\nYou're not cut out to work at this company.\n\nYOU ARE FIRE!!!";
+        m_message = "That's the last strike!\n\nYou're not cut out to work at this company.\n\nYOU ARE FIRED!!!";
         m_response = null;
         m_iconColor = Color.red;
         m_correctResponseAction = ResolutionAction.GameOver;
         m_incorrectResponseAction = ResolutionAction.None;
+        m_autoOpen = true;
     }
 
     public void GenerateCredits()

@@ -17,6 +17,7 @@ MonoBehaviour:
   m_sender: pr@cosmocast.com
   m_pinned: 1
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
+  m_autoOpen: 0
   m_parentStory: {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
