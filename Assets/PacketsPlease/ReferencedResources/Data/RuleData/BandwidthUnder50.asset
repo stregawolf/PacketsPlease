@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: BandwidthUnder50
   m_EditorClassIdentifier: 
   m_priority: 0
-  m_action: 0
-  m_usageLimit: 0
+  m_action: 1
+  m_usageLimit: 50

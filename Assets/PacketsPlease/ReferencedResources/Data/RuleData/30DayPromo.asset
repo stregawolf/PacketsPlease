@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: 30DayPromo
   m_EditorClassIdentifier: 
   m_priority: 0
-  m_action: 0
+  m_action: 2
   m_usageLimit: 0
+  m_daysActive: 30
