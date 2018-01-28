@@ -58,13 +58,8 @@ public class NotificationPanelUI : MonoBehaviour {
             bool respondedCorrectly = true;
             if (m_sourceNotification.m_data.m_response != null)
             {
-                if ((int)m_sourceNotification.m_data.m_response.m_correctResponse == response)
+                if ((int)m_sourceNotification.m_data.m_response.m_correctResponse != response)
                 {
-                    Debug.Log("Good Job!");
-                }
-                else
-                {
-                    Debug.Log("Wrong answer");
                     respondedCorrectly = false;
                 }
             }

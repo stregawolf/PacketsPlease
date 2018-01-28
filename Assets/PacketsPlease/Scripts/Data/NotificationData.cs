@@ -8,21 +8,27 @@ public class NotificationData : ScriptableObject
     public const string SENDER_BOSS = "Mr. Bossman Your Boss";
 
     public string m_title;
+    [HideInInspector]
     public string m_message;
     public string m_sender;
     public bool m_pinned;         // Pinned notifications go back to the top of the stack when closed
     public Color m_iconColor = Color.white;
+
+    [HideInInspector]
+    public StoryData m_parentStory;
 
     public enum ResolutionAction
     {
         None = 0,
         TransitionDay,
         GameOver,
+        EndStory
     }
 
     public ResolutionAction m_correctResponseAction = ResolutionAction.None;
     public ResolutionAction m_incorrectResponseAction = ResolutionAction.None;
 
+    [System.Serializable]
     public class Response
     {
         public enum CorrectResponse
@@ -40,42 +46,14 @@ public class NotificationData : ScriptableObject
         {
             m_ChoiceA = choiceA; m_ChoiceB = choiceB; m_correctResponse = correctResponse;
         }
+        public bool m_strikeOnIncorrect = false;
     }
 
     public Response m_response = null;
 
     public void Generate()
     {
-        ///////////////////////////////////////
-        // TEST - Delete this later
-        ///////////////////////////////////////
-        float coin = Random.value;
-        if (coin < 0.2f)
-        {
-            m_title = "CHOOSE A";
-            m_message = "Choose the right response!";
-            m_response = new Response("A", "B", Response.CorrectResponse.CHOICE_A);
-        } else if (coin < 0.4f)
-        {
-            m_title = "CHOOSE B";
-            m_message = "Choose the right response!";
-            m_response = new Response("A", "B", Response.CorrectResponse.CHOICE_B);
-        } else if (coin < 0.7f)
-        {
-            m_title = "Choice Doesn't Matter";
-            m_message = "Choose either of the below";
-            m_response = new Response("A", "B", Response.CorrectResponse.NONE);
-        } else
-        {
-            m_title = "No Choice";
-            m_message = "This should just be showing the cancel button";
-            m_response = null;
-        }
-        m_sender = "TestBot 3000";
-
-        m_correctResponseAction = ResolutionAction.None;
-        m_incorrectResponseAction = ResolutionAction.None;
-        ////////////////////////////////////////////////////////////////////
+      
     }
 
     public void GenerateStrike(int number)
@@ -99,5 +77,10 @@ public class NotificationData : ScriptableObject
         m_iconColor = Color.green;
         m_correctResponseAction = ResolutionAction.TransitionDay;
         m_incorrectResponseAction = ResolutionAction.None;
+    }
+
+    public void EndStory()
+    {
+
     }
 }
