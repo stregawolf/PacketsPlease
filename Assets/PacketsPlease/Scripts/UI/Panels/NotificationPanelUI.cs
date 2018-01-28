@@ -7,8 +7,11 @@ public class NotificationPanelUI : MonoBehaviour {
     public NotificationDetailsUI m_notificationDetails;
     public NotificationUI m_sourceNotification = null;
 
-	// Use this for initialization
-	void Start () {
+    public Color m_activeBGColor = Color.green;
+    public Color m_activeTitleColor = Color.gray;
+
+    // Use this for initialization
+    protected void Awake () {
         m_notificationDetails.gameObject.SetActive(false);
         EventManager.OnNotificationSelected.Register(SetNotification);
         gameObject.SetActive(false);
@@ -17,6 +20,16 @@ public class NotificationPanelUI : MonoBehaviour {
 
     public void SetNotification(NotificationUI sourceNotification)
     {
+        if(m_sourceNotification == sourceNotification)
+        {
+            return;
+        }
+
+        if(m_sourceNotification != null)
+        {
+            m_sourceNotification.ResetColors();
+        }
+
         m_sourceNotification = sourceNotification;
         if(sourceNotification == null)
         {
@@ -28,6 +41,9 @@ public class NotificationPanelUI : MonoBehaviour {
             gameObject.SetActive(true);
             m_notificationDetails.gameObject.SetActive(true);
             m_notificationDetails.Init(sourceNotification.m_data);
+
+            m_sourceNotification.SetBGColor(m_activeBGColor);
+            m_sourceNotification.SetTitleColor(m_activeTitleColor);
 
             transform.localScale = Vector3.one * 0.5f;
             LeanTween.scale(gameObject, Vector3.one, 0.33f).setEaseOutBack();
