@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NotificationListUI : MonoBehaviour {
     public GameObject m_notificationPrefab;
-    public GameObject m_strikeNoficationPrefab;
 
     public List<NotificationUI> m_notificationUIs;
 
@@ -13,21 +12,34 @@ public class NotificationListUI : MonoBehaviour {
 
     protected void Update()
     {
-        int i = 0;
-        foreach (var ui in m_notificationUIs)
+        for (int i = 0; i < m_notificationUIs.Count; ++i)
         {
-            ui.transform.localPosition = Vector3.Lerp(ui.transform.localPosition, new Vector3(0.0f, i * m_separationDist, 0.0f), Time.deltaTime * m_slideSpeed);
-            i++;
+            m_notificationUIs[i].transform.localPosition = Vector3.Lerp(m_notificationUIs[i].transform.localPosition, new Vector3(0.0f, i * m_separationDist, 0.0f), Time.deltaTime * m_slideSpeed);
         }
     }
 
-    public void AddNotification(NotificationData data)
+    public void ResetList()
+    {
+        EmptyList();
+    }
+
+    public void EmptyList()
+    {
+        for (int i = 0; i < m_notificationUIs.Count; ++i)
+        {
+            m_notificationUIs[i].DestroySelf();
+        }
+        m_notificationUIs.Clear();
+    }
+
+    public NotificationUI AddNotification(NotificationData data)
     {
         GameObject notificationUiObj = Instantiate(m_notificationPrefab, transform);
         NotificationUI ui = notificationUiObj.GetComponent<NotificationUI>();
         ui.Init(data);
         m_notificationUIs.Add(ui);
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;
+        return ui;
     }
 
     public void RemoveNotification(NotificationUI notification)
@@ -36,14 +48,15 @@ public class NotificationListUI : MonoBehaviour {
         notification.DestroySelf();
     }
 
-    public void AddStrikeNotification(int number)
+    public NotificationUI AddStrikeNotification(int number)
     {
-        GameObject notificationUiObj = Instantiate(m_strikeNoficationPrefab, transform);
+        GameObject notificationUiObj = Instantiate(m_notificationPrefab, transform);
         NotificationUI ui = notificationUiObj.GetComponent<NotificationUI>();
         NotificationData data = ScriptableObject.CreateInstance<NotificationData>();
         data.GenerateStrike(number);
         ui.Init(data);
         m_notificationUIs.Add(ui);
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;
+        return ui;
     }
 }

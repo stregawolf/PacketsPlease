@@ -6,30 +6,34 @@ using System;
 
 public class TitleBarUI : MonoBehaviour {
     public TextMeshProUGUI m_date;
+    public float m_realMinutesPerGameDay = 5.0f;
     public static DateTime GameDate { get; private set; }
     private static int START_HOUR = 9;
-    private static int END_HOUR = 5;
+    private static int END_HOUR = 17;
     public static int MinutesSinceDayStart { get; private set; }
+
+    protected float m_timeScaler;
 
     private void Start()
     {
-        if (GameDate == null)
-        {
-            GameDate = new DateTime(2018, 1, 24, START_HOUR, 0, 0);
-        }
+        m_timeScaler = 480.0f / m_realMinutesPerGameDay;
     }
 
     public void SetDay(int day)
     {
-        GameDate = new DateTime(2018, 1, 24, START_HOUR, 0, 0);
+        GameDate = new DateTime(2018, 1, 27 + day, START_HOUR, 0, 0);
         MinutesSinceDayStart = (GameDate.Hour - START_HOUR) * 60 + GameDate.Minute;
     }
 
-    private void Update()
+    public void UpdateTime()
     {
-        GameDate = GameDate.AddSeconds(Time.deltaTime*96); //5 min irl = 8 hr in game
-        m_date.text = string.Format("{0:ddd MMM dd hh:mm}", GameDate);
+        GameDate = GameDate.AddSeconds(Time.deltaTime* m_timeScaler);
+        m_date.text = string.Format("{0:ddd MMM dd hh:mm tt}", GameDate);
         MinutesSinceDayStart = (GameDate.Hour - START_HOUR) * 60 + GameDate.Minute;
+        if(GameDate.Hour >= END_HOUR)
+        {
+            EventManager.OnEndOfDay.Dispatch();
+        }
     }
 
     public void SetTime(DateTime dateTime)

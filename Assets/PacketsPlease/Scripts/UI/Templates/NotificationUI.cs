@@ -6,6 +6,7 @@ using TMPro;
 
 public class NotificationUI : MonoBehaviour {
     public Image m_bg;
+    public Image m_icon;
     public TextMeshProUGUI m_title;
     public NotificationData m_data { get; protected set; }
     protected Button button;
@@ -22,18 +23,17 @@ public class NotificationUI : MonoBehaviour {
     public virtual void Init(NotificationData data)
     {
         m_data = data;
-        Init(data.m_title);
+        Init(m_data.m_title, m_data.m_iconColor);
+        if(m_data.m_pinned)
+        {
+            SetIconColor(Color.cyan);
+        }
     }
 
-    public void Init(string title)
+    public void Init(string title, Color iconColor)
     {
         m_title.text = title;
-        button = GetComponent<Button>();
-        if(button != null)
-        {
-            // TODO: Hook button to event system but for now, quick-and-dirty
-            button.onClick.AddListener(SendToMain);
-        }
+        SetIconColor(iconColor);
     }
 
     public void ResetColors()
@@ -52,7 +52,16 @@ public class NotificationUI : MonoBehaviour {
         m_bg.color = c;
     }
 
-    protected void SendToMain()
+
+    public void SetIconColor(Color c)
+    {
+        if(m_icon != null)
+        {
+            m_icon.color = c;
+        }
+    }
+
+    public void SelectSelf()
     {
         EventManager.OnNotificationSelected.Dispatch(this);
     }
