@@ -21,9 +21,24 @@ public class CustomerDetailsUI : CustomerUI {
     public Sprite m_emptyLocationSprite;
     public Sprite[] m_locationSprites;
 
+    public Image m_head;
+    public Image m_face;
+    public Image m_hair;
+    public CharacterData[] m_characterDatas;
 
     protected float m_animationTimer = 0.0f;
     protected int m_frame = 0;
+
+    protected Dictionary<CustomerData.Race, CharacterData> m_characterDataMapping = new Dictionary<CustomerData.Race, CharacterData>();
+    protected int m_seed = 0;
+
+    protected void Awake()
+    {
+        for (int i = 0; i < m_characterDatas.Length; ++i)
+        {
+            m_characterDataMapping.Add(m_characterDatas[i].m_race, m_characterDatas[i]);
+        }
+    }
 
     public override void Init(CustomerData data)
     {
@@ -39,7 +54,12 @@ public class CustomerDetailsUI : CustomerUI {
 
     public override void UpdateProfileImg()
     {
-
+        CharacterData characterData;
+        if(m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        {
+            m_seed = (int)(Random.value * 10000.0f);
+            characterData.GenerateCharacter(m_seed, m_profileImg, m_head, m_face, m_hair);
+        }
     }
 
     protected void Update()
@@ -83,6 +103,24 @@ public class CustomerDetailsUI : CustomerUI {
                 m_locationImg.sprite = m_locationSprites[(int)m_data.m_location];
             }
             m_activityImg.sprite = m_activitySprites[(int)m_data.m_activity.m_type * 2 + m_frame];
+        }
+    }
+
+    public void OnNegativeChoice()
+    {
+        CharacterData characterData;
+        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        {
+            m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
+        }
+    }
+
+    public void OnPositiveChoice()
+    {
+        CharacterData characterData;
+        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        {
+            m_face.sprite = characterData.GetSprite(characterData.m_positiveFaces, m_seed);
         }
     }
 }
