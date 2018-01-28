@@ -234,13 +234,29 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 UpdateGameOver();
                 break;
         }
+
+        if(Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.Period))
+            {
+                TransitionDay();
+            }
+        }
+        
     }
 
     protected void UpdateGame()
     {
         m_titleBar.UpdateTime();
+        CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
 
         m_customerTimer += Time.deltaTime;
+
+        if (topCustomer == null)
+        {
+            m_customerTimer += Time.deltaTime;
+        }
+
         m_notificationTimer += Time.deltaTime;
         if (m_customerTimer >= 0)
         {
@@ -258,7 +274,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             }
         }
 
-        CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
         UpdateCustomerDisplay(topCustomer);
 
         foreach (StoryData story in m_activeStories)
