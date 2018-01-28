@@ -168,7 +168,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ebc916e8aa952f44aec4118584f15d2, type: 2}
   - {fileID: 11400000, guid: 71a6b89b649169143ab6a2a913e09555, type: 2}
   m_stories:
-  - {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
+  - {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334, type: 2}
   m_customerListUI: {fileID: 0}
   m_actionPanelUI: {fileID: 0}
   m_notificationUI: {fileID: 0}

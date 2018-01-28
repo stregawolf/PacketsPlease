@@ -380,7 +380,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                             TransitionDay();
                             break;
                         case CustomerData.ResolutionAction.GameOver:
-                            GameOver();
+                            HandleGameOver();
                             break;
                         case CustomerData.ResolutionAction.EndStory:
                             m_activeStories.Remove(data.m_StoryParameters.m_story);
