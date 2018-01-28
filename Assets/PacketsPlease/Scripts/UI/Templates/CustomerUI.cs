@@ -11,16 +11,21 @@ public class CustomerUI : MonoBehaviour {
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_dataUsage;
 
+    public Sprite[] m_raceSprites;
+
     public CustomerData m_data { get; protected set; }
-    protected Color m_originalColor;
     
     public virtual void Init(CustomerData data)
     {
         m_data = data;
-        // Set Text Fields
-        m_originalColor = m_bg.color;
-        m_name.text = data.m_name.LastFirst;
-        m_dataUsage.text = string.Format("{0:N2} GB", data.m_dataUsage);
+        m_name.text = m_data.m_name.LastFirst;
+        m_dataUsage.text = string.Format("{0:N2} GB", m_data.m_dataUsage);
+        UpdateProfileImg();
+    }
+
+    public virtual void UpdateProfileImg()
+    {
+        m_profileImg.sprite = m_raceSprites[(int)m_data.m_race];
     }
 
     public void SetNameColor(Color c)
@@ -53,7 +58,7 @@ public class CustomerUI : MonoBehaviour {
 
     protected IEnumerator HandleDestroySelf()
     {
-        SetBGColor(m_originalColor);
+        //SetBGColor(m_originalColor);
         LeanTween.moveLocalX(gameObject, -Screen.width*0.25f, 0.33f).setEaseInBack();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224022001738955256}
   - component: {fileID: 222698906988186740}
-  - component: {fileID: 114940972261866946}
   - component: {fileID: 114754874902881502}
   m_Layer: 5
   m_Name: Panel-CustomerList
@@ -44,35 +43,6 @@ MonoBehaviour:
     type: 2}
   m_separationDist: 47
   m_slideSpeed: 5
-  m_activeUIColor: {r: 0.56078434, g: 0.9843137, b: 0.8627451, a: 1}
-  m_activeNameColor: {r: 0.101960786, g: 0.101960786, b: 0.11764706, a: 1}
---- !u!114 &114940972261866946
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863874948729990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!222 &222698906988186740
 CanvasRenderer:
   m_ObjectHideFlags: 1

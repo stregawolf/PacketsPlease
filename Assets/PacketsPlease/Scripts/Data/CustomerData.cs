@@ -42,7 +42,7 @@ public class CustomerData : ScriptableObject {
         Reptile,
         SmallMammal,
         LargeMammal,
-        NUM_TYPES,
+        NUM_RACES,
     }
     public Race m_race;
 
@@ -51,8 +51,10 @@ public class CustomerData : ScriptableObject {
         Regular = 0,
         Bronze, 
         Silver,
-        Goal,
+        Gold,
+        NUM_TIERS,
     }
+    public SpeedTier m_speedTier;
 
     // Generate new customer that somehow fits into one of the rule categories
     public void Generate()
@@ -124,6 +126,8 @@ public class CustomerData : ScriptableObject {
         m_daysActive = Random.Range(0, MAX_DAYS_ACTIVE);
         m_activity = ActivityData.GetActivity();
         m_location = (Location)Random.Range(0, (int)Location.NUM_LOCATIONS);
+        m_race = (Race)Random.Range(0, (int)Race.NUM_RACES);
+        m_speedTier = (SpeedTier)Random.Range(0, (int)SpeedTier.NUM_TIERS);
     }
 
     public override string ToString()
