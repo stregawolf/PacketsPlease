@@ -14,8 +14,15 @@ MonoBehaviour:
   m_race: 2
   m_bodies: []
   m_heads:
-  - {fileID: 21300000, guid: 23903bd8b03fb5543a0cc11872abc1da, type: 3}
-  m_neutralFacess: []
-  m_happyFaces: []
-  m_sadFaces: []
+  - {fileID: 21300000, guid: 70a287a151dfc45e7ae5e3d4dad8dd7d, type: 3}
+  - {fileID: 21300000, guid: 66e0780099a764da1ae79a8a66d58c3a, type: 3}
+  m_neutralFacess:
+  - {fileID: 21300000, guid: fe85aef21111746d3b245c6e04fb1a28, type: 3}
+  - {fileID: 21300000, guid: 3b8935b6564fd42aab936eaf677a17e7, type: 3}
+  m_positiveFaces:
+  - {fileID: 21300000, guid: ddc49d1b95a8a44bcbddfae8e9d0dd57, type: 3}
+  - {fileID: 21300000, guid: bd1c840cc566f4aeab5ffb96ff0864b7, type: 3}
+  m_negativeFaces:
+  - {fileID: 21300000, guid: 00fd6d374ed7145ab8141f9a3910da92, type: 3}
+  - {fileID: 21300000, guid: 0fbbe385dbe004eb1aac2a518c9c0a04, type: 3}
   m_hairs: []

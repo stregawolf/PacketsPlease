@@ -105,4 +105,22 @@ public class CustomerDetailsUI : CustomerUI {
             m_activityImg.sprite = m_activitySprites[(int)m_data.m_activity.m_type * 2 + m_frame];
         }
     }
+
+    public void OnNegativeChoice()
+    {
+        CharacterData characterData;
+        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        {
+            m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
+        }
+    }
+
+    public void OnPositiveChoice()
+    {
+        CharacterData characterData;
+        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        {
+            m_face.sprite = characterData.GetSprite(characterData.m_positiveFaces, m_seed);
+        }
+    }
 }

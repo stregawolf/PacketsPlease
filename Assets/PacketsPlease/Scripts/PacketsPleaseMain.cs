@@ -9,8 +9,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public NotificationListUI m_notificationUI;
     public NotificationPanelUI m_notificationPanelUI;
     public DayDisplayUI m_dayDispay;
-
-    public float m_timeBetweenCustomers = 2.0f;
+    public float m_minTimeBetweenCustomers = 1f;
+    public float m_maxTimeBetweenCustomers = 30f;
+    public Shaker m_canvasShaker;
     public float m_customerTimer = 0.0f;
     public int m_maxNumCustomer = 10;
     public float m_minTimeBetweenNotifications = 1.0f;
@@ -50,17 +51,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             m_notificationUI.AddNotification(sn.m_data);
         }
 
+        RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionType.Throttle));
+
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
-
-        RuleData throttleOver50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
-        RuleData boostUnder50 = new UsageLowerRule(50f, ActionType.Boost, RuleData.HIGHEST_PRIORITY);
-        RuleData throttleAjitPai = new CustomerNameRule(new NameGen.Name("Ajit", "Pai"), ActionType.Throttle);
-
-        RuleManager.Instance.ClearAllRules();
-        RuleManager.Instance.AddRule(throttleOver50);
-        RuleManager.Instance.AddRule(boostUnder50);
-        RuleManager.Instance.AddRule(throttleAjitPai);
-
         m_dayDispay.FadeIn(true);
         TransitionDay();
     }
@@ -102,9 +95,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         m_customerTimer += Time.deltaTime;
         m_notificationTimer += Time.deltaTime;
-        if (m_customerTimer >= m_timeBetweenCustomers)
+        if (m_customerTimer >= 0)
         {
-            m_customerTimer -= m_timeBetweenCustomers;
+            m_customerTimer -= m_minTimeBetweenCustomers + Random.Range(0f, m_maxTimeBetweenCustomers);
             if (m_customerListUI.GetNumCustomers() < m_maxNumCustomer)
             {
                 CustomerData data = ScriptableObject.CreateInstance<CustomerData>();
@@ -148,6 +141,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         m_currentStrike++;
         m_notificationUI.AddStrikeNotification(m_currentStrike);
+        m_canvasShaker.Shake();
         
     }
 

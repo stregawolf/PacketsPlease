@@ -31,59 +31,32 @@ public class RuleManager : Singleton<RuleManager> {
     // Also populates actionTaken with sorted list of passed and violated rules
     public bool DoesViolateRules(ActionData actionTaken)
     {
-        var violatedRules = new List<RuleData>();
-        var passedRules = new List<RuleData>();
+        ActionType requiredAction = GetRequiredAction(actionTaken.customer);
 
-        for(int i = 0; i < m_rules.Count; i++)
+        return requiredAction != actionTaken.actionType;
+    }
+
+    public ActionType GetRequiredAction(CustomerData customer)
+    {
+        ActionType requiredAction = ActionType.None;
+        int currPriority = int.MinValue;
+        foreach(RuleData rule in Rules)
         {
-            RuleData rule = m_rules[i];
-
-            // Check that rule applies and is violated
-            if(!rule.DoesApply(actionTaken))
+            ActionType thisReqAction = rule.ActionRequired(customer);
+            if (thisReqAction != ActionType.None && rule.m_priority > currPriority)
             {
-                continue;
-            }
-
-            if(rule.IsViolated(actionTaken))
-            {
-                violatedRules.Add(rule);
-            }
-            else
-            {
-                passedRules.Add(rule);
+                requiredAction = thisReqAction;
+                currPriority = rule.m_priority;
             }
         }
+        return requiredAction;
+    }
 
-        violatedRules.OrderByDescending((rule) => rule.m_priority);
-        passedRules.OrderByDescending((rule) => rule.m_priority);
+    public void BuildRuleNotifications()
+    {
+        NotificationData mainRules, promoted, restricted, prohibited;
 
-        actionTaken.violatedRules = violatedRules;
-        actionTaken.passedRules = passedRules;
-
-        // Check if violated rules or passed rules take priority
-        if(violatedRules.Count == 0)
-        {
-            return false;
-        }
-        else if(passedRules.Count == 0)
-        {
-            return true;
-        }
-        else
-        {
-            int vp = violatedRules[0].m_priority;
-            int pp = passedRules[0].m_priority;
-
-            if(vp == pp) 
-            {
-                DumpRulesAndCrash(actionTaken, "RuleManager: Violated and Passed rules have equal priority");
-                return false;
-            }
-            else
-            {
-                return (violatedRules[0].m_priority > passedRules[0].m_priority);
-            }
-        } 
+        string mainBoost, mainThrottle, mainDisconnect, partners, promotions;
     }
 
     private void DumpRulesAndCrash(ActionData a, string msg)
