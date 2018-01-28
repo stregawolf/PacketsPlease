@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Text;
 
 public enum ActionType
 {
@@ -9,7 +10,7 @@ public enum ActionType
     Disconnect
 }
 
-public class ActionData : ScriptableObject {
+public class ActionData {
 
     public CustomerData customer;
     public ActionType actionType;
@@ -31,17 +32,20 @@ public class ActionData : ScriptableObject {
         violatedRules = new List<RuleData>();
     }
 
-    public void PrintAllRules()
+    public string AllRulesToStr()
     {
-        Debug.Log("PASSED RULES");
+        StringBuilder sb = new StringBuilder();
+        sb.Append("PASSED RULES\n");
         for(int i = 0; i < passedRules.Count; i++)
         {
-            Debug.Log(passedRules[i].ToString());
+            sb.Append(passedRules[i].ToString());
         }
-        Debug.Log("VIOLATED RULES");
+        sb.Append("VIOLATED RULES\n");
         for(int i = 0; i < violatedRules.Count; i++)
         {
-            Debug.Log(violatedRules[i].ToString());
+            sb.Append(violatedRules[i].ToString());
         }
+
+        return sb.ToString();
     }
 }
