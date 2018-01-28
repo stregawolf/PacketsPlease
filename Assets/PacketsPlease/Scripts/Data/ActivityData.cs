@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class ActivityData {
 
-    public struct Activity
-    {
-        public enum Type
-        {
+    public struct Activity {
+        public enum Type {
             GAME = 0,
             SITE = 1,
             STREAM = 2,
@@ -17,10 +15,16 @@ public class ActivityData {
         public string m_name;
         public Type m_type;
 
-        public Activity(string name, Type type)
-        {
+        public Activity(string name, Type type) {
             m_name = name;
             m_type = type;
+        }
+
+        public override string ToString() {
+            return string.Format(
+                "Activity(Name {0} Type {1})",
+                m_name, m_type
+            );
         }
     }
     
@@ -94,5 +98,4 @@ public class ActivityData {
         new Activity("Uberwatch",                   Activity.Type.GAME),
         new Activity("CosmoCAST",                   Activity.Type.GAME),
     };
-
 }

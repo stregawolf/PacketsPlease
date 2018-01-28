@@ -100,7 +100,7 @@ public class CustomerData : ScriptableObject {
         }
     }
 
-    private void GenerateTrueRandom()
+    public void GenerateTrueRandom()
     {
         m_male = Random.value > 0.5f;
         m_name = NameGen.GetName(m_male);
@@ -108,6 +108,14 @@ public class CustomerData : ScriptableObject {
         m_daysActive = Random.Range(0, MAX_DAYS_ACTIVE);
         m_activity = ActivityData.GetActivity();
         m_location = (Location)Random.Range(0, (int)Location.NUM_LOCATIONS);
+    }
+
+    public override string ToString()
+    {
+        return string.Format(
+            "Customer(Name {0} Male {1} DataUsg {2} DaysAct {3} ActType {4} Loc {5}",
+            m_name, m_male, m_dataUsage, m_daysActive, m_activity.ToString(), m_location
+        );
     }
 
 }

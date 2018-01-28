@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: c802ddc13e4b8624f89cd270dabbdd09
 folderAsset: yes
 timeCreated: 1517081555
+=======
+guid: 262f215e14d396f4caf4253e26544d7c
+folderAsset: yes
+timeCreated: 1517107244
+>>>>>>> jacazamias
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 /*
@@ -43,6 +44,7 @@ public class RuleData {
     public HashSet<ConstraintType> Constraints { get { return m_constraints; } }
     private HashSet<ConstraintType> m_constraints;
 
+
     // Minimal constructor; constraints can be applied by chaining the Add***Constraint() functions
     // As is, it would say "apply this action to everyone"
     public RuleData(ActionType correctActionType, int priority = LOWEST_PRIORITY)
@@ -53,37 +55,48 @@ public class RuleData {
     }
 
     // Check if action taken violates any constraints of the rule
-    public bool IsViolated(CustomerData customer, ActionType actionTaken)
+    public bool IsViolated(ActionData actionTaken)
     {
-        bool ruleApplies = true;
+        if(!DoesApply(actionTaken))
+        {
+            return false;
+        }
+
+        // Check for violation
+        return (actionTaken.actionType != m_correctActionType);
+    }
+
+    // Check that rule applies to the action in question
+    public bool DoesApply(ActionData actionTaken)
+    {
         foreach(ConstraintType constraint in m_constraints)
         {
             // Compare constraints to customer data
             switch(constraint)
             {
                 case ConstraintType.ACTIVITY_NAME:
-                    if(customer.m_activity.m_name != m_activityName)
-                        ruleApplies = false;
+                    if(actionTaken.customer.m_activity.m_name != m_activityName)
+                        return false;
                     break;
                 case ConstraintType.ACTIVITY_TYPE:
-                    if(customer.m_activity.m_type != m_activityType)
-                        ruleApplies = false;
+                    if(actionTaken.customer.m_activity.m_type != m_activityType)
+                        return false;
                     break;
                 case ConstraintType.MAX_USAGE_HIGHER:
-                    if(customer.m_dataUsage < m_bandwidth)
-                        ruleApplies = false;
+                    if(actionTaken.customer.m_dataUsage < m_bandwidth)
+                        return false;
                     break;
                 case ConstraintType.MAX_USAGE_LOWER:
-                    if(customer.m_dataUsage >= m_bandwidth)
-                        ruleApplies = false;
+                    if(actionTaken.customer.m_dataUsage >= m_bandwidth)
+                        return false;
                     break;
                 case ConstraintType.CUSTOMER_NAME:
-                    if (customer.m_name != m_customerName)
-                        ruleApplies = false;
+                    if (actionTaken.customer.m_name != m_customerName)
+                        return false;
                     break;
                 case ConstraintType.CUSTOMER_START:
-                    if (customer.m_daysActive > m_daysActive)
-                        ruleApplies = false;
+                    if (actionTaken.customer.m_daysActive > m_daysActive)
+                        return false;
                     break;
                 // TODO: Define addtl constraints
                 case ConstraintType.CUSTOMER_CLASS:
@@ -96,18 +109,9 @@ public class RuleData {
                     throw new System.Exception("RuleData: Missing constraint types in IsViolatedBy()");
             }
         }
-
-        // Check for violation
-        if(ruleApplies)
-        {
-            if(actionTaken != m_correctActionType)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return true;
     }
+
 
     // Helper functions for Constraint set
     public RuleData AddBandwidthHigherConstraint(float bandwidth) { this.m_bandwidth = bandwidth; AddConstraint(ConstraintType.MAX_USAGE_HIGHER); return this; }
@@ -120,4 +124,9 @@ public class RuleData {
 
     private void AddConstraint(ConstraintType constraint) { m_constraints.Add(constraint); }
 
+    public override string ToString()
+    {
+        return string.Format("Rule(Priority {0} CorrAct {1} DataUsg {2} ActDays {3} ActName {4} ActType {5} CustName {6})",
+        m_priority, m_correctActionType, m_bandwidth, m_daysActive, m_activityName, m_activityType, m_customerName);
+    }
 }
