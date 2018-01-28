@@ -79,6 +79,17 @@ public class NotificationData : ScriptableObject
         m_incorrectResponseAction = ResolutionAction.None;
     }
 
+    public void GenerateGameOver()
+    {
+        m_title = "You're FIRED!";
+        m_sender = SENDER_BOSS;
+        m_message = "You're not cut out to work at this company.\n\nYou're FIRE!";
+        m_response = null;
+        m_iconColor = Color.red;
+        m_correctResponseAction = ResolutionAction.GameOver;
+        m_incorrectResponseAction = ResolutionAction.None;
+    }
+
     public void EndStory()
     {
 
