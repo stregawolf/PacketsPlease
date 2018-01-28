@@ -42,6 +42,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         Transitioning,
         GameStarted,
         EndOfDay,
+        EndOfDayReport,
         GameOver,
     }
 
@@ -70,14 +71,34 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         EventManager.OnEndOfDay.Unregister(HandleEndOfDay);
     }
 
-    public void HandleEndOfDay()
+    public void HandleGameOver()
     {
-        if(m_currentGameState == GameState.EndOfDay)
+        if(m_currentGameState == GameState.GameOver)
         {
             return;
         }
-        
+
+        m_currentGameState = GameState.GameOver;
+    }
+
+
+    public void HandleEndOfDay()
+    {
+        if (m_currentGameState == GameState.EndOfDay || m_currentGameState == GameState.EndOfDayReport)
+        {
+            return;
+        }
         m_currentGameState = GameState.EndOfDay;
+    }
+
+    public void ShowGiveEndOfDayReport()
+    {
+        if (m_currentGameState == GameState.EndOfDayReport)
+        {
+            return;
+        }
+
+        m_currentGameState = GameState.EndOfDayReport;
         m_notificationUI.EmptyList();
         m_customerListUI.EmptyList();
         m_actionPanelUI.SetCustomer(null);
@@ -165,6 +186,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 UpdateGame();
                 break;
             case GameState.EndOfDay:
+                UpdateEndOfDay();
+                break;
+            case GameState.EndOfDayReport:
                 break;
             case GameState.GameOver:
                 break;
@@ -219,7 +243,24 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             }
             story.Update();
         }
-        
+    }
+
+    protected void UpdateEndOfDay()
+    {
+        CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
+        if (m_actionPanelUI.m_currentCustomer != topCustomer)
+        {
+            if (topCustomer == null || topCustomer.transform.localPosition.y < 5.0f)
+            {
+                UpdateCustomerDisplay(topCustomer);
+            }
+        }
+
+        if (topCustomer == null)
+        {
+            // no more customers in the queue
+            ShowGiveEndOfDayReport();
+        }
     }
 
     protected void UpdateCustomerDisplay(CustomerUI newCustomer)
