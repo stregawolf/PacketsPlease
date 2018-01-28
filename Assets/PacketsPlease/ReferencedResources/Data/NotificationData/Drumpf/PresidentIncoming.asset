@@ -15,7 +15,7 @@ MonoBehaviour:
   m_message: President Donny Drumpf is going to be making some "yuge" announcements
     on Birbsite today. Make sure he gets all the bandwidth he needs.
   m_sender: pr@cosmocast.com
-  m_pinned: 1
+  m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
   m_autoOpen: 0
   m_parentStory: {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334, type: 2}
@@ -28,4 +28,4 @@ MonoBehaviour:
     m_ChoiceB: 
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
-    m_clearMe: 1
+    m_clearMe: 0
