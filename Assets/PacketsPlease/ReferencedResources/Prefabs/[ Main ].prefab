@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_days:
-  - {fileID: 11400000, guid: aa09eff9d1d15c94fa4d380079a270dc, type: 2}
+  - {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}
   - {fileID: 11400000, guid: 350a47409635e8a42b683809cc866905, type: 2}
   - {fileID: 11400000, guid: 7ebc916e8aa952f44aec4118584f15d2, type: 2}
   - {fileID: 11400000, guid: 71a6b89b649169143ab6a2a913e09555, type: 2}
@@ -172,6 +172,8 @@ MonoBehaviour:
   m_stories:
   - {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334, type: 2}
   - {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
+  - {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
+  - {fileID: 11400000, guid: b260627a1a0da974386b2056e65e1da9, type: 2}
   m_customerListUI: {fileID: 0}
   m_actionPanelUI: {fileID: 0}
   m_notificationUI: {fileID: 0}

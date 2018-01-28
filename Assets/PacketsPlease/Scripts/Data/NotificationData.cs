@@ -69,9 +69,8 @@ public class NotificationData : ScriptableObject
         m_sender = SENDER_BOSS;
         m_message = string.Format("You've got #{0} strikes!.\n\n{1} strikes and you're fired!", number, PacketsPleaseMain.Instance.m_maxStrikes);
         m_response = new Response("I'm sorry", "Eat my butt", Response.CorrectResponse.CHOICE_A);
+        m_response.m_strikeOnIncorrect = true;
         m_iconColor = Color.red;
-        m_correctResponseAction = ResolutionAction.None;
-        m_incorrectResponseAction = ResolutionAction.None;
         m_autoOpen = false;
     }
 

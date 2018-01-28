@@ -9,16 +9,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
-  m_Name: CustomerAppreciation
+  m_Name: Day6BronzeSlowdown
   m_EditorClassIdentifier: 
-  m_title: Customer Appreciation Promo
-  m_message: CosmoCast cares about its customers, and that's why we're offering unlimite
-    usage to all new customers! Make sure all customers who've enrolled within the
-    last 30 days have full, unfettered access.
-  m_sender: promos@cosmocast.com
-  m_pinned: 1
-  m_iconColor: {r: 0, g: 0.91724133, b: 1, a: 1}
-  m_parentStory: {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
+  m_title: Announcing WebPlan
+  m_message: In order to better service our Gold and Silver customers, and allow an
+    accessible option, we'll be switching Bronze users over to WebPlan. WenPlan allows
+    fast connections to leading websites, while restricting Gaming and Streaming services.
+  m_sender: 
+  m_pinned: 0
+  m_iconColor: {r: 1, g: 1, b: 1, a: 1}
+  m_parentStory: {fileID: 0}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
   m_responseNotifications: []
@@ -28,4 +28,4 @@ MonoBehaviour:
     m_ChoiceB: 
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
-    m_clearMe: 0
+    m_clearMe: 1

@@ -29,6 +29,7 @@ MonoBehaviour:
   m_sender: news@zzzfeed.net
   m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
+  m_autoOpen: 0
   m_parentStory: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
   m_correctResponseAction: 5
   m_incorrectResponseAction: 5
@@ -38,6 +39,6 @@ MonoBehaviour:
   m_response:
     m_ChoiceA: Go Away
     m_ChoiceB: Go Away Now
-    m_correctResponse: 0
+    m_correctResponse: 1
     m_strikeOnIncorrect: 0
     m_clearMe: 0
