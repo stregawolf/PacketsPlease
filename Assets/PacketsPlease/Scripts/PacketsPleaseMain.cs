@@ -8,7 +8,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public ActionPanelUI m_actionPanelUI;
     public NotificationListUI m_notificationUI;
     public NotificationPanelUI m_notificationPanelUI;
-    public CustomerUI m_customerDisplay;
 
     public float m_timeBetweenCustomers = 2.0f;
     public float m_customerTimer = 0.0f;
@@ -26,7 +25,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected void Start()
     {
-        // STORY PARSE TEST
         testData = new StoryData("Story/TEST_DATA");
         // Kick out all TEST data as POC
         foreach(StoryData.ScheduledCustomer sc in testData.customerScheduleByDay[1])
@@ -39,11 +37,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             m_notificationUI.AddNotification(sn.m_data);
         }
 
-
         RuleData throttleOver50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
         RuleData boostUnder50 = new UsageLowerRule(50f, ActionType.Boost, RuleData.HIGHEST_PRIORITY);
         RuleData throttleAjitPai = new CustomerNameRule(new NameGen.Name("Ajit", "Pai"), ActionType.Throttle);
-
 
         RuleManager.Instance.ClearAllRules();
         RuleManager.Instance.AddRule(throttleOver50);
