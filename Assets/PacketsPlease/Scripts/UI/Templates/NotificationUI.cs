@@ -29,11 +29,6 @@ public class NotificationUI : MonoBehaviour {
     // tODO GET RID OF THIS
     void SendToMain()
     {
-        GameObject main = GameObject.Find("[ Main ]");
-        if(main != null)
-        {
-            PacketsPleaseMain mainComp = main.GetComponent<PacketsPleaseMain>();
-            mainComp.UpdateNotification(this);
-        }
+        EventManager.OnNotificationSelected.Dispatch(this);
     }
 }

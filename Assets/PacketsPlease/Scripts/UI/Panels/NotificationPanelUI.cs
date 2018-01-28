@@ -10,6 +10,7 @@ public class NotificationPanelUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m_notificationDetails.gameObject.SetActive(false);
+        EventManager.OnNotificationSelected.Register(SetNotification);
 	}
 	
 
