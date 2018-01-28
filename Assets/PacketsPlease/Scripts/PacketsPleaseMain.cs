@@ -131,6 +131,15 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_notificationUI.ResetList();
 
         m_currentDay++;
+
+        for(int i=0; i<m_activeStories.Count; i++)
+        {
+            if(m_activeStories[i].Finished())
+            {
+                m_activeStories.Remove(m_activeStories[i]);
+                i--;
+            }
+        }
         
         foreach(StoryData story in m_stories)
         {

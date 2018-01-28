@@ -58,7 +58,7 @@ public class StoryData : ScriptableObject {
     public bool Finished()
     {
         int dayIndex = m_currentDay - m_startDay;
-        return m_days.Count < dayIndex;
+        return m_days.Count <= dayIndex;
     }
 
     public void Update()
