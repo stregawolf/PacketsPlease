@@ -23,7 +23,27 @@ public class ActivityData {
             m_type = type;
         }
     }
+    
+    public static Activity GetActivity(string name)
+    {
+        if (name != "")
+        {
+            for (int i = 0; i < Activities.Length; i++)
+            {
+                if (name.ToLower() == Activities[i].m_name.ToLower())
+                {
+                    return Activities[i];
+                }
+            }
+        }
+        return GetActivity();
+    }
 
+    public static Activity GetActivity()
+    {
+        return Activities[Random.Range(0, ActivityData.Activities.Length)];
+    }
+    
     public static Activity GetActivityByType(ActivityData.Activity.Type type)
     {
         int[] randIndex = ShuffleUtils.MakeShuffledIntArray(Activities.Length);

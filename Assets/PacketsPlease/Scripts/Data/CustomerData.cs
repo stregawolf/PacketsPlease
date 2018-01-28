@@ -22,7 +22,7 @@ public class CustomerData : ScriptableObject {
     public float m_dataUsage;
     public int m_daysActive;
     public ActivityData.Activity m_activity;
-    public bool m_male = false;
+    public bool m_male = false; // Deprecated
 
     public enum Location : int
     {
@@ -106,7 +106,7 @@ public class CustomerData : ScriptableObject {
         m_name = NameGen.GetName(m_male);
         m_dataUsage = Random.Range(0.0f, MAX_DATA_USAGE);
         m_daysActive = Random.Range(0, MAX_DAYS_ACTIVE);
-        m_activity = ActivityData.Activities[Random.Range(0, ActivityData.Activities.Length)];
+        m_activity = ActivityData.GetActivity();
         m_location = (Location)Random.Range(0, (int)Location.NUM_LOCATIONS);
     }
 

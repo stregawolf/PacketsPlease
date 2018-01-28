@@ -21,8 +21,22 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected int m_currentStrike = 0;
     protected CustomerData currentCustomer;
 
+    protected StoryData testData;
+
     protected void Start()
     {
+        testData = new StoryData("Story/TEST_DATA");
+        // Kick out all TEST data as POC
+        foreach(StoryData.ScheduledCustomer sc in testData.customerScheduleByDay[1])
+        {
+            m_customerListUI.AddCustomer(sc.m_data);
+        }
+
+        foreach(StoryData.ScheduledNotification sn in testData.notificationScheduleByDay[1])
+        {
+            m_notificationUI.AddNotification(sn.m_data);
+        }
+
         RuleData throttleOver50 = new UsageHigherRule(50f, ActionType.Throttle, RuleData.HIGHEST_PRIORITY);
         RuleData boostUnder50 = new UsageLowerRule(50f, ActionType.Boost, RuleData.HIGHEST_PRIORITY);
         RuleData throttleAjitPai = new CustomerNameRule(new NameGen.Name("Ajit", "Pai"), ActionType.Throttle);
