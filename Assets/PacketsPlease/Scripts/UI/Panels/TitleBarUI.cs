@@ -31,6 +31,6 @@ public class TitleBarUI : MonoBehaviour {
     }
 
     public void SetTime(DateTime dateTime) {
-        this.m_dateTime = dateTime;
+        GameDate = dateTime;
     }
 }
