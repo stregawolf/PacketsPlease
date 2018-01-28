@@ -13,10 +13,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_startDay: 1
   m_days:
-  - m_name: Fluff1
+  - m_name: Drumpf Day
     m_customers:
-    - m_data: {fileID: 11400000, guid: 51040864c73644342a9e8b10818b9f6b, type: 2}
-      m_time: 0
-    m_notifications: []
+    - m_data: {fileID: 11400000, guid: 30bac3756e029de4f8c380ca11a742aa, type: 2}
+      m_time: 60
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: f0da08ede474bac4387710a16f414958, type: 2}
+      m_time: 45
   m_customersToShow: []
   m_notificationsToShow: []
