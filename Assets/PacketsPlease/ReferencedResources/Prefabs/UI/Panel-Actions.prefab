@@ -431,7 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bg: {fileID: 114381340727579354}
-  m_profileImg: {fileID: 0}
+  m_profileImg: {fileID: 114378875675695904}
   m_name: {fileID: 114446053339982184}
   m_dataUsage: {fileID: 114529477079933846}
   m_customerStartDate: {fileID: 114396646924880636}
@@ -439,11 +439,28 @@ MonoBehaviour:
   m_activityName: {fileID: 114198193603373762}
   m_locationImg: {fileID: 114452962890186324}
   m_locationName: {fileID: 114636723900271964}
+  m_speedIndicator: {fileID: 114728825067458160}
+  m_timeBetweenAnimationFrames: 0.5
   m_activitySprites:
-  - {fileID: 21300000, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
-  - {fileID: 21300002, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
-  - {fileID: 21300004, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
-  - {fileID: 21300006, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  - {fileID: 21300000, guid: b42c3bedd0527bd429dab74ad9fac4b5, type: 3}
+  - {fileID: 21300000, guid: 4d1f4b0d18a1c7143a23dc57fba8dfd1, type: 3}
+  - {fileID: 21300000, guid: 8100b87e42ddb4541be891f4021d5498, type: 3}
+  - {fileID: 21300000, guid: c499b94c51287464094b55254d57c310, type: 3}
+  - {fileID: 21300000, guid: 680580203e6735b48be3dc696a64c650, type: 3}
+  - {fileID: 21300000, guid: 987af68b767c44b428163b043c5a37af, type: 3}
+  - {fileID: 21300000, guid: fb89af6e6dca8894899114153df6f3a1, type: 3}
+  - {fileID: 21300000, guid: fb89af6e6dca8894899114153df6f3a1, type: 3}
+  m_activityOffSprites:
+  - {fileID: 21300000, guid: fbc44e1acf6b8e144b7a2216bc34fbec, type: 3}
+  - {fileID: 21300000, guid: d286c6e56295f6245921c95a7d5c7b10, type: 3}
+  - {fileID: 21300000, guid: ea334489b655ad24fa319713f305fb38, type: 3}
+  - {fileID: 21300000, guid: 3e96457cbfb6dc04ebceba9d3986f508, type: 3}
+  - {fileID: 21300000, guid: 2879881a1717cea4293a88206ef2855b, type: 3}
+  - {fileID: 21300000, guid: c2c5c0913456cea41b1315febd115670, type: 3}
+  - {fileID: 21300000, guid: fb89af6e6dca8894899114153df6f3a1, type: 3}
+  - {fileID: 21300000, guid: fb89af6e6dca8894899114153df6f3a1, type: 3}
+  m_emptyLocationSprite: {fileID: 21300000, guid: bf0c36238dc312b48a205b45f86a9c89,
+    type: 3}
   m_locationSprites:
   - {fileID: 21300000, guid: b328d2a950f116648b5d841994e29899, type: 3}
   - {fileID: 21300000, guid: 89723a2913a00784794f60c830d18028, type: 3}
@@ -1859,7 +1876,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: -5, y: 70}
-  m_SizeDelta: {x: 40, y: 25}
+  m_SizeDelta: {x: 40, y: 24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224635125983462304
 RectTransform:
@@ -1930,8 +1947,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7, y: -5}
-  m_SizeDelta: {x: -6, y: 20}
+  m_AnchoredPosition: {x: 3.5, y: -5}
+  m_SizeDelta: {x: -13, y: 20}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224797148919643994
 RectTransform:
