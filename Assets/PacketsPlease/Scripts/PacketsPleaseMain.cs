@@ -9,6 +9,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public ActionPanelUI m_actionPanelUI;
     public NotificationListUI m_notificationUI;
     public NotificationPanelUI m_notificationPanelUI;
+    public TitleBarUI m_titleBar;
     public DayDisplayUI m_dayDispay;
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
@@ -26,7 +27,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
-    protected int m_currentDay;
+    protected int m_currentDay = 0;
+    protected int m_numCorrectChoices = 0;
 
     protected StoryData testData;
 
@@ -46,24 +48,39 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected override void Awake()
     {
         base.Awake();
-
-        testData = new StoryData("Story/TEST_DATA");
-        // Kick out all TEST data as POC
-        foreach(StoryData.ScheduledCustomer sc in testData.customerScheduleByDay[1])
-        {
-            m_customerListUI.AddCustomer(sc.m_data);
-        }
-
-        foreach(StoryData.ScheduledNotification sn in testData.notificationScheduleByDay[1])
-        {
-            m_notificationUI.AddNotification(sn.m_data);
-        }
-
-        TEST_DAY.ApplyRules();
-
+        EventManager.OnEndOfDay.Register(HandleEndOfDay);
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
+    }
+
+    protected void Start()
+    {
         m_dayDispay.FadeIn(true);
         TransitionDay();
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        EventManager.OnEndOfDay.Unregister(HandleEndOfDay);
+        EventManager.OnNotificationResolved.Unregister(HandleResolveNotification);
+    }
+
+    public void HandleEndOfDay()
+    {
+        if(m_currentGameState == GameState.EndOfDay)
+        {
+            return;
+        }
+        
+        m_currentGameState = GameState.EndOfDay;
+        m_notificationUI.EmptyList();
+        m_customerListUI.EmptyList();
+        m_actionPanelUI.SetCustomer(null);
+
+        NotificationData endOfDayData = ScriptableObject.CreateInstance<NotificationData>();
+        endOfDayData.GenerateEndOfDay(m_currentDay, m_numCorrectChoices, m_customerListUI.m_totelCustomers);
+        NotificationUI endOfDay = m_notificationUI.AddNotification(endOfDayData);
+        endOfDay.SelectSelf();
     }
 
     public void TransitionDay()
@@ -76,13 +93,41 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_currentGameState = GameState.Transitioning;
 
         // TODO: load generation stuff
+        m_numCorrectChoices = 0;
+        m_customerListUI.ResetList();
+        m_notificationUI.ResetList();
+
         m_currentDay++;
+
+
         m_dayDispay.SetDay(m_currentDay);
+        m_titleBar.SetDay(m_currentDay);
         m_dayDispay.FadeIn();
         yield return new WaitForSeconds(m_dayTransitionTime);
+        GenerateDay();
         m_dayDispay.FadeOut();
 
         m_currentGameState = GameState.GameStarted;
+    }
+
+    protected void GenerateDay()
+    {
+        testData = new StoryData("Story/TEST_DATA");
+        // Kick out all TEST data as POC
+        foreach (StoryData.ScheduledCustomer sc in testData.customerScheduleByDay[1])
+        {
+            m_customerListUI.AddCustomer(sc.m_data);
+        }
+
+        foreach (StoryData.ScheduledNotification sn in testData.notificationScheduleByDay[1])
+        {
+            m_notificationUI.AddNotification(sn.m_data);
+        }
+
+        //RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionData.ActionType.Throttle));
+        RuleManager.Instance.AddRule(new ActivityTypeRule(ActivityData.Activity.Type.GAME, ActionData.ActionType.Disconnect, 100.0f, 0));
+
+        TEST_DAY.ApplyRules();
     }
 
     protected void Update()
@@ -105,6 +150,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected void UpdateGame()
     {
+        m_titleBar.UpdateTime();
+
         m_customerTimer += Time.deltaTime;
         m_notificationTimer += Time.deltaTime;
         if (m_customerTimer >= 0)
@@ -159,78 +206,78 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     public void ThrottleCustomer()
     {
-        if (m_isHandlingCustomer || m_customerListUI.GetNumCustomers() <= 0)
+        if (m_actionPanelUI.m_currentCustomer == null || m_isHandlingCustomer)
         {
             return;
         }
-        StartCoroutine(HandleThrottlingTopCustomer());
-    }
-
-    protected IEnumerator HandleThrottlingTopCustomer()
-    {
-        m_isHandlingCustomer = true;
-        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionData.ActionType.Throttle);
-        if(RuleManager.Instance.DoesViolateRules(action))
-        {
-            GiveStrike();
-        }
-        m_actionPanelUI.DoThrottleFeedback();
-        yield return new WaitForSeconds(m_actionFeedbackTime);
-        m_customerListUI.RemoveCustomerTopCustomer();
-        m_isHandlingCustomer = false;
+        StartCoroutine(HandleChoice(m_actionPanelUI.m_currentCustomer.m_data, ActionData.ActionType.Throttle));
     }
 
     public void BoostCustomer()
     {
-        if(m_isHandlingCustomer || m_customerListUI.GetNumCustomers() <= 0)
+        if (m_actionPanelUI.m_currentCustomer == null || m_isHandlingCustomer)
         {
             return;
         }
-        StartCoroutine(HandleBoostingTopCustomer());
-    }
-
-    protected IEnumerator HandleBoostingTopCustomer()
-    {
-        m_isHandlingCustomer = true;
-        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionData.ActionType.Boost);
-        if(RuleManager.Instance.DoesViolateRules(action))
-        {
-            GiveStrike();
-        }
-        m_actionPanelUI.DoBoostFeedback();
-        yield return new WaitForSeconds(m_actionFeedbackTime);
-        m_customerListUI.RemoveCustomerTopCustomer();
-        m_isHandlingCustomer = false;
-    }
-
-    public void HandleResolveNotification(NotificationUI notification)
-    {
-        if (!notification.m_data.m_pinned)
-        {
-            m_notificationUI.RemoveNotification(notification);
-        }
+        StartCoroutine(HandleChoice(m_actionPanelUI.m_currentCustomer.m_data, ActionData.ActionType.Boost));
     }
 
     public void DisconnectCustomer()
     {
-        if (m_isHandlingCustomer || m_customerListUI.GetNumCustomers() <= 0)
+        if (m_actionPanelUI.m_currentCustomer == null || m_isHandlingCustomer)
         {
             return;
         }
-        StartCoroutine(HandleDisconnectTopCustomer());
+        StartCoroutine(HandleChoice(m_actionPanelUI.m_currentCustomer.m_data, ActionData.ActionType.Disconnect));
     }
 
-    protected IEnumerator HandleDisconnectTopCustomer()
+    protected IEnumerator HandleChoice(CustomerData data, ActionData.ActionType actionType)
     {
         m_isHandlingCustomer = true;
-        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionData.ActionType.Disconnect);
-        if(RuleManager.Instance.DoesViolateRules(action))
+        ActionData action = new ActionData(data, actionType);
+        if (RuleManager.Instance.DoesViolateRules(action))
         {
             GiveStrike();
+        }
+        else
+        {
+            m_numCorrectChoices++;
         }
         m_actionPanelUI.DoDisconnectFeedback();
         yield return new WaitForSeconds(m_actionFeedbackTime);
         m_customerListUI.RemoveCustomerTopCustomer();
         m_isHandlingCustomer = false;
+    }
+
+    public void HandleResolveNotification(NotificationUI notification, bool respondedCorrectly)
+    {
+        if (notification == null)
+        {
+            return;
+        }
+
+        if (respondedCorrectly)
+        {
+            switch (notification.m_data.m_correctResponseAction)
+            {
+                case NotificationData.ResolutionAction.TransitionDay:
+                    TransitionDay();
+                    break;
+                case NotificationData.ResolutionAction.GameOver:
+                    m_currentGameState = GameState.GameOver;
+                    break;
+            }
+        }
+        else
+        {
+            switch (notification.m_data.m_incorrectResponseAction)
+            {
+            }
+        }
+
+        if (!notification.m_data.m_pinned)
+        {
+            m_notificationUI.RemoveNotification(notification);
+        }
     }
 }

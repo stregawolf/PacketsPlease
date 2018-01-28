@@ -142,9 +142,10 @@ MonoBehaviour:
   m_actionPanelUI: {fileID: 0}
   m_notificationUI: {fileID: 0}
   m_notificationPanelUI: {fileID: 0}
+  m_titleBar: {fileID: 0}
   m_dayDispay: {fileID: 0}
   m_minTimeBetweenCustomers: 1
-  m_maxTimeBetweenCustomers: 5
+  m_maxTimeBetweenCustomers: 10
   m_canvasShaker: {fileID: 0}
   m_maxStrikes: 3
   m_timeBetweenCustomers: 1
@@ -152,6 +153,6 @@ MonoBehaviour:
   m_maxNumCustomer: 8
   m_minTimeBetweenNotifications: 1
   m_notificationTimer: 0
-  m_dayTransitionTime: 1
+  m_dayTransitionTime: 2
   m_actionFeedbackTime: 0.33
   TEST_DAY: {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}
