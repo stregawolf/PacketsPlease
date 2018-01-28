@@ -137,12 +137,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleBoostingTopCustomer()
     {
         m_isHandlingCustomer = true;
-<<<<<<< HEAD
-        if (RuleManager.Instance.GetHighestViolatedRule(m_customerListUI.GetTopCustomer().m_data, ActionType.Boost) != null)
-=======
         ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionType.Boost);
         if(RuleManager.Instance.DoesViolateRules(action))
->>>>>>> jacazamias
         {
             GiveStrike();
         }

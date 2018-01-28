@@ -8,25 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: eef8d824ea7b63742966aaa0e94ac383, type: 3}
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
-  HasSourceProject: 0
-  HasPlatforms: 1
-  sourceProjectPath: 
-  SourceProjectPathUnformatted: 
-  SourceBankPathUnformatted: Assets\PacketsPlease\RawAssets\Audio\MODEM FMOD BUILD
-=======
-  m_Script: {fileID: 0}
-  m_Name: FMODStudioSettings
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass:FMODUnity:Settings
   HasSourceProject: 1
   HasPlatforms: 1
   sourceProjectPath: 
   SourceProjectPathUnformatted: 
   SourceBankPathUnformatted: 
->>>>>>> jacazamias
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -52,13 +41,7 @@ MonoBehaviour:
     Value: 1
   - Platform: 2
     Value: 0
-<<<<<<< HEAD
-  BankDirectorySettings:
-  - Platform: 2
-    Value: Desktop
-=======
   BankDirectorySettings: []
->>>>>>> jacazamias
   VirtualChannelSettings:
   - Platform: 1
     Value: 1024
