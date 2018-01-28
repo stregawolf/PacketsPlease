@@ -345,6 +345,26 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114398380887665450, guid: 2883a3d0974fb2244aae4ad1c959fd15,
+        type: 2}
+      propertyPath: m_text
+      value: Wed Jan 28 2018 9:00 am
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398380887665450, guid: 2883a3d0974fb2244aae4ad1c959fd15,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398380887665450, guid: 2883a3d0974fb2244aae4ad1c959fd15,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398380887665450, guid: 2883a3d0974fb2244aae4ad1c959fd15,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2883a3d0974fb2244aae4ad1c959fd15, type: 2}
   m_IsPrefabParent: 0

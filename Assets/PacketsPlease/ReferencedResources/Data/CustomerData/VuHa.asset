@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Name: VuHa
   m_EditorClassIdentifier: 
   m_name:
-    m_first: Vu
-    m_last: Ha
-  m_dataUsage: 90
-  m_daysActive: 90
+    m_first: 
+    m_last: 
+  m_dataUsage: 0
+  m_daysActive: 0
   m_StoryParameters:
     m_story: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
     m_endOnAction: 0
-    m_ForcePassFail: 1
-    m_activityName: Guild of Greats
+    m_ForcePassFail: 0
+    m_activityName: Facezine
   m_location: 0
   m_race: 0
   m_speedTier: 2

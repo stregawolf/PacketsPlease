@@ -9,11 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 301b04dbd991fa64384cf9f6868d338e, type: 3}
-  m_Name: Day5
+  m_Name: Day7
   m_EditorClassIdentifier: 
   rules:
   - {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e, type: 2}
   - {fileID: 11400000, guid: b905c18a0b4122048b8fd2adef1ef077, type: 2}
   - {fileID: 11400000, guid: 1580c32007e4b6c47ab06c5d57125f2c, type: 2}
   - {fileID: 11400000, guid: 90c0427a313b69543a9c0e6d821e7d0e, type: 2}
+  - {fileID: 11400000, guid: 073eaae6fe3689449be05e64649431c9, type: 2}
+  - {fileID: 11400000, guid: 745b424d1efb2164d800e0770b1f9547, type: 2}
   m_priortyRules: []
