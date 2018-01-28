@@ -427,6 +427,13 @@ MonoBehaviour:
   - {fileID: 21300002, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
   - {fileID: 21300004, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
   - {fileID: 21300006, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  m_locationSprites:
+  - {fileID: 21300000, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  - {fileID: 21300002, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  - {fileID: 21300004, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  - {fileID: 21300006, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  - {fileID: 21300008, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
+  - {fileID: 21300010, guid: 28b41fef228d6814f90e541deaf9f262, type: 3}
 --- !u!114 &114087945083734390
 MonoBehaviour:
   m_ObjectHideFlags: 1

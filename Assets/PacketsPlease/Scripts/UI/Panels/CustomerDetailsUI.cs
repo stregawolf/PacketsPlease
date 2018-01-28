@@ -12,6 +12,7 @@ public class CustomerDetailsUI : CustomerUI {
     public TextMeshProUGUI m_locationName;
 
     public Sprite[] m_activitySprites;
+    public Sprite[] m_locationSprites;
 
     public override void Init(CustomerData data)
     {
@@ -23,6 +24,9 @@ public class CustomerDetailsUI : CustomerUI {
 
         m_activityImg.sprite = m_activitySprites[(int)data.m_activity.m_type];
         m_activityName.text = data.m_activity.m_name;
+
+        m_locationImg.sprite = m_locationSprites[(int)data.m_location];
+        m_locationName.text = CustomerData.LOCATION_NAMES[(int)data.m_location];
     }
 
 }
