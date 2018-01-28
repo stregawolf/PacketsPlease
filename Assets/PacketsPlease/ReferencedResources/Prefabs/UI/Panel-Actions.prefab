@@ -567,8 +567,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: www.website.com
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 10ee3174101b3484aabc2334e1e5056d, type: 2}
-  m_sharedMaterial: {fileID: 21192469059490242, guid: 10ee3174101b3484aabc2334e1e5056d,
+  m_fontAsset: {fileID: 11400000, guid: d8f2f1602d0b40d4db4607f4128ceeb3, type: 2}
+  m_sharedMaterial: {fileID: 21802349062715312, guid: d8f2f1602d0b40d4db4607f4128ceeb3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1118,8 +1118,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: CountinentName
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 10ee3174101b3484aabc2334e1e5056d, type: 2}
-  m_sharedMaterial: {fileID: 21192469059490242, guid: 10ee3174101b3484aabc2334e1e5056d,
+  m_fontAsset: {fileID: 11400000, guid: d8f2f1602d0b40d4db4607f4128ceeb3, type: 2}
+  m_sharedMaterial: {fileID: 21802349062715312, guid: d8f2f1602d0b40d4db4607f4128ceeb3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
