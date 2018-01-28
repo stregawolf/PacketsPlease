@@ -23,5 +23,35 @@ MonoBehaviour:
     m_notifications:
     - m_data: {fileID: 11400000, guid: 00f3cc76831c3434bab41dd60707ecb7, type: 2}
       m_time: 0
+  - m_name: 
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: 00f3cc76831c3434bab41dd60707ecb7, type: 2}
+      m_time: 0
+  - m_name: 
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: aa65a5d31f2985b4996af91037243327, type: 2}
+      m_time: 0
+  - m_name: 
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: 610d4649dc4275b498a04c542df7f821, type: 2}
+      m_time: 0
+  - m_name: 
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: dc7abcc1886baa649842ac05c661209a, type: 2}
+      m_time: 0
+  - m_name: 
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: ebe50074fd354544697a899c04ab7114, type: 2}
+      m_time: 0
+  - m_name: 
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: 2e8d54c2ff429c7449b17f394555c8d4, type: 2}
+      m_time: 0
   m_customersToShow: []
   m_notificationsToShow: []

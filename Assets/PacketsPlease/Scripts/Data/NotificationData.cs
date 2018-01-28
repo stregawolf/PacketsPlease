@@ -70,7 +70,7 @@ public class NotificationData : ScriptableObject
         m_response = new Response("I'm sorry", "Eat my butt", Response.CorrectResponse.CHOICE_A);
         m_iconColor = Color.red;
         m_correctResponseAction = ResolutionAction.None;
-        m_incorrectResponseAction = ResolutionAction.None;
+        m_incorrectResponseAction = ResolutionAction.Strike;
     }
 
     public void GenerateEndOfDay(int day, int numCorrectChoices, int totalNumCustomers)

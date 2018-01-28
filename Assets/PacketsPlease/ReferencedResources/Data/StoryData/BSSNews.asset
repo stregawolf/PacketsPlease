@@ -11,7 +11,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60216907004e56a4d9edb157cd60baeb, type: 3}
   m_Name: BSSNews
   m_EditorClassIdentifier: 
-  m_startDay: 1
-  m_days: []
+  m_startDay: 2
+  m_days:
+  - m_name: Day2
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: 8f93e0ed23a39d041a19bdb94bbb987c, type: 2}
+      m_time: 0
+  - m_name: Day3
+    m_customers: []
+    m_notifications: []
+  - m_name: Day4
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: cd685d24c1d11e5438c2067e056516ca, type: 2}
+      m_time: 45
+    - m_data: {fileID: 11400000, guid: d1675655f9da818458d4f50dfdf0daaf, type: 2}
+      m_time: 330
+  - m_name: Day5
+    m_customers: []
+    m_notifications:
+    - m_data: {fileID: 11400000, guid: c8008366cce7c9e46983d01db7061327, type: 2}
+      m_time: 45
+    - m_data: {fileID: 11400000, guid: 6f2a605ec9e8e454db8d9003d217524a, type: 2}
+      m_time: 200
   m_customersToShow: []
   m_notificationsToShow: []

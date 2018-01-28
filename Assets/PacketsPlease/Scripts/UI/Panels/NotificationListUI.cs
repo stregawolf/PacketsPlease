@@ -38,6 +38,8 @@ public class NotificationListUI : MonoBehaviour {
         NotificationUI ui = notificationUiObj.GetComponent<NotificationUI>();
         if (data.m_response != null && data.m_response.m_clearMe)
             data.m_response = null;
+        if (data.m_response != null && (data.m_response.m_ChoiceA.Trim() == "" && data.m_response.m_ChoiceB.Trim() == ""))
+            data.m_response = null;
         ui.Init(data);
         m_notificationUIs.Add(ui);
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;
