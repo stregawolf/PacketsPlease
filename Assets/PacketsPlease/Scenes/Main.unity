@@ -1346,6 +1346,12 @@ Prefab:
       propertyPath: m_canvasShaker
       value: 
       objectReference: {fileID: 1663261932}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 43b2e659a4e94754eb6027b43bdb0d41,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
   m_IsPrefabParent: 0

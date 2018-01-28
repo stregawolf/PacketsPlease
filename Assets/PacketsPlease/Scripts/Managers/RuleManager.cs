@@ -225,7 +225,12 @@ public class RuleManager : Singleton<RuleManager> {
                                     break;
                             }
 
-                            if (rule.m_usageLimit > 0f)
+                            if (at.m_tier != CustomerData.SpeedTier.NONE)
+                            {
+                                notification.m_message += string.Format("• {0}{1} for users in the {2} tier or below\n", 
+                                    at.m_inverseOfActivity? "All services EXCEPT " : "", nameForMessage.ToString(), at.m_tier);
+                            }
+                            else if (rule.m_usageLimit > 0f)
                             {
                                 notification.m_message += string.Format("• {0} above {1} GB\n", nameForMessage, at.m_usageLimit);
                             }
