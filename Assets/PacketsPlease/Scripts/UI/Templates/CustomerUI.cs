@@ -8,10 +8,12 @@ public class CustomerUI : MonoBehaviour {
 
     public Image m_bg;
     public Image m_profileImg;
+    public Image m_tierImg;
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_dataUsage;
 
     public Sprite[] m_raceSprites;
+    public Sprite[] m_tierSprites;
 
     public CustomerData m_data { get; protected set; }
     
@@ -20,6 +22,7 @@ public class CustomerUI : MonoBehaviour {
         m_data = data;
         m_name.text = m_data.m_name.LastFirst;
         m_dataUsage.text = string.Format("{0:N2} GB", m_data.m_dataUsage);
+        m_tierImg.sprite = m_tierSprites[(int)m_data.m_speedTier];
         UpdateProfileImg();
     }
 
