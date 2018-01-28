@@ -139,6 +139,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rules: []
+  m_dailyNotifications: []
+  rulesForRandomGeneration:
+    m_NormalRules:
+    - {fileID: 11400000, guid: 0ab3c179fd038eb40bfb041264ddd1f6, type: 2}
+    - {fileID: 11400000, guid: 9b0d45349d9926343b03189dae780d8a, type: 2}
+    - {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e, type: 2}
+    - {fileID: 11400000, guid: 90c0427a313b69543a9c0e6d821e7d0e, type: 2}
+    m_PriorityRules:
+    - {fileID: 11400000, guid: 073eaae6fe3689449be05e64649431c9, type: 2}
+    - {fileID: 11400000, guid: b905c18a0b4122048b8fd2adef1ef077, type: 2}
+    - {fileID: 11400000, guid: 5923a61473c86084db5e1340cbfd7262, type: 2}
 --- !u!114 &114710476479389052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,14 +161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16a2c187bc048944b6371912d1c6be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_days:
+  - {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}
+  - {fileID: 11400000, guid: aa09eff9d1d15c94fa4d380079a270dc, type: 2}
+  - {fileID: 11400000, guid: 350a47409635e8a42b683809cc866905, type: 2}
+  - {fileID: 11400000, guid: 7ebc916e8aa952f44aec4118584f15d2, type: 2}
+  - {fileID: 11400000, guid: 71a6b89b649169143ab6a2a913e09555, type: 2}
   m_customerListUI: {fileID: 0}
   m_actionPanelUI: {fileID: 0}
   m_notificationUI: {fileID: 0}
   m_notificationPanelUI: {fileID: 0}
   m_titleBar: {fileID: 0}
-  m_dayDisplay: {fileID: 0}
-  m_minTimeBetweenCustomers: 1
-  m_maxTimeBetweenCustomers: 10
+  m_dayDispay: {fileID: 0}
+  m_minTimeBetweenCustomers: 0
+  m_maxTimeBetweenCustomers: 5
   m_canvasShaker: {fileID: 0}
   m_maxStrikes: 3
   m_timeBetweenCustomers: 1
@@ -166,5 +183,5 @@ MonoBehaviour:
   m_minTimeBetweenNotifications: 1
   m_notificationTimer: 0
   m_dayTransitionTime: 2
-  m_actionFeedbackTime: 0.33
+  m_actionFeedbackTime: 1
   TEST_DAY: {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}

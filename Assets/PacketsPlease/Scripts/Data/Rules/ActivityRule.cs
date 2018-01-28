@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActivityRule", menuName = "Rules/Activity", order = 0)]
 public class ActivityRule : RuleData
 {
-    [SerializeField]
-    string m_activityName;
+    public string m_activityName;
 
     public ActivityRule(string name, ActionData.ActionType correctResponse, float usageLimit, int priority = 0) : base(correctResponse, usageLimit, priority)
     {

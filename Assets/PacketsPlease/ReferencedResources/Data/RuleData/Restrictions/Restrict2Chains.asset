@@ -8,11 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e16fc7ec8f2f85449746c7bf46f6574, type: 3}
-  m_Name: 30DayPromo
+  m_Script: {fileID: 11500000, guid: 1b685b2d82318a44ea348d8932d9aa60, type: 3}
+  m_Name: Restrict2Chains
   m_EditorClassIdentifier: 
-  m_priority: 10
+  m_priority: 0
   m_skipAutoNotice: 0
-  m_action: 2
+  m_action: 1
   m_usageLimit: 0
-  m_daysActive: 30
+  m_activityName: 2Chains
