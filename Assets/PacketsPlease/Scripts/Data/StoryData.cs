@@ -75,6 +75,11 @@ public class StoryData : ScriptableObject {
             if (m_lastMinutesPassed < sn.m_time && minutesPassed >= sn.m_time)
             {
                 sn.m_data.m_parentStory = this;
+                if(sn.m_data.m_response.m_clearMe)
+                {
+                    Debug.Log("Clearing!");
+                    sn.m_data.m_response = null;
+                }
                 m_notificationsToShow.Add(sn.m_data);
             }
         }

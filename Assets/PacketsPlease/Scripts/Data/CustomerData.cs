@@ -27,13 +27,37 @@ public class CustomerData : ScriptableObject {
     {
         [HideInInspector]
         public StoryData m_story;
-        public ActionData.ActionType m_endOnAction;
+        [System.Serializable]
+        public class ResponseAction
+        {
+            public ActionData.ActionType m_action = ActionData.ActionType.None;
+            public ResolutionAction resolution = ResolutionAction.None;
+        }
+
+        public List<ResponseAction> m_responseActions = new List<ResponseAction>();
         public bool m_ForcePassFail = true;
         public string m_activityName;
     }
 
+
+    public enum ResolutionAction
+    {
+        None = 0,
+        TransitionDay,
+        GameOver,
+        EndStory,
+        PostNotificationA,
+        PostNotificationB,
+        PostNotificationC,
+        PostCustomerA,
+        PostCustomerB,
+        PostCustomerC
+    }
+
     public ParentStory m_StoryParameters;
 
+    public List<NotificationData> m_responseNotifications;
+    public List<CustomerData> m_responseCustomers;
     public enum Location : int
     {
         NorthAmerica = 0,
