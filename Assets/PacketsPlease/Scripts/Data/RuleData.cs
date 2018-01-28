@@ -9,6 +9,7 @@ public class RuleData : ScriptableObject {
     public int m_priority;
     public const int HIGHEST_PRIORITY = 999;
     public const int LOWEST_PRIORITY = 0;
+    public bool m_skipAutoNotice = false;
 
     public RuleData(ActionData.ActionType correctResponse, float usageLimit = 0f, int priority = LOWEST_PRIORITY)
     {

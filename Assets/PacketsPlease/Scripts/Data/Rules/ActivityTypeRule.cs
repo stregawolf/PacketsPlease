@@ -4,10 +4,10 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Activity Type", menuName = "Rules/Activity Type", order = 0)]
 public class ActivityTypeRule : RuleData {
-    [SerializeField]
-    ActivityData.Activity.Type m_activityType;
 
-    private List<ActivityData.Activity> passingActivites;
+    public ActivityData.Activity.Type m_activityType;
+
+    private List<ActivityData.Activity> passingActivities;
     private List<ActivityData.Activity> failingActivities;
 
     public ActivityTypeRule(ActivityData.Activity.Type type, ActionData.ActionType correctResponse, float usageLimit = 0, int priority = 0) : base(correctResponse, usageLimit, priority)
@@ -20,7 +20,7 @@ public class ActivityTypeRule : RuleData {
         base.Init();
         m_type = Type.ActivityType;
 
-        passingActivites = new List<ActivityData.Activity>();
+        passingActivities = new List<ActivityData.Activity>();
         failingActivities = new List<ActivityData.Activity>();
 
         foreach(ActivityData.Activity activity in ActivityData.Activities)
@@ -30,7 +30,7 @@ public class ActivityTypeRule : RuleData {
                 failingActivities.Add(activity);
             } else
             {
-                passingActivites.Add(activity);
+                passingActivities.Add(activity);
             }
         }
     }
@@ -55,7 +55,7 @@ public class ActivityTypeRule : RuleData {
             }
             else
             {
-                customer.m_activity = passingActivites[Random.Range(0, passingActivites.Count)];
+                customer.m_activity = passingActivities[Random.Range(0, passingActivities.Count)];
             }
         }
     }

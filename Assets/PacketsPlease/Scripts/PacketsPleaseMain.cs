@@ -5,6 +5,7 @@ using System;
 
 public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
+    public DayData[] m_days;
     public CustomerListUI m_customerListUI;
     public ActionPanelUI m_actionPanelUI;
     public NotificationListUI m_notificationUI;
@@ -104,30 +105,28 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_titleBar.SetDay(m_currentDay);
         m_dayDispay.FadeIn();
         yield return new WaitForSeconds(m_dayTransitionTime);
-        GenerateDay();
+        SetupDay();
         m_dayDispay.FadeOut();
 
         m_currentGameState = GameState.GameStarted;
     }
 
-    protected void GenerateDay()
+    protected void SetupDay()
     {
-        testData = new StoryData("Story/TEST_DATA");
-        // Kick out all TEST data as POC
-        foreach (StoryData.ScheduledCustomer sc in testData.customerScheduleByDay[1])
+        if(m_currentDay < m_days.Length+1)
         {
-            m_customerListUI.AddCustomer(sc.m_data);
+            m_days[m_currentDay-1].ApplyRules();
+        }
+        else
+        {
+            RuleManager.Instance.ApplyRandomRules(m_currentDay);
         }
 
-        foreach (StoryData.ScheduledNotification sn in testData.notificationScheduleByDay[1])
+        RuleManager.Instance.BuildRuleNotifications();
+        foreach(NotificationData n in RuleManager.Instance.m_dailyNotifications)
         {
-            m_notificationUI.AddNotification(sn.m_data);
+            m_notificationUI.AddNotification(n);
         }
-
-        //RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionData.ActionType.Throttle));
-        RuleManager.Instance.AddRule(new ActivityTypeRule(ActivityData.Activity.Type.GAME, ActionData.ActionType.Disconnect, 100.0f, 0));
-
-        TEST_DAY.ApplyRules();
     }
 
     protected void Update()
@@ -178,17 +177,15 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 UpdateCustomerDisplay(topCustomer);
             }
         }
-
-        if (m_notificationTimer >= m_minTimeBetweenNotifications)
+        
+        // TODO: If no STORY engine running, restart random MISC story
+        /*if (UnityEngine.Random.value < 0.1f)
         {
-            m_notificationTimer = 0;
-            if (UnityEngine.Random.value < 0.1f)
-            {
-                NotificationData testData = ScriptableObject.CreateInstance<NotificationData>();
-                testData.Generate();
-                m_notificationUI.AddNotification(testData);
-            }
-        }
+            NotificationData testData = ScriptableObject.CreateInstance<NotificationData>();
+            testData.Generate();
+            m_notificationUI.AddNotification(testData);
+        }*/
+        
     }
 
     protected void UpdateCustomerDisplay(CustomerUI newCustomer)

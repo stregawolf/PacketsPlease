@@ -1098,6 +1098,21 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_NormalRules.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_PriorityRules.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4193810648781584, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1165,6 +1180,60 @@ Prefab:
       propertyPath: m_canvasShaker
       value: 
       objectReference: {fileID: 1663261932}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_NormalRules.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ab3c179fd038eb40bfb041264ddd1f6,
+        type: 2}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_NormalRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b0d45349d9926343b03189dae780d8a,
+        type: 2}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_NormalRules.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e,
+        type: 2}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_NormalRules.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 90c0427a313b69543a9c0e6d821e7d0e,
+        type: 2}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_PriorityRules.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 073eaae6fe3689449be05e64649431c9,
+        type: 2}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_PriorityRules.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b905c18a0b4122048b8fd2adef1ef077,
+        type: 2}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_NormalRules.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e,
+        type: 2}
+    - target: {fileID: 114589807016016592, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: rulesForRandomGeneration.m_PriorityRules.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5923a61473c86084db5e1340cbfd7262,
+        type: 2}
+    - target: {fileID: 114710476479389052, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_days.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c60853e877e0954ab9276a2cd69b22e,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
   m_IsPrefabParent: 0

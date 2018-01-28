@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DateRule", menuName = "Rules/Date", order = 0)]
 public class DateRule : RuleData
 {
-    [SerializeField]
-    private int m_daysActive;
+    public int m_daysActive;
 
     public DateRule(int daysActive, ActionData.ActionType correctResponse, float usageLimit, int priority = 0) : base(correctResponse, usageLimit, priority)
     {

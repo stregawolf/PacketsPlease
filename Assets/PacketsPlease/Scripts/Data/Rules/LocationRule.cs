@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LocationRule", menuName = "Rules/Location", order = 0)]
 public class LocationRule : RuleData
 {
-    [SerializeField]
-    CustomerData.Location m_location;
+    public CustomerData.Location m_location;
 
     public LocationRule(CustomerData.Location location, ActionData.ActionType correctResponse, float usageLimit = 0, int priority = 0) : base(correctResponse, usageLimit, priority)
     {
