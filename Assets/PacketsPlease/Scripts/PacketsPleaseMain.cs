@@ -117,7 +117,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleThrottlingTopCustomer()
     {
         m_isHandlingCustomer = true;
-        if(RuleManager.Instance.GetHighestViolatedRule(m_customerListUI.GetTopCustomer().m_data, ActionType.Throttle) != null)
+        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionType.Throttle);
+        if(RuleManager.Instance.DoesViolateRules(action))
         {
             GiveStrike();
         }
@@ -139,8 +140,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleBoostingTopCustomer()
     {
         m_isHandlingCustomer = true;
-        if (m_customerListUI.GetTopCustomer().m_data.m_dataUsage >= 50.0f)
-         {
+        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionType.Boost);
+        if(RuleManager.Instance.DoesViolateRules(action))
+        {
             GiveStrike();
         }
         m_actionPanelUI.DoBoostFeedback();
@@ -161,6 +163,11 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleDisconnectTopCustomer()
     {
         m_isHandlingCustomer = true;
+        ActionData action = new ActionData(m_customerListUI.GetTopCustomer().m_data, ActionType.Disconnect);
+        if(RuleManager.Instance.DoesViolateRules(action))
+        {
+            GiveStrike();
+        }
         m_actionPanelUI.DoDisconnectFeedback();
         yield return new WaitForSeconds(m_actionFeedbackTime);
         m_customerListUI.RemoveCustomerTopCustomer();
