@@ -204,6 +204,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected void SetupDay()
     {
+        RuleManager.Instance.ClearAllRules();
         if(m_currentDay < m_days.Length+1)
         {
             m_days[m_currentDay-1].ApplyRules();

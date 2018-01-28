@@ -22,7 +22,7 @@ public class TitleBarUI : MonoBehaviour {
 
     public void SetDay(int day)
     {
-        GameDate = new DateTime(2018, 1, 27 + day, START_HOUR, 0, 0);
+        GameDate = new DateTime(2018, 1, 27, START_HOUR, 0, 0).AddDays(day);
         MinutesSinceDayStart = (GameDate.Hour - START_HOUR) * 60 + GameDate.Minute;
     }
 
