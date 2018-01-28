@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
@@ -44,6 +45,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         EndOfDay,
         EndOfDayReport,
         GameOver,
+        GameOverShown,
     }
 
     protected GameState m_currentGameState = GameState.Title;
@@ -73,14 +75,34 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     public void HandleGameOver()
     {
-        if(m_currentGameState == GameState.GameOver)
+        if(m_currentGameState == GameState.GameOver || m_currentGameState == GameState.GameOverShown)
         {
             return;
         }
 
         m_currentGameState = GameState.GameOver;
     }
+    
+    public void ShowGameOver()
+    {
+        if(m_currentGameState == GameState.GameOverShown)
+        {
+            return;
+        }
 
+        m_currentGameState = GameState.GameOverShown;
+
+        m_notificationUI.EmptyList();
+        m_customerListUI.EmptyList();
+        m_actionPanelUI.SetCustomer(null);
+
+        NotificationData gameOverData = ScriptableObject.CreateInstance<NotificationData>();
+        gameOverData.GenerateGameOver();
+        NotificationUI gameOver = m_notificationUI.AddNotification(gameOverData);
+        gameOver.SelectSelf();
+
+        EventManager.OnLose.Dispatch();
+    }
 
     public void HandleEndOfDay()
     {
@@ -99,6 +121,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
 
         m_currentGameState = GameState.EndOfDayReport;
+
         m_notificationUI.EmptyList();
         m_customerListUI.EmptyList();
         m_actionPanelUI.SetCustomer(null);
@@ -115,10 +138,12 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         StartCoroutine(HandleDayTransition());
     }
 
-    public void GameOver()
+    public void RestartGame()
     {
-        EventManager.OnLose.Dispatch();
-        m_currentGameState = GameState.GameOver;
+        LeanTween.delayedCall(1.0f, () =>
+        {
+            SceneManager.LoadScene(0);
+        });
     }
 
     protected IEnumerator HandleDayTransition()
@@ -126,6 +151,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_currentGameState = GameState.Transitioning;
 
         // TODO: load generation stuff
+        m_currentStrike = 0;
         m_numCorrectChoices = 0;
         m_customerListUI.ResetList();
         m_notificationUI.ResetList();
@@ -187,19 +213,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         switch(m_currentGameState)
         {
-            case GameState.Title:
-                break;
-            case GameState.Transitioning:
-                break;
             case GameState.GameStarted:
                 UpdateGame();
                 break;
             case GameState.EndOfDay:
                 UpdateEndOfDay();
                 break;
-            case GameState.EndOfDayReport:
-                break;
             case GameState.GameOver:
+                UpdateGameOver();
                 break;
         }
     }
@@ -227,15 +248,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
 
         CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
-        if (m_actionPanelUI.m_currentCustomer != topCustomer)
-        {
-            if (topCustomer == null || topCustomer.transform.localPosition.y < 5.0f)
-            {
-                UpdateCustomerDisplay(topCustomer);
-            }
-        }
-        
-        foreach(StoryData story in m_activeStories)
+        UpdateCustomerDisplay(topCustomer);
+
+        foreach (StoryData story in m_activeStories)
         {
             foreach(CustomerData cd in story.m_customersToShow)
             {
@@ -257,32 +272,47 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected void UpdateEndOfDay()
     {
         CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
-        if (m_actionPanelUI.m_currentCustomer != topCustomer)
-        {
-            if (topCustomer == null || topCustomer.transform.localPosition.y < 5.0f)
-            {
-                UpdateCustomerDisplay(topCustomer);
-            }
-        }
+        UpdateCustomerDisplay(topCustomer);
 
-        if (topCustomer == null)
+        if (topCustomer == null && !m_isHandlingCustomer)
         {
             // no more customers in the queue
             ShowGiveEndOfDayReport();
         }
     }
 
+    protected void UpdateGameOver()
+    {
+        if (!m_isHandlingCustomer)
+        {
+            ShowGameOver();
+        }
+    }
+
     protected void UpdateCustomerDisplay(CustomerUI newCustomer)
     {
-        m_actionPanelUI.SetCustomer(newCustomer);
+        if (m_actionPanelUI.m_currentCustomer != newCustomer)
+        {
+            if (newCustomer == null || newCustomer.transform.localPosition.y < 5.0f)
+            {
+                m_actionPanelUI.SetCustomer(newCustomer);
+            }
+        }
     }
 
     protected void GiveStrike()
     {
         m_currentStrike++;
-        m_notificationUI.AddStrikeNotification(m_currentStrike);
-        m_canvasShaker.Shake();
-        EventManager.OnStrike.Dispatch(m_currentStrike);
+        if(m_currentStrike >= m_maxStrikes)
+        {
+            HandleGameOver();
+        }
+        else
+        {
+            m_notificationUI.AddStrikeNotification(m_currentStrike);
+            m_canvasShaker.Shake();
+            EventManager.OnStrike.Dispatch(m_currentStrike);
+        }
     }
 
     public void ThrottleCustomer()
@@ -417,7 +447,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                     TransitionDay();
                     break;
                 case NotificationData.ResolutionAction.GameOver:
-                    GameOver();
+                    RestartGame();
                     break;
                 case NotificationData.ResolutionAction.EndStory:
                     m_activeStories.Remove(notification.m_data.m_parentStory);
@@ -469,9 +499,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
             switch (notification.m_data.m_incorrectResponseAction)
             {
-                case NotificationData.ResolutionAction.GameOver:
-                    GameOver();
-                    break;
                 case NotificationData.ResolutionAction.EndStory:
                     m_activeStories.Remove(notification.m_data.m_parentStory);
                     break;

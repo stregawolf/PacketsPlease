@@ -60,12 +60,7 @@ public class NotificationData : ScriptableObject
     }
 
     public Response m_response = null;
-
-    public void Generate()
-    {
-      
-    }
-
+    
     public void GenerateStrike(int number)
     {
         m_title = string.Format("This is strike #{0}", number);
@@ -88,4 +83,16 @@ public class NotificationData : ScriptableObject
         m_correctResponseAction = ResolutionAction.TransitionDay;
         m_incorrectResponseAction = ResolutionAction.None;
     }
+
+    public void GenerateGameOver()
+    {
+        m_title = "You're FIRED!";
+        m_sender = SENDER_BOSS;
+        m_message = "You're not cut out to work at this company.\n\nYou're FIRE!";
+        m_response = null;
+        m_iconColor = Color.red;
+        m_correctResponseAction = ResolutionAction.GameOver;
+        m_incorrectResponseAction = ResolutionAction.None;
+    }
+    
 }
