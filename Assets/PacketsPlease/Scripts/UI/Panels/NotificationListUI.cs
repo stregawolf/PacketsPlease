@@ -30,6 +30,12 @@ public class NotificationListUI : MonoBehaviour {
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;
     }
 
+    public void RemoveNotification(NotificationUI notification)
+    {
+        m_notificationUIs.Remove(notification);
+        notification.DestroySelf();
+    }
+
     public void AddStrikeNotification(int number)
     {
         GameObject notificationUiObj = Instantiate(m_strikeNoficationPrefab, transform);

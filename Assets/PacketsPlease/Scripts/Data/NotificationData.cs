@@ -21,7 +21,7 @@ public class NotificationData : ScriptableObject
 
         public string m_ChoiceA;
         public string m_ChoiceB;
-        CorrectResponse m_correctResponse;
+        public CorrectResponse m_correctResponse;
 
         public Response(string choiceA, string choiceB, CorrectResponse correctResponse)
         {
