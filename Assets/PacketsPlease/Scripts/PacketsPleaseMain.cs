@@ -13,6 +13,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public NotificationPanelUI m_notificationPanelUI;
     public TitleBarUI m_titleBar;
     public DayDisplayUI m_dayDisplay;
+    public TitleUI m_title;
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
@@ -44,18 +45,19 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         GameOver,
     }
 
-    protected GameState m_currentGameState = GameState.Transitioning;
+    protected GameState m_currentGameState = GameState.Title;
 
 
     public DayData TEST_DAY;
     protected override void Awake()
     {
         base.Awake();
+        m_title.gameObject.SetActive(true);
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
         EventManager.OnEndOfDay.Register(HandleEndOfDay);
     }
 
-    protected void Start()
+    public void StartGame()
     {
         m_dayDisplay.FadeIn(true);
         TransitionDay();
