@@ -34,9 +34,25 @@ public class CustomerData : ScriptableObject {
         Australia,
         NUM_LOCATIONS,
     }
-
     public Location m_location;
 
+    public enum Race : int
+    {
+        Bird = 0,
+        Reptile,
+        SmallMammal,
+        LargeMammal,
+        NUM_TYPES,
+    }
+    public Race m_race;
+
+    public enum SpeedTier: int
+    {
+        Regular = 0,
+        Bronze, 
+        Silver,
+        Goal,
+    }
 
     // Generate new customer that somehow fits into one of the rule categories
     public void Generate()

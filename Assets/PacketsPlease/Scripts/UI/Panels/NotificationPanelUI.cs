@@ -11,7 +11,8 @@ public class NotificationPanelUI : MonoBehaviour {
 	void Start () {
         m_notificationDetails.gameObject.SetActive(false);
         EventManager.OnNotificationSelected.Register(SetNotification);
-	}
+        gameObject.SetActive(false);
+    }
 	
 
     public void SetNotification(NotificationUI sourceNotification)
@@ -24,6 +25,7 @@ public class NotificationPanelUI : MonoBehaviour {
         }
         else
         {
+            gameObject.SetActive(true);
             m_notificationDetails.gameObject.SetActive(true);
             m_notificationDetails.Init(sourceNotification.m_data);
 

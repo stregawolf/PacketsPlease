@@ -53,9 +53,8 @@ public class CustomerUI : MonoBehaviour {
 
     protected IEnumerator HandleDestroySelf()
     {
-        transform.SetAsFirstSibling();
         SetBGColor(m_originalColor);
-        LeanTween.moveLocalX(gameObject, -Screen.width*0.25f, 1.0f).setEaseOutBack();
+        LeanTween.moveLocalX(gameObject, -Screen.width*0.25f, 0.33f).setEaseInBack();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }

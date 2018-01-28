@@ -96,6 +96,7 @@ MonoBehaviour:
   m_actionPanelUI: {fileID: 0}
   m_notificationUI: {fileID: 0}
   m_notificationPanelUI: {fileID: 0}
+  m_dayDispay: {fileID: 0}
   m_timeBetweenCustomers: 1
   m_customerTimer: 0
   m_maxNumCustomer: 8
