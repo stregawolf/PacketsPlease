@@ -78,7 +78,7 @@ public class CustomerData : ScriptableObject {
 
             // Pick a random rule and make sure the Customer fits the constraints
             RuleData rule = rules[Random.Range(0, rules.Count)];
-            HashSet<RuleData.ConstraintType> constraints = rule.Constraints;
+           /* HashSet<RuleData.ConstraintType> constraints = rule.Constraints;
 
             foreach(RuleData.ConstraintType constraint in constraints)
             {
@@ -114,7 +114,7 @@ public class CustomerData : ScriptableObject {
                         throw new System.Exception("CustomerData: Missing constraint types in IsViolatedBy()");
                 }
             }
-
+            */
         }
     }
 
