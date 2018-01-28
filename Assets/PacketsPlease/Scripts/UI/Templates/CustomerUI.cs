@@ -11,13 +11,21 @@ public class CustomerUI : MonoBehaviour {
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_dataUsage;
 
+    public Sprite[] m_raceSprites;
+
     public CustomerData m_data { get; protected set; }
     
     public virtual void Init(CustomerData data)
     {
         m_data = data;
-        m_name.text = data.m_name.LastFirst;
-        m_dataUsage.text = string.Format("{0:N2} GB", data.m_dataUsage);
+        m_name.text = m_data.m_name.LastFirst;
+        m_dataUsage.text = string.Format("{0:N2} GB", m_data.m_dataUsage);
+        UpdateProfileImg();
+    }
+
+    public virtual void UpdateProfileImg()
+    {
+        m_profileImg.sprite = m_raceSprites[(int)m_data.m_race];
     }
 
     public void SetNameColor(Color c)

@@ -21,7 +21,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
-    protected CustomerData currentCustomer;
     protected int m_currentDay;
 
     protected StoryData testData;
@@ -120,11 +119,11 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
 
         CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
-        if (currentCustomer != topCustomer)
+        if (m_actionPanelUI.m_currentCustomer != topCustomer)
         {
             if (topCustomer == null || topCustomer.transform.localPosition.y < 5.0f)
             {
-                UpdateCustomerDisplay(m_customerListUI.GetTopCustomer());
+                UpdateCustomerDisplay(topCustomer);
             }
         }
 

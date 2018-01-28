@@ -7,7 +7,7 @@ public class ActionPanelUI : MonoBehaviour {
     public CustomerDetailsUI m_customerDetails;
     public SpeedIndicatorUI m_speedIndiciator;
 
-    protected CustomerUI m_currentCustomer;
+    public CustomerUI m_currentCustomer { get; protected set; }
     public Color m_activeUIColor = Color.green;
     public Color m_activeNameColor = Color.gray;
 
@@ -23,20 +23,20 @@ public class ActionPanelUI : MonoBehaviour {
             return;
         }
 
-        if(customer == null)
+        m_currentCustomer = customer;
+
+        if (m_currentCustomer == null)
         {
             m_customerDetails.gameObject.SetActive(false);
         }
         else
         {
-            customer.SetNameColor(m_activeNameColor);
-            customer.SetBGColor(m_activeUIColor);
-            m_customerDetails.gameObject.SetActive(true);
-            m_customerDetails.Init(customer.m_data);
+            m_currentCustomer.SetNameColor(m_activeNameColor);
+            m_currentCustomer.SetBGColor(m_activeUIColor);
             m_speedIndiciator.Reset();
+            m_customerDetails.gameObject.SetActive(true);
+            m_customerDetails.Init(m_currentCustomer.m_data);
         }
-
-        m_currentCustomer = customer;
     }
 
     public void DoBoostFeedback()

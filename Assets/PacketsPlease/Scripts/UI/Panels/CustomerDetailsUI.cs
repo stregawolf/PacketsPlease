@@ -37,6 +37,11 @@ public class CustomerDetailsUI : CustomerUI {
         m_locationName.text = CustomerData.LOCATION_NAMES[(int)data.m_location];
     }
 
+    public override void UpdateProfileImg()
+    {
+
+    }
+
     protected void Update()
     {
         m_animationTimer += Time.deltaTime;
