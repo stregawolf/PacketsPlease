@@ -18,7 +18,7 @@ public class RuleData : ScriptableObject {
         Init();
     }
 
-    protected virtual void Init()
+    public virtual void Init()
     {
 
     }

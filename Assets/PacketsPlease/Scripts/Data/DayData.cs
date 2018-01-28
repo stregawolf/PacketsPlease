@@ -19,6 +19,7 @@ public class DayData : ScriptableObject {
     {
         foreach(RuleData rule in rules)
         {
+            rule.Init();
             RuleManager.Instance.AddRule(rule);
         }
     }

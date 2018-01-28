@@ -16,7 +16,7 @@ public class DateRule : RuleData
         m_usageLimit = usageLimit;
     }
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         m_type = Type.Date;

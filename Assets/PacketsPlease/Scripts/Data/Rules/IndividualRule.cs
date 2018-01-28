@@ -13,7 +13,7 @@ public class IndividualRule : RuleData
         m_name = name;
     }
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         m_type = Type.Individual;
