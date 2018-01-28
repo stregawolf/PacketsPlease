@@ -167,19 +167,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 350a47409635e8a42b683809cc866905, type: 2}
   - {fileID: 11400000, guid: 7ebc916e8aa952f44aec4118584f15d2, type: 2}
   - {fileID: 11400000, guid: 71a6b89b649169143ab6a2a913e09555, type: 2}
+  m_stories:
+  - {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334, type: 2}
   m_customerListUI: {fileID: 0}
   m_actionPanelUI: {fileID: 0}
   m_notificationUI: {fileID: 0}
   m_notificationPanelUI: {fileID: 0}
   m_titleBar: {fileID: 0}
-  m_dayDispay: {fileID: 0}
-  m_minTimeBetweenCustomers: 0
+  m_dayDisplay: {fileID: 0}
+  m_title: {fileID: 0}
+  m_minTimeBetweenCustomers: 1
   m_maxTimeBetweenCustomers: 5
   m_canvasShaker: {fileID: 0}
-  m_maxStrikes: 3
+  m_maxStrikes: 5
   m_timeBetweenCustomers: 1
   m_customerTimer: 0
-  m_maxNumCustomer: 8
+  m_maxNumCustomer: 10
   m_minTimeBetweenNotifications: 1
   m_notificationTimer: 0
   m_dayTransitionTime: 2

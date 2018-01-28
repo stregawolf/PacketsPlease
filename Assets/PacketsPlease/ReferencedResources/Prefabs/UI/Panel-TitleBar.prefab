@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_date: {fileID: 114398380887665450}
-  m_realMinutesPerGameDay: 0.5
+  m_realMinutesPerGameDay: 3
 --- !u!114 &114398380887665450
 MonoBehaviour:
   m_ObjectHideFlags: 1

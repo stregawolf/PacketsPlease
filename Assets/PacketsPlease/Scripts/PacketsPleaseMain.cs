@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
@@ -13,6 +14,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public NotificationPanelUI m_notificationPanelUI;
     public TitleBarUI m_titleBar;
     public DayDisplayUI m_dayDisplay;
+    public TitleUI m_title;
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
@@ -42,21 +44,24 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         Transitioning,
         GameStarted,
         EndOfDay,
+        EndOfDayReport,
         GameOver,
+        GameOverShown,
     }
 
-    protected GameState m_currentGameState = GameState.Transitioning;
+    protected GameState m_currentGameState = GameState.Title;
 
 
     public DayData TEST_DAY;
     protected override void Awake()
     {
         base.Awake();
+        m_title.gameObject.SetActive(true);
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
         EventManager.OnEndOfDay.Register(HandleEndOfDay);
     }
 
-    protected void Start()
+    public void StartGame()
     {
         m_dayDisplay.FadeIn(true);
         TransitionDay();
@@ -69,14 +74,55 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         EventManager.OnEndOfDay.Unregister(HandleEndOfDay);
     }
 
-    public void HandleEndOfDay()
+    public void HandleGameOver()
     {
-        if(m_currentGameState == GameState.EndOfDay)
+        if(m_currentGameState == GameState.GameOver || m_currentGameState == GameState.GameOverShown)
         {
             return;
         }
-        
+
+        m_currentGameState = GameState.GameOver;
+    }
+    
+    public void ShowGameOver()
+    {
+        if(m_currentGameState == GameState.GameOverShown)
+        {
+            return;
+        }
+
+        m_currentGameState = GameState.GameOverShown;
+
+        m_notificationUI.EmptyList();
+        m_customerListUI.EmptyList();
+        m_actionPanelUI.SetCustomer(null);
+
+        NotificationData gameOverData = ScriptableObject.CreateInstance<NotificationData>();
+        gameOverData.GenerateGameOver();
+        NotificationUI gameOver = m_notificationUI.AddNotification(gameOverData);
+        gameOver.SelectSelf();
+
+        EventManager.OnLose.Dispatch();
+    }
+
+    public void HandleEndOfDay()
+    {
+        if (m_currentGameState == GameState.EndOfDay || m_currentGameState == GameState.EndOfDayReport)
+        {
+            return;
+        }
         m_currentGameState = GameState.EndOfDay;
+    }
+
+    public void ShowGiveEndOfDayReport()
+    {
+        if (m_currentGameState == GameState.EndOfDayReport)
+        {
+            return;
+        }
+
+        m_currentGameState = GameState.EndOfDayReport;
+
         m_notificationUI.EmptyList();
         m_customerListUI.EmptyList();
         m_actionPanelUI.SetCustomer(null);
@@ -93,10 +139,12 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         StartCoroutine(HandleDayTransition());
     }
 
-    public void GameOver()
+    public void RestartGame()
     {
-        EventManager.OnLose.Dispatch();
-        m_currentGameState = GameState.GameOver;
+        LeanTween.delayedCall(1.0f, () =>
+        {
+            SceneManager.LoadScene(0);
+        });
     }
 
     protected IEnumerator HandleDayTransition()
@@ -104,15 +152,25 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_currentGameState = GameState.Transitioning;
 
         // TODO: load generation stuff
+        m_currentStrike = 0;
         m_numCorrectChoices = 0;
         m_customerListUI.ResetList();
         m_notificationUI.ResetList();
 
         m_currentDay++;
+
+        for(int i=0; i<m_activeStories.Count; i++)
+        {
+            if(m_activeStories[i].Finished())
+            {
+                m_activeStories.Remove(m_activeStories[i]);
+                i--;
+            }
+        }
         
         foreach(StoryData story in m_stories)
         {
-            if(story.m_startDay == m_currentDay)
+            if(story != null && story.m_startDay == m_currentDay)
             {
                 m_activeStories.Add(story);
             }
@@ -162,16 +220,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         switch(m_currentGameState)
         {
-            case GameState.Title:
-                break;
-            case GameState.Transitioning:
-                break;
             case GameState.GameStarted:
                 UpdateGame();
                 break;
             case GameState.EndOfDay:
+                UpdateEndOfDay();
                 break;
             case GameState.GameOver:
+                UpdateGameOver();
                 break;
         }
     }
@@ -199,15 +255,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
 
         CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
-        if (m_actionPanelUI.m_currentCustomer != topCustomer)
-        {
-            if (topCustomer == null || topCustomer.transform.localPosition.y < 5.0f)
-            {
-                UpdateCustomerDisplay(topCustomer);
-            }
-        }
-        
-        foreach(StoryData story in m_activeStories)
+        UpdateCustomerDisplay(topCustomer);
+
+        foreach (StoryData story in m_activeStories)
         {
             foreach(CustomerData cd in story.m_customersToShow)
             {
@@ -224,20 +274,52 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             }
             story.Update();
         }
-        
+    }
+
+    protected void UpdateEndOfDay()
+    {
+        CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
+        UpdateCustomerDisplay(topCustomer);
+
+        if (topCustomer == null && !m_isHandlingCustomer)
+        {
+            // no more customers in the queue
+            ShowGiveEndOfDayReport();
+        }
+    }
+
+    protected void UpdateGameOver()
+    {
+        if (!m_isHandlingCustomer)
+        {
+            ShowGameOver();
+        }
     }
 
     protected void UpdateCustomerDisplay(CustomerUI newCustomer)
     {
-        m_actionPanelUI.SetCustomer(newCustomer);
+        if (m_actionPanelUI.m_currentCustomer != newCustomer)
+        {
+            if (newCustomer == null || newCustomer.transform.localPosition.y < 5.0f)
+            {
+                m_actionPanelUI.SetCustomer(newCustomer);
+            }
+        }
     }
 
     protected void GiveStrike()
     {
         m_currentStrike++;
-        m_notificationUI.AddStrikeNotification(m_currentStrike);
-        m_canvasShaker.Shake();
-        EventManager.OnStrike.Dispatch(m_currentStrike);
+        if(m_currentStrike >= m_maxStrikes)
+        {
+            HandleGameOver();
+        }
+        else
+        {
+            m_notificationUI.AddStrikeNotification(m_currentStrike);
+            m_canvasShaker.Shake();
+            EventManager.OnStrike.Dispatch(m_currentStrike);
+        }
     }
 
     public void ThrottleCustomer()
@@ -295,9 +377,60 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
         if(data.m_StoryParameters != null && data.m_StoryParameters.m_story != null)
         {
-            if(data.m_StoryParameters.m_endOnAction == actionType)
+            foreach(CustomerData.ParentStory.ResponseAction response in data.m_StoryParameters.m_responseActions)
             {
-                m_activeStories.Remove(data.m_StoryParameters.m_story);
+                if(response.m_action == actionType)
+                {
+                    switch (response.resolution)
+                    {
+                        case CustomerData.ResolutionAction.TransitionDay:
+                            TransitionDay();
+                            break;
+                        case CustomerData.ResolutionAction.GameOver:
+                            HandleGameOver();
+                            break;
+                        case CustomerData.ResolutionAction.EndStory:
+                            m_activeStories.Remove(data.m_StoryParameters.m_story);
+                            break;
+                        case CustomerData.ResolutionAction.PostNotificationA:
+                            if (data.m_responseNotifications.Count >= 1)
+                            {
+                                m_notificationUI.AddNotification(data.m_responseNotifications[0]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostNotificationB:
+                            if (data.m_responseNotifications.Count >= 2)
+                            {
+                                m_notificationUI.AddNotification(data.m_responseNotifications[1]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostNotificationC:
+                            if (data.m_responseNotifications.Count >= 3)
+                            {
+                                m_notificationUI.AddNotification(data.m_responseNotifications[2]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostCustomerA:
+                            if (data.m_responseCustomers.Count >= 1)
+                            {
+                                m_customerListUI.AddCustomer(data.m_responseCustomers[0]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostCustomerB:
+                            if (data.m_responseCustomers.Count >= 2)
+                            {
+                                m_customerListUI.AddCustomer(data.m_responseCustomers[1]);
+                            }
+                            break;
+                        case CustomerData.ResolutionAction.PostCustomerC:
+                            if (data.m_responseCustomers.Count >= 3)
+                            {
+                                m_customerListUI.AddCustomer(data.m_responseCustomers[2]);
+                            }
+                            break;
+                    }
+
+                }
             }
         }
 
@@ -321,10 +454,46 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                     TransitionDay();
                     break;
                 case NotificationData.ResolutionAction.GameOver:
-                    GameOver();
+                    RestartGame();
                     break;
                 case NotificationData.ResolutionAction.EndStory:
                     m_activeStories.Remove(notification.m_data.m_parentStory);
+                    break;
+                case NotificationData.ResolutionAction.PostNotificationA:
+                    if (notification.m_data.m_responseNotifications.Count >= 1)
+                    {
+                        m_notificationUI.AddNotification(notification.m_data.m_responseNotifications[0]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostNotificationB:
+                    if (notification.m_data.m_responseNotifications.Count >= 2)
+                    {
+                        m_notificationUI.AddNotification(notification.m_data.m_responseNotifications[1]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostNotificationC:
+                    if (notification.m_data.m_responseNotifications.Count >= 3)
+                    {
+                        m_notificationUI.AddNotification(notification.m_data.m_responseNotifications[2]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostCustomerA:
+                    if (notification.m_data.m_responseCustomers.Count >= 1)
+                    {
+                        m_customerListUI.AddCustomer(notification.m_data.m_responseCustomers[0]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostCustomerB:
+                    if (notification.m_data.m_responseCustomers.Count >= 2)
+                    {
+                        m_customerListUI.AddCustomer(notification.m_data.m_responseCustomers[1]);
+                    }
+                    break;
+                case NotificationData.ResolutionAction.PostCustomerC:
+                    if (notification.m_data.m_responseCustomers.Count >= 3)
+                    {
+                        m_customerListUI.AddCustomer(notification.m_data.m_responseCustomers[2]);
+                    }
                     break;
             }
         }
@@ -337,9 +506,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
             switch (notification.m_data.m_incorrectResponseAction)
             {
-                case NotificationData.ResolutionAction.GameOver:
-                    GameOver();
-                    break;
                 case NotificationData.ResolutionAction.EndStory:
                     m_activeStories.Remove(notification.m_data.m_parentStory);
                     break;

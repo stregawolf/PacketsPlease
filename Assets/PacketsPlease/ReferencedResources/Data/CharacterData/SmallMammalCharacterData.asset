@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Name: SmallMammalCharacterData
   m_EditorClassIdentifier: 
   m_race: 2
-  m_bodies: []
+  m_bodies:
+  - {fileID: 21300000, guid: 5ae9b323cd22d411492028eec5a5273e, type: 3}
+  - {fileID: 21300000, guid: d5c4010ff298e4269a11b8a22f724064, type: 3}
+  - {fileID: 21300000, guid: 88d78c030a17146a88cb7576c48ae692, type: 3}
+  - {fileID: 21300000, guid: 2197b092f21914792bffce51ead27ab2, type: 3}
+  - {fileID: 21300000, guid: adc02c6a3323a49f5826c165feae1dc8, type: 3}
+  - {fileID: 21300000, guid: a1a376c51d6da4026a5ad2dd79623291, type: 3}
+  - {fileID: 21300000, guid: 6bb1ff68e03664323ac203625cf2315f, type: 3}
+  - {fileID: 21300000, guid: afa1d19bc402a40c9bfaead4aa21fab9, type: 3}
+  - {fileID: 21300000, guid: b5ba1e72d11494049a2c6bbf9e227545, type: 3}
   m_heads:
   - {fileID: 21300000, guid: 70a287a151dfc45e7ae5e3d4dad8dd7d, type: 3}
   - {fileID: 21300000, guid: 66e0780099a764da1ae79a8a66d58c3a, type: 3}

@@ -22,11 +22,20 @@ public class NotificationData : ScriptableObject
         None = 0,
         TransitionDay,
         GameOver,
-        EndStory
+        EndStory,
+        PostNotificationA,
+        PostNotificationB,
+        PostNotificationC,
+        PostCustomerA,
+        PostCustomerB,
+        PostCustomerC
     }
 
     public ResolutionAction m_correctResponseAction = ResolutionAction.None;
     public ResolutionAction m_incorrectResponseAction = ResolutionAction.None;
+
+    public List<NotificationData> m_responseNotifications;
+    public List<CustomerData> m_responseCustomers;
 
     [System.Serializable]
     public class Response
@@ -47,20 +56,16 @@ public class NotificationData : ScriptableObject
             m_ChoiceA = choiceA; m_ChoiceB = choiceB; m_correctResponse = correctResponse;
         }
         public bool m_strikeOnIncorrect = false;
+        public bool m_clearMe = true;
     }
 
     public Response m_response = null;
-
-    public void Generate()
-    {
-      
-    }
-
+    
     public void GenerateStrike(int number)
     {
         m_title = string.Format("This is strike #{0}", number);
         m_sender = SENDER_BOSS;
-        m_message = string.Format("You've got #{0} strikes!", number);
+        m_message = string.Format("You've got #{0} strikes!.\n\n{1} strikes and you're fired!", number, PacketsPleaseMain.Instance.m_maxStrikes);
         m_response = new Response("I'm sorry", "Eat my butt", Response.CorrectResponse.CHOICE_A);
         m_iconColor = Color.red;
         m_correctResponseAction = ResolutionAction.None;
@@ -79,8 +84,15 @@ public class NotificationData : ScriptableObject
         m_incorrectResponseAction = ResolutionAction.None;
     }
 
-    public void EndStory()
+    public void GenerateGameOver()
     {
-
+        m_title = "You're FIRED!";
+        m_sender = SENDER_BOSS;
+        m_message = "That's the last strike!\n\nYou're not cut out to work at this company.\n\nYOU ARE FIRE!!!";
+        m_response = null;
+        m_iconColor = Color.red;
+        m_correctResponseAction = ResolutionAction.GameOver;
+        m_incorrectResponseAction = ResolutionAction.None;
     }
+    
 }
