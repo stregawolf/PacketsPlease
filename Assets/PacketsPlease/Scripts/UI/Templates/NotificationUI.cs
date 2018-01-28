@@ -26,9 +26,20 @@ public class NotificationUI : MonoBehaviour {
         }
     }
 
-    // tODO GET RID OF THIS
     void SendToMain()
     {
         EventManager.OnNotificationSelected.Dispatch(this);
+    }
+
+    public void DestroySelf()
+    {
+        StartCoroutine(HandleDestroySelf());
+    }
+
+    protected IEnumerator HandleDestroySelf()
+    {
+        LeanTween.moveLocalX(gameObject, Screen.width * 1.25f, 1.0f).setEaseInOutBack();
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
     }
 }
