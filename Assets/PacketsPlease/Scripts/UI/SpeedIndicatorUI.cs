@@ -19,7 +19,7 @@ public class SpeedIndicatorUI : MonoBehaviour {
         Disconnected,
     }
 
-    protected SpeedState m_currentState = SpeedState.Regular;
+    public SpeedState m_currentState { get; protected set; }
     protected float m_currentAngle = 0.0f;
     protected float m_desiredAngle = 0.0f;
 

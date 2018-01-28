@@ -53,6 +53,7 @@ public class CustomerData : ScriptableObject {
         Silver,
         Goal,
     }
+    public SpeedTier m_speedTier;
 
     // Generate new customer that somehow fits into one of the rule categories
     public void Generate()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActivityData {
 
     public struct Activity {
-        public enum Type {
+        public enum Type : int {
             GAME = 0,
             SITE = 1,
             STREAM = 2,
