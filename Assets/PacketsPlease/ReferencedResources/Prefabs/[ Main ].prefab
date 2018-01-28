@@ -154,5 +154,5 @@ MonoBehaviour:
   m_minTimeBetweenNotifications: 1
   m_notificationTimer: 0
   m_dayTransitionTime: 2
-  m_actionFeedbackTime: 0.33
+  m_actionFeedbackTime: 1
   TEST_DAY: {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}

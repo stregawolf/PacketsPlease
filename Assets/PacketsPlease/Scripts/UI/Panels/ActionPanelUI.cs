@@ -47,18 +47,19 @@ public class ActionPanelUI : MonoBehaviour {
     public void DoBoostFeedback()
     {
         m_speedIndiciator.Boost();
-        m_customerDetails.OnPositiveChoice();
+        m_customerDetails.OnBoostChoice();
     }
 
     public void DoThrottleFeedback()
     {
         m_speedIndiciator.Throttle();
-        m_customerDetails.OnNegativeChoice();
+        m_customerDetails.OnThrottleChoice();
     }
 
     public void DoDisconnectFeedback()
     {
         m_speedIndiciator.Disconnect();
-        m_customerDetails.OnNegativeChoice();
+        m_customerDetails.OnDisconnectChoice();
     }
+
 }
