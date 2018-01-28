@@ -12,7 +12,9 @@ public class ActionPanelUI : MonoBehaviour {
     public Color m_activeNameColor = Color.gray;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        transform.parent.localPosition = Vector3.up * -Screen.height * 0.5f;
         m_customerDetails.gameObject.SetActive(false);
 	}
 	
@@ -28,6 +30,7 @@ public class ActionPanelUI : MonoBehaviour {
         if (m_currentCustomer == null)
         {
             m_customerDetails.gameObject.SetActive(false);
+            LeanTween.moveLocalY(transform.parent.gameObject, -Screen.height * 0.5f, 0.5f).setEaseInBack();
         }
         else
         {
@@ -36,6 +39,8 @@ public class ActionPanelUI : MonoBehaviour {
             m_speedIndiciator.Reset();
             m_customerDetails.gameObject.SetActive(true);
             m_customerDetails.Init(m_currentCustomer.m_data);
+            transform.parent.localPosition = Vector3.up * -Screen.height * 0.25f;
+            LeanTween.moveLocalY(transform.parent.gameObject, 0.0f, 0.5f).setEaseOutBack();
         }
     }
 
