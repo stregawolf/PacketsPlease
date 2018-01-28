@@ -90,11 +90,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_actionPanelUI.SetCustomer(newCustomer);
     }
 
-    public void UpdateNotification(NotificationUI newNotification)
-    {
-        m_notificationPanelUI.SetNotification(newNotification);
-    }
-
     protected void GiveStrike()
     {
         m_currentStrike++;

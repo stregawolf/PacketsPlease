@@ -1,0 +1,6 @@
+TYPE_CUSTOMER	DAY	TIME	NAME	DAYS ACTIVE	DATA USAGE	ACTIVITY		
+TYPE_NOTIFICATION	DAY	TIME	TITLE	SENDER	MESSAGE	RESPONSE A	RESPONSE B	PINNED
+CUSTOMER	1	60	Vu Ha	15	45	Cheepen		
+CUSTOMER	1	90	Ted DiNola	29	54	Facezine		
+NOTIFICATION	1	30	ZzzFeed Daily Roundup	news@zzzfeed.net	Welcome to your Daily Dose of ZzzFeed! We've got the hottest stories right here!||<b>Culture</b>/n<u>You Won't Believe What This Baby Did!</u>|<u>Who's Cheating On Who? Find Out Here!</u>/n<u>13 Hats That Look Like Celebrities</u>/n<b><u>Click Here For More!!!</b></u>	Unsubscribe	Unsubscribe Harder	
+NOTIFICATION	1	0	Company Policy Update	policy@cosmocast.com	<b>Policy Update For %DATE</b>  %BANDWIDTH_LOWER(50)Please keep an eye on our customer's data usage rates, and make sure they aren't exceeding the subscribed amount.|In order to best serve all of our customers, we need to ensure that everyone is receiving the same level of service. Customers who are using more than their alloted usage should be throttled to guarantee the best connection for our other customers./nWe are also proud to announce a partnership with %ACTIVITY_PROMO. Make sure <b>all</b> of our customers get priority service when visiting %ACTIVITY_PROMO_0_NAME./n/n<b>CosmoCAST Policy Team</b>			TRUE

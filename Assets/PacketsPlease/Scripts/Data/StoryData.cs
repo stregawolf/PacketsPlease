@@ -69,7 +69,7 @@ public class StoryData {
                         NotificationData data = ScriptableObject.CreateInstance<NotificationData>();
                         data.m_title = split[3];
                         data.m_sender = split[4];
-                        data.m_message = split[5];
+                        data.m_message = split[5].Replace("|", "\n");
                         int pin = 0;
                         int.TryParse(split[6], out pin);
                         data.m_pinned = (pin == 1);
