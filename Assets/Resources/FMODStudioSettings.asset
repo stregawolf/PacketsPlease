@@ -55,6 +55,5 @@ MonoBehaviour:
   - Platform: 2
     Value: 32
   Plugins: []
-  MasterBank: C:\Dev\git\PacketsPlease\PacketsPlease\Assets\PacketsPlease\RawAssets\Audio\MODEM
-    FMOD BUILD\Desktop\Master Bank
+  MasterBank: Master Bank
   Banks: []
