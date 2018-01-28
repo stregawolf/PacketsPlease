@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fbee4a48c9b261543aa0b65d5185fddf
-timeCreated: 1517030755
+guid: 5bb88342099524067a28048543b3bf7b
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: aansa
+  fontName: Coder's Crux
   fontNames:
-  - aansa
+  - Coder's Crux
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1fdc3abcfa5dcc24f816206b1446cf1a
-timeCreated: 1517030754
+guid: 7bc74ccd8e2d14b5e9e7e2ea78ca2cd5
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: 3Dventure
+  fontName: aansa
   fontNames:
-  - 3Dventure
+  - aansa
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ef63d5261c22af842847ad35ffc00c97
-timeCreated: 1517030755
+guid: 941b2ece595374a8a842b2fd274cbc41
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Coder's Crux
+  fontName: 3Dventure
   fontNames:
-  - Coder's Crux
+  - 3Dventure
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

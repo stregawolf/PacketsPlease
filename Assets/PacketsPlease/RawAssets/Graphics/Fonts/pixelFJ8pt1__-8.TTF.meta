@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7e91d44fb561d2546a9372959c50a2da
-timeCreated: 1517030755
+guid: 41312e74776544801af2ded7e2aaed8f
+timeCreated: 1517082425
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: VCR OSD Mono
+  fontName: pixelFJ8pt1
   fontNames:
-  - VCR OSD Mono
+  - pixelFJ8pt1
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
