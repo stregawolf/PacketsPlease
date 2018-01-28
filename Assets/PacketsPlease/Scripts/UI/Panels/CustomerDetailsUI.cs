@@ -26,6 +26,13 @@ public class CustomerDetailsUI : CustomerUI {
     public Image m_hair;
     public CharacterData[] m_characterDatas;
 
+    public GameObject m_reactionTextArea;
+    public TextMeshProUGUI m_reactionText;
+
+    public string[] m_boostReactions;
+    public string[] m_throttleReactions;
+    public string[] m_disconnectReactions;
+
     protected float m_animationTimer = 0.0f;
     protected int m_frame = 0;
 
@@ -34,6 +41,7 @@ public class CustomerDetailsUI : CustomerUI {
 
     protected void Awake()
     {
+        m_reactionTextArea.transform.localScale = Vector3.zero;
         for (int i = 0; i < m_characterDatas.Length; ++i)
         {
             m_characterDataMapping.Add(m_characterDatas[i].m_race, m_characterDatas[i]);
@@ -50,6 +58,8 @@ public class CustomerDetailsUI : CustomerUI {
 
         m_activityName.text = data.m_activity.m_name;
         m_locationName.text = CustomerData.LOCATION_NAMES[(int)data.m_location];
+
+        m_reactionTextArea.transform.localScale = Vector3.zero;
     }
 
     public override void UpdateProfileImg()
@@ -106,21 +116,48 @@ public class CustomerDetailsUI : CustomerUI {
         }
     }
 
-    public void OnNegativeChoice()
+    public void OnDisconnectChoice()
     {
         CharacterData characterData;
         if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
         {
             m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
         }
+
+        ShowDialog(m_disconnectReactions[Random.Range(0, m_disconnectReactions.Length)]);
     }
 
-    public void OnPositiveChoice()
+    public void OnThrottleChoice()
+    {
+        CharacterData characterData;
+        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        {
+            m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
+        }
+
+        ShowDialog(m_throttleReactions[Random.Range(0, m_throttleReactions.Length)]);
+    }
+
+    public void OnBoostChoice()
     {
         CharacterData characterData;
         if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
         {
             m_face.sprite = characterData.GetSprite(characterData.m_positiveFaces, m_seed);
         }
+        ShowDialog(m_boostReactions[Random.Range(0, m_boostReactions.Length)]);
+    }
+
+
+    public void ShowDialog(string dialog)
+    {
+        m_reactionText.text = dialog;
+        m_reactionTextArea.transform.localScale = Vector3.zero;
+        LeanTween.scale(m_reactionTextArea, Vector3.one, 0.33f).setEaseOutBack();//.setOnComplete(HideDialog);
+    }
+
+    public void HideDialog()
+    {
+        LeanTween.scale(m_reactionTextArea, Vector3.zero, 0.33f).setEaseInBack().setDelay(1.0f);
     }
 }

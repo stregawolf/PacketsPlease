@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_bg: {fileID: 114378540430654106}
+  m_icon: {fileID: 0}
   m_title: {fileID: 114278133332748406}
   responseA: {fileID: 114398588332563562}
   responseB: {fileID: 114211200853340086}
