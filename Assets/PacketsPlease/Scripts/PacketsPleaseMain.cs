@@ -10,7 +10,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public NotificationListUI m_notificationUI;
     public NotificationPanelUI m_notificationPanelUI;
     public TitleBarUI m_titleBar;
-    public DayDisplayUI m_dayDispay;
+    public DayDisplayUI m_dayDisplay;
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
@@ -21,7 +21,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public int m_maxNumCustomer = 10;
     public float m_minTimeBetweenNotifications = 1.0f;
     public float m_notificationTimer = 0.0f;
-    public float m_dayTransitionTime = 1.0f;
+    public float m_dayTransitionTime = 2.0f;
 
     public float m_actionFeedbackTime = 1.0f;
 
@@ -48,21 +48,21 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected override void Awake()
     {
         base.Awake();
-        EventManager.OnEndOfDay.Register(HandleEndOfDay);
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
+        EventManager.OnEndOfDay.Register(HandleEndOfDay);
     }
 
     protected void Start()
     {
-        m_dayDispay.FadeIn(true);
+        m_dayDisplay.FadeIn(true);
         TransitionDay();
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        EventManager.OnEndOfDay.Unregister(HandleEndOfDay);
         EventManager.OnNotificationResolved.Unregister(HandleResolveNotification);
+        EventManager.OnEndOfDay.Unregister(HandleEndOfDay);
     }
 
     public void HandleEndOfDay()
@@ -85,7 +85,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     public void TransitionDay()
     {
+        EventManager.OnStartOfDay.Dispatch();
         StartCoroutine(HandleDayTransition());
+    }
+
+    public void GameOver()
+    {
+        EventManager.OnLose.Dispatch();
+        m_currentGameState = GameState.GameOver;
     }
 
     protected IEnumerator HandleDayTransition()
@@ -100,13 +107,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_currentDay++;
 
 
-        m_dayDispay.SetDay(m_currentDay);
+        m_dayDisplay.SetDay(m_currentDay);
         m_titleBar.SetDay(m_currentDay);
-        m_dayDispay.FadeIn();
+        m_dayDisplay.FadeIn();
         yield return new WaitForSeconds(m_dayTransitionTime);
         GenerateDay();
-        m_dayDispay.FadeOut();
+        m_dayDisplay.FadeOut();
 
+        EventManager.OnStartGameplay.Dispatch();
         m_currentGameState = GameState.GameStarted;
     }
 
@@ -276,7 +284,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                     TransitionDay();
                     break;
                 case NotificationData.ResolutionAction.GameOver:
-                    m_currentGameState = GameState.GameOver;
+                    GameOver();
                     break;
             }
         }

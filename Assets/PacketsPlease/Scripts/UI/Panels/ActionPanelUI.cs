@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActionPanelUI : MonoBehaviour {
 
@@ -43,17 +44,20 @@ public class ActionPanelUI : MonoBehaviour {
     {
         m_speedIndiciator.Boost();
         m_customerDetails.OnPositiveChoice();
+        EventManager.OnBoost.Dispatch();
     }
 
     public void DoThrottleFeedback()
     {
         m_speedIndiciator.Throttle();
         m_customerDetails.OnNegativeChoice();
+        EventManager.OnThrottle.Dispatch();
     }
 
     public void DoDisconnectFeedback()
     {
         m_speedIndiciator.Disconnect();
         m_customerDetails.OnNegativeChoice();
+        EventManager.OnDisconnect.Dispatch();
     }
 }

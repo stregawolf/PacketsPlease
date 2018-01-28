@@ -7,7 +7,13 @@ public class EventManager {
     public static readonly CallBack<NotificationUI> OnNotificationSelected = new CallBack<NotificationUI>();
     public static readonly CallBack<NotificationUI, bool> OnNotificationResolved = new CallBack<NotificationUI, bool>();
     public static readonly CallBack<int> OnStrike = new CallBack<int>();
+    public static readonly CallBack OnBoost = new CallBack();
+    public static readonly CallBack OnThrottle = new CallBack();
+    public static readonly CallBack OnDisconnect = new CallBack();
+    public static readonly CallBack OnStartOfDay = new CallBack();
+    public static readonly CallBack OnStartGameplay = new CallBack();
     public static readonly CallBack OnEndOfDay = new CallBack();
+    public static readonly CallBack OnLose = new CallBack();
 }
 
 public class CallBack

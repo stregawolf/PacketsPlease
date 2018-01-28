@@ -112,6 +112,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_intensity: 0
+  m_notificationSelectedClip: {fileID: 8300000, guid: d25fb46050b28374fbb86a403049af6e,
+    type: 3}
+  m_notificationClosedClip: {fileID: 8300000, guid: f84b071c8acac9a44a05e3cef01958c1,
+    type: 3}
+  m_keyboardClip: {fileID: 8300000, guid: 0a31d4f3846ee7647aa963c66563449b, type: 3}
+  m_computerStartUp: {fileID: 8300000, guid: 00ab3213cf4dd484cb1c1f6e9a30e2c6, type: 3}
+  m_computerShutDown: {fileID: 8300000, guid: 90629b3c5b0325c418e77b52936a0782, type: 3}
+  m_strikeClip: {fileID: 8300000, guid: eedae8ae699b66c4d86852cd589f34f7, type: 3}
+  m_loseClip: {fileID: 8300000, guid: 6b3d34b9f67ab3543a80cafc1e277c26, type: 3}
+  m_boostClip: {fileID: 8300000, guid: 40552c47f3b29e647a4d8b703d0cb121, type: 3}
+  m_throttleClip: {fileID: 8300000, guid: 7bb389e078cd4b14ea92385fafbb0269, type: 3}
+  m_disconnectClip: {fileID: 8300000, guid: 7010524246b6f12489ed7fc45ce0cd4b, type: 3}
   m_lowIntensityClip: {fileID: 8300000, guid: e1c5627b1dfabf7419d6b6cc2faeb033, type: 3}
   m_medIntensityClip: {fileID: 8300000, guid: 8d6430d236c4d3d4892a8d3e3edfdfbd, type: 3}
   m_highIntensityClip: {fileID: 8300000, guid: 7f10dda381a70cf47a5aa00a74e3e2bd, type: 3}
@@ -143,7 +155,7 @@ MonoBehaviour:
   m_notificationUI: {fileID: 0}
   m_notificationPanelUI: {fileID: 0}
   m_titleBar: {fileID: 0}
-  m_dayDispay: {fileID: 0}
+  m_dayDisplay: {fileID: 0}
   m_minTimeBetweenCustomers: 1
   m_maxTimeBetweenCustomers: 10
   m_canvasShaker: {fileID: 0}
