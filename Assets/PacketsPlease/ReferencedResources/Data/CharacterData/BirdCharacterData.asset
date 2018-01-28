@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: BirdCharacterData
   m_EditorClassIdentifier: 
   m_race: 0
-  m_bodies: []
+  m_bodies:
+  - {fileID: 21300000, guid: 07dd1125c91f3774daf356754a0259d7, type: 3}
   m_heads:
   - {fileID: 21300000, guid: beef5efa2d090534e8bc4dceff8ab2fe, type: 3}
   m_neutralFaces:
