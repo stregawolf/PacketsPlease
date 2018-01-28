@@ -62,6 +62,7 @@ public class CustomerData : ScriptableObject {
         Silver,
         Gold,
         NUM_TIERS,
+        NONE,
     }
     public SpeedTier m_speedTier;
 

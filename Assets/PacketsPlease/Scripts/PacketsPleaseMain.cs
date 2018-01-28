@@ -131,7 +131,11 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_dayDisplay.FadeOut();
 
         // Wait and start gameplay
-        yield return new WaitForSeconds(m_readRulesGracePeriod);
+        float t = 0;
+        while(t < m_readRulesGracePeriod && !Input.GetKeyDown(KeyCode.Space)) {
+            t += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         EventManager.OnStartGameplay.Dispatch();
         m_currentGameState = GameState.GameStarted;
     }
