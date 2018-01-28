@@ -14,6 +14,4 @@ MonoBehaviour:
   rules:
   - {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e, type: 2}
   - {fileID: 11400000, guid: b905c18a0b4122048b8fd2adef1ef077, type: 2}
-  - {fileID: 11400000, guid: 9b0d45349d9926343b03189dae780d8a, type: 2}
-  - {fileID: 11400000, guid: 0ab3c179fd038eb40bfb041264ddd1f6, type: 2}
   m_priortyRules: []
