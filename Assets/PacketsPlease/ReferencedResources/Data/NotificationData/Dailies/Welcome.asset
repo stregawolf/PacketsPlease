@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
+  m_Name: Welcome
+  m_EditorClassIdentifier: 
+  m_title: Welcome to CosmoCast
+  m_message: Welcome to CosmoCast, where "Our Mission is Superior Transmission". Please
+    review the rules at the start of each day, and handle customers appropriately.
+  m_sender: hr@cosmocast.com
+  m_pinned: 0
+  m_iconColor: {r: 1, g: 1, b: 1, a: 1}
+  m_parentStory: {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
+  m_correctResponseAction: 0
+  m_incorrectResponseAction: 0
+  m_responseNotifications: []
+  m_responseCustomers: []
+  m_response:
+    m_ChoiceA: Thanks, happy to be here!
+    m_ChoiceB: This job already sucks.
+    m_correctResponse: 1
+    m_strikeOnIncorrect: 1
+    m_clearMe: 0

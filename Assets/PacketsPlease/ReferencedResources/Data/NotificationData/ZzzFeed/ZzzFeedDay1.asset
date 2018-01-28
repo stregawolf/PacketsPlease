@@ -20,7 +20,7 @@ MonoBehaviour:
 
     <u>You Won''t Believe What This Baby Did!
 
-    Who''s Cheating On Who? We Know But We Aren''t Telling!
+    Pet Celebrities: Where Are They Now?
 
     13 Hats That Look Like Celebrities
 
@@ -30,9 +30,10 @@ MonoBehaviour:
   m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
   m_parentStory: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
-  m_correctResponseAction: 0
-  m_incorrectResponseAction: 0
-  m_responseNotifications: []
+  m_correctResponseAction: 5
+  m_incorrectResponseAction: 6
+  m_responseNotifications:
+  - {fileID: 11400000, guid: 0637ba4a3b10da74a82e04c04b305339, type: 2}
   m_responseCustomers: []
   m_response:
     m_ChoiceA: Unsubscribe

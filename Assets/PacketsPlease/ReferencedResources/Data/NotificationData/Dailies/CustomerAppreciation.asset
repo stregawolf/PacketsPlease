@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Name: CustomerAppreciation
   m_EditorClassIdentifier: 
   m_title: Customer Appreciation Promo
-  m_message: 
+  m_message: CosmoCast cares about its customers, and that's why we're offering unlimite
+    usage to all new customers! Make sure all customers who've enrolled within the
+    last 30 days have full, unfettered access.
   m_sender: promos@cosmocast.com
   m_pinned: 1
   m_iconColor: {r: 0, g: 0.91724133, b: 1, a: 1}
-  m_parentStory: {fileID: 0}
+  m_parentStory: {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
   m_responseNotifications: []
@@ -26,4 +28,4 @@ MonoBehaviour:
     m_ChoiceB: 
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
-    m_clearMe: 1
+    m_clearMe: 0
