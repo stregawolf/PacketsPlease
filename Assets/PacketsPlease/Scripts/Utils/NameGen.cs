@@ -5,10 +5,6 @@ using System;
 
 public static class NameGen {
 
-    private static List<string> boy_names = new List<string>();
-    private static List<string> girl_names = new List<string>();
-    private static List<string> last_names = new List<string>();
-
     public struct Name
     {
         public string m_first;
@@ -42,35 +38,24 @@ public static class NameGen {
         }
     }
 
-    static NameGen() {
-        TextAsset t = Resources.Load("names") as TextAsset;
-        if (t != null) {
-            string data = t.text;
-            string[] lines = data.Split(new Char[] { }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines) {
-                string[] fl = line.Split(new Char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                if(fl.Length == 1)
-                {
-                    last_names.Add(fl[0]);
-                }
-                else if (fl[3].Contains("boy"))
-                {
-                    boy_names.Add(fl[1].Replace("\"", ""));
-                }
-                else
-                { 
-                    girl_names.Add(fl[1].Replace("\"", ""));
-                }
-            }
-        }
-        else {
-            Debug.LogWarning("Missing names in Resources");
-        }
-    }
+    static string[] first_names = { "Andrew", "Adam", "Allen", "Arush", "Akira", "Brad", "Ben", "Bill", "Chen", "Chad", "Chris", " Carl",
+    "Dan", "Dave", "Clark", "Dakota", "Evan", "Ethan", "George", "Giovanni", "Gary", "Henry", "Harold", "Ivan", "Ishmael", "Jose", "John", "Jim", "Juan", "Jordan", "Kent", "Kyle", "Kenji",
+    "Lee", "Li", "Leonard", "Mike", "Matt", "Matthew", "Mark", "Nigel", "Otis", "Pete", "Phil", "Quincy", "Ron", "Rami", "Rich", "Steven", "Sam", "Stan", "Ted", "Tim",
+    "Uriel", "Vlad", "Victor", "William", "Yancy", "Alice", "Anita", "Beth", "Barbara", "Cathy", "Candice", "Delilah", "Dolly", "Edith", "Enid", "Faye", "Fran",
+    "Gina", "Heather", "Harriet", "Ima", "Ilsa", "Jane", "Jennifer", "Julia", "Kathy", "Kelly", "Kate", "Kim", "Lucy", "Lola", "Mei", "Maria", "Margaret", "Nancy", "Natalia",
+    "Ophelia", "Peggy", "Penny", "Patricia", "Quinn", "Rose", "Rachel", "Susan", "Shelly", "Tabitha", "Tori", "Uma", "Valerie", "Victoria", "Wendy", "Yolanda", "Zelda"};
+    static string[] last_names = { "Ha", "Peng", "Lee", "Cazamias", "DiNola", "Palacios", "Korolog",
+        "Smith", "Jones", "Anderson", "Baldwin", "Garcia", "Brown", "Wilson", "Thomas", "Taylor", "Lee",
+        "Moore", "Jackson", "Martin", "White", "Flores", "King", "Scott", "Adams", "Nelson", "Mitchel", "Diaz",
+        "Turner", "Carter", "Gomez", "Wright", "Hall", "Young", "Baker", "Morgan", "Ortiz", "Morales", "Dicaprio",
+        "Foster", "Price", "Vasquez", "Chavez", "Cooper", "Bell", "Reed", "Williams", "Wood", "Brooks", "Stark",
+        "Potter", "Lannister", "Yronwode", "Kardashian", "Kirk", "Picard", "Wick", "Kent", "Wayne", "Parker", "Hughes",
+        "Kelly"
+    };
 
     public static Name GetName(bool boy) {
-        string first = boy ? boy_names[UnityEngine.Random.Range(0, boy_names.Count)] : girl_names[UnityEngine.Random.Range(0, girl_names.Count)];
-        string last = last_names[UnityEngine.Random.Range(0, last_names.Count)];
+        string first = first_names[UnityEngine.Random.Range(0, first_names.Length)];
+        string last = last_names[UnityEngine.Random.Range(0, last_names.Length)];
         return new Name(first, last);
     }
 }
