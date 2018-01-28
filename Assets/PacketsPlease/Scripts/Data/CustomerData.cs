@@ -117,7 +117,7 @@ public class CustomerData : ScriptableObject {
 
             // Make character fail one rule.
             // TODO: Exclude Special Character Rules at some point
-            RuleManager.Instance.Rules[Random.RandomRange(0, RuleManager.Instance.Rules.Count)].MakeFail(this);
+            RuleManager.Instance.Rules[Random.Range(0, RuleManager.Instance.Rules.Count)].MakeFail(this);
         }
     }
 
