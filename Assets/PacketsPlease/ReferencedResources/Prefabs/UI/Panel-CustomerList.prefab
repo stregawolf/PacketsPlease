@@ -41,7 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_customerUIPrefab: {fileID: 1786069455822158, guid: ff25c3482bad4534facc310e5869d4c1,
     type: 2}
-  m_separationDist: 47
+  m_separationDist: 30
   m_slideSpeed: 5
 --- !u!222 &222698906988186740
 CanvasRenderer:
