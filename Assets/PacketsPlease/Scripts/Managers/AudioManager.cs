@@ -45,9 +45,9 @@ public class AudioManager : Singleton<AudioManager> {
         m_highIntensityTrack.loop = true;
         m_highIntensityTrack.Play();
 
-        PacketsPleaseMain.Instance.OnStrike += OnStrikeGiven;
-
         SetIntensity(0f);
+
+        EventManager.OnStrike.Register(OnStrikeGiven);
     }
 
     private void OnStrikeGiven(int currStrike) {

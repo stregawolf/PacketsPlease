@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
@@ -22,8 +23,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public float m_dayTransitionTime = 1.0f;
 
     public float m_actionFeedbackTime = 1.0f;
-
-    public System.Action<int> OnStrike;
 
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
@@ -102,7 +101,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_notificationTimer += Time.deltaTime;
         if (m_customerTimer >= 0)
         {
-            m_customerTimer -= m_minTimeBetweenCustomers + Random.Range(0f, m_maxTimeBetweenCustomers);
+            m_customerTimer -= m_minTimeBetweenCustomers + UnityEngine.Random.Range(0f, m_maxTimeBetweenCustomers);
             if (m_customerListUI.GetNumCustomers() < m_maxNumCustomer)
             {
                 CustomerData data = ScriptableObject.CreateInstance<CustomerData>();
@@ -147,7 +146,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_currentStrike++;
         m_notificationUI.AddStrikeNotification(m_currentStrike);
         m_canvasShaker.Shake();
-        OnStrike(m_currentStrike);
+        EventManager.OnStrike.Dispatch(m_currentStrike);
     }
 
     public void ThrottleCustomer()
