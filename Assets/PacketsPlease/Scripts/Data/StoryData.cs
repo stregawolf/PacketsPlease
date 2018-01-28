@@ -39,4 +39,55 @@ public class StoryData : ScriptableObject {
 
     public int m_startDay = 1;
     public List<DailySchedule> m_days;
+    
+    private int m_currentDay = 0;
+    private int m_lastMinutesPassed = -1;
+
+    public List<CustomerData> m_customersToShow = new List<CustomerData>();
+    public List<NotificationData> m_notificationsToShow = new List<NotificationData>();
+
+    public void SetDay(int day)
+    {
+        m_notificationsToShow.Clear();
+        m_customersToShow.Clear();
+
+        m_currentDay = day;
+        m_lastMinutesPassed = -1;
+    }
+
+    public bool Finished()
+    {
+        int dayIndex = m_currentDay - m_startDay;
+        return m_days.Count < dayIndex;
+    }
+
+    public void Update()
+    {
+        m_notificationsToShow.Clear();
+        m_customersToShow.Clear();
+
+        int dayIndex = m_currentDay - m_startDay;
+        if (Finished())
+            return;
+        int minutesPassed = TitleBarUI.MinutesSinceDayStart;
+        foreach (ScheduledNotification sn in m_days[dayIndex].m_notifications)
+        {
+            if (m_lastMinutesPassed < sn.m_time && minutesPassed >= sn.m_time)
+            {
+                sn.m_data.m_parentStory = this;
+                m_notificationsToShow.Add(sn.m_data);
+            }
+        }
+
+        foreach (ScheduledCustomer sc in m_days[dayIndex].m_customers)
+        {
+            if (m_lastMinutesPassed < sc.m_time && minutesPassed >= sc.m_time)
+            {
+                sc.m_data.m_StoryParameters.m_story = this;
+                m_customersToShow.Add(sc.m_data);
+            }
+        }
+        m_lastMinutesPassed = minutesPassed;
+    }
+        
 }

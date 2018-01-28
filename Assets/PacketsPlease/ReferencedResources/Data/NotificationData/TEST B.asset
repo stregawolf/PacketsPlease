@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
+  m_Name: TEST B
+  m_EditorClassIdentifier: 
+  m_title: TEST B
+  m_message: Haha, butts.
+  m_sender: Test Bot
+  m_pinned: 0
+  m_iconColor: {r: 0.9862069, g: 1, b: 0, a: 1}
+  m_parentStory: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
+  m_correctResponseAction: 0
+  m_incorrectResponseAction: 0
+  m_response:
+    m_ChoiceA: Gee, thanks
+    m_ChoiceB: Ugh
+    m_correctResponse: 0
+    m_strikeOnIncorrect: 0

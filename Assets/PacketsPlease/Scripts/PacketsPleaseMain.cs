@@ -6,6 +6,7 @@ using System;
 public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     public DayData[] m_days;
+    public List<StoryData> m_stories;
     public CustomerListUI m_customerListUI;
     public ActionPanelUI m_actionPanelUI;
     public NotificationListUI m_notificationUI;
@@ -30,6 +31,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected int m_currentStrike = 0;
     protected int m_currentDay = 0;
     protected int m_numCorrectChoices = 0;
+    protected List<StoryData> m_activeStories = new List<StoryData>();
 
     protected StoryData testData;
 
@@ -106,7 +108,19 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_notificationUI.ResetList();
 
         m_currentDay++;
+        
+        foreach(StoryData story in m_stories)
+        {
+            if(story.m_startDay == m_currentDay)
+            {
+                m_activeStories.Add(story);
+            }
+        }
 
+        foreach(StoryData story in m_activeStories)
+        {
+            story.SetDay(m_currentDay);
+        }
 
         m_dayDisplay.SetDay(m_currentDay);
         m_titleBar.SetDay(m_currentDay);
@@ -186,13 +200,23 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             }
         }
         
-        // TODO: If no STORY engine running, restart random MISC story
-        /*if (UnityEngine.Random.value < 0.1f)
+        foreach(StoryData story in m_activeStories)
         {
-            NotificationData testData = ScriptableObject.CreateInstance<NotificationData>();
-            testData.Generate();
-            m_notificationUI.AddNotification(testData);
-        }*/
+            foreach(CustomerData cd in story.m_customersToShow)
+            {
+                cd.m_activity = ActivityData.GetActivityByName(cd.m_StoryParameters.m_activityName);
+                if(cd.m_StoryParameters.m_ForcePassFail)
+                {
+                    cd.ForcePassFail();
+                }
+                m_customerListUI.AddCustomer(cd);
+            }
+            foreach(NotificationData nd in story.m_notificationsToShow)
+            {
+                m_notificationUI.AddNotification(nd);
+            }
+            story.Update();
+        }
         
     }
 
@@ -261,6 +285,15 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 m_actionPanelUI.DoDisconnectFeedback();
                 break;
         }
+
+        if(data.m_StoryParameters != null && data.m_StoryParameters.m_story != null)
+        {
+            if(data.m_StoryParameters.m_endOnAction == actionType)
+            {
+                m_activeStories.Remove(data.m_StoryParameters.m_story);
+            }
+        }
+
         yield return new WaitForSeconds(m_actionFeedbackTime);
         m_customerListUI.RemoveCustomerTopCustomer();
         m_isHandlingCustomer = false;
@@ -283,12 +316,26 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 case NotificationData.ResolutionAction.GameOver:
                     GameOver();
                     break;
+                case NotificationData.ResolutionAction.EndStory:
+                    m_activeStories.Remove(notification.m_data.m_parentStory);
+                    break;
             }
         }
         else
         {
+            if(notification.m_data.m_response != null && notification.m_data.m_response.m_strikeOnIncorrect)
+            {
+                GiveStrike();
+            }
+
             switch (notification.m_data.m_incorrectResponseAction)
             {
+                case NotificationData.ResolutionAction.GameOver:
+                    GameOver();
+                    break;
+                case NotificationData.ResolutionAction.EndStory:
+                    m_activeStories.Remove(notification.m_data.m_parentStory);
+                    break;
             }
         }
 

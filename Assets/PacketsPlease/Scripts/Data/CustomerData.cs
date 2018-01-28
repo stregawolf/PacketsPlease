@@ -28,7 +28,7 @@ public class CustomerData : ScriptableObject {
         [HideInInspector]
         public StoryData m_story;
         public ActionData.ActionType m_endOnAction;
-        public bool m_ForcePassFail = false;
+        public bool m_ForcePassFail = true;
         public string m_activityName;
     }
 
