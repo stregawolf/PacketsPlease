@@ -244,23 +244,29 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
         
     }
-
+    private bool fastTrack = false;
     protected void UpdateGame()
     {
         m_titleBar.UpdateTime();
         CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
 
-        m_customerTimer += Time.deltaTime;
 
+        if(m_customerListUI.GetNumCustomers() >= UnityEngine.Random.Range(3,5))
+        {
+            fastTrack = false;
+        }
         if (topCustomer == null)
         {
-            m_customerTimer += Time.deltaTime;
+            fastTrack = true;
         }
+
+
+        m_customerTimer += Time.deltaTime * (fastTrack ? 4.0f : 1f);
 
         m_notificationTimer += Time.deltaTime;
         if (m_customerTimer >= 0)
         {
-            m_customerTimer -= m_minTimeBetweenCustomers + UnityEngine.Random.Range(0f, Mathf.Max(0.0f, m_maxTimeBetweenCustomers- m_customerTimeReductionPerDay * (m_currentDay-1)));
+            m_customerTimer -= m_minTimeBetweenCustomers + UnityEngine.Random.Range(0f, Mathf.Max(0.0f, Mathf.Lerp(m_maxTimeBetweenCustomers, 1f, m_currentDay/20.0f)));
             if (m_customerListUI.GetNumCustomers() < m_maxNumCustomer)
             {
                 CustomerData data = ScriptableObject.CreateInstance<CustomerData>();
