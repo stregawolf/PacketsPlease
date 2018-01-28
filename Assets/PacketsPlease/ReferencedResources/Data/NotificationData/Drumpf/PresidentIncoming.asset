@@ -11,12 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
   m_Name: PresidentIncoming
   m_EditorClassIdentifier: 
-  m_title: 
-  m_message: 
-  m_sender: 
-  m_pinned: 0
+  m_title: Drumpf Birbsite Appearance
+  m_message: President Donny Drumpf is going to be making some "yuge" announcements
+    on Birbsite today. Make sure he gets all the bandwidth he needs.
+  m_sender: pr@cosmocast.com
+  m_pinned: 1
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
-  m_parentStory: {fileID: 0}
+  m_parentStory: {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
   m_responseNotifications: []
@@ -26,4 +27,4 @@ MonoBehaviour:
     m_ChoiceB: 
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
-    m_clearMe: 0
+    m_clearMe: 1

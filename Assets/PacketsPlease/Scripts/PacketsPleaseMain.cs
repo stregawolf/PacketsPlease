@@ -346,7 +346,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         m_isHandlingCustomer = true;
         ActionData action = new ActionData(data, actionType);
-        if (RuleManager.Instance.DoesViolateRules(action))
+        if (!data.m_ignoreRules && RuleManager.Instance.DoesViolateRules(action))
         {
             GiveStrike();
         }
@@ -376,6 +376,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 {
                     switch (response.resolution)
                     {
+                        case CustomerData.ResolutionAction.Strike:
+                            GiveStrike();
+                            break;
                         case CustomerData.ResolutionAction.TransitionDay:
                             TransitionDay();
                             break;
@@ -443,6 +446,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             switch (notification.m_data.m_correctResponseAction)
             {
+                case NotificationData.ResolutionAction.Strike:
+                    GiveStrike();
+                    break;
                 case NotificationData.ResolutionAction.TransitionDay:
                     TransitionDay();
                     break;

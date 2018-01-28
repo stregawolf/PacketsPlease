@@ -23,6 +23,7 @@ public class NotificationData : ScriptableObject
         TransitionDay,
         GameOver,
         EndStory,
+        Strike,
         PostNotificationA,
         PostNotificationB,
         PostNotificationC,

@@ -21,6 +21,7 @@ public class CustomerData : ScriptableObject {
     public float m_dataUsage;
     public int m_daysActive;
     public ActivityData.Activity m_activity;
+    public bool m_ignoreRules;
 
     [System.Serializable]
     public class ParentStory
@@ -46,6 +47,7 @@ public class CustomerData : ScriptableObject {
         TransitionDay,
         GameOver,
         EndStory,
+        Strike,
         PostNotificationA,
         PostNotificationB,
         PostNotificationC,
