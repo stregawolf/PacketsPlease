@@ -15,7 +15,7 @@ public class ActivityTypeRule : RuleData {
         m_activityType = type;
     }
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         m_type = Type.ActivityType;

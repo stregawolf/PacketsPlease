@@ -77,7 +77,7 @@ public class ActivityData {
     {
         for(int i = 0; i < Activities.Length; i++)
         {
-            if(Activities[i].m_name == name)
+            if(Activities[i].m_name.ToLower() == name.ToLower())
             {
                 return Activities[i];
             }
@@ -90,7 +90,8 @@ public class ActivityData {
     {
         new Activity("Tremblr",                     Activity.Type.SITE),
         new Activity("2Chains",                     Activity.Type.SITE),
-        new Activity("Cheepen",                     Activity.Type.SITE),
+        new Activity("Birbsite",                    Activity.Type.SITE),
+        new Activity("Zzzfeed",                     Activity.Type.SITE),
         new Activity("dBuy",                        Activity.Type.SITE),
         new Activity("Sahara",                      Activity.Type.SITE),
         new Activity("Gargoyl",                     Activity.Type.SITE),

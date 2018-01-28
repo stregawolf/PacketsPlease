@@ -13,7 +13,7 @@ public class LocationRule : RuleData
         m_location = location;
     }
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         m_type = Type.Location;

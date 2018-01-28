@@ -12,7 +12,7 @@ public class BandwidthRule : RuleData
         m_action = correctResponse;
     }
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         m_type = Type.Bandwidth;
