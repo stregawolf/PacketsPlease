@@ -38,7 +38,7 @@ public class NotificationUI : MonoBehaviour {
 
     protected IEnumerator HandleDestroySelf()
     {
-        LeanTween.moveLocalX(gameObject, Screen.width * 0.25f, 1.0f).setEaseInOutBack();
+        LeanTween.moveLocalX(gameObject, Screen.width * 0.25f, 1.0f).setEaseOutBack();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }

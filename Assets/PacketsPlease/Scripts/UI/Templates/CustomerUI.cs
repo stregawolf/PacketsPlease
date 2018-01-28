@@ -55,7 +55,7 @@ public class CustomerUI : MonoBehaviour {
     {
         transform.SetAsFirstSibling();
         SetBGColor(m_originalColor);
-        LeanTween.moveLocalX(gameObject, -Screen.width*0.25f, 1.0f).setEaseInOutBack();
+        LeanTween.moveLocalX(gameObject, -Screen.width*0.25f, 1.0f).setEaseOutBack();
         yield return new WaitForSeconds(1.0f);
         Destroy(gameObject);
     }

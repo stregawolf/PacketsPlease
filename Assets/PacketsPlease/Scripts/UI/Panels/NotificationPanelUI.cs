@@ -20,12 +20,17 @@ public class NotificationPanelUI : MonoBehaviour {
         if(sourceNotification == null)
         {
             m_notificationDetails.gameObject.SetActive(false);
+            LeanTween.scale(gameObject, Vector3.zero, 0.33f).setEaseInBack();
         }
         else
         {
             m_notificationDetails.gameObject.SetActive(true);
             m_notificationDetails.Init(sourceNotification.m_data);
+
+            transform.localScale = Vector3.one * 0.5f;
+            LeanTween.scale(gameObject, Vector3.one, 0.33f).setEaseOutBack();
         }
+
     }
 
     public void Respond(int response)
@@ -39,7 +44,9 @@ public class NotificationPanelUI : MonoBehaviour {
                     Debug.Log("Good Job!");
                 }
                 else
+                {
                     Debug.Log("Wrong answer");
+                }
             }
             EventManager.OnNotificationResolved.Dispatch(m_sourceNotification);
         }
