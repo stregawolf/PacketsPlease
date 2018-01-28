@@ -41,6 +41,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected GameState m_currentGameState = GameState.Transitioning;
 
+
+    public DayData TEST_DAY;
     protected override void Awake()
     {
         base.Awake();
@@ -57,10 +59,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             m_notificationUI.AddNotification(sn.m_data);
         }
 
-        //RuleManager.Instance.AddRule(new BandwidthRule(50f, ActionData.ActionType.Throttle));
-        RuleManager.Instance.AddRule(new ActivityTypeRule(ActivityData.Activity.Type.GAME, ActionData.ActionType.Disconnect, 100.0f, 1));
-        RuleManager.Instance.AddRule(new BandwidthRule(150.0f, ActionData.ActionType.Throttle, 0));
-        RuleManager.Instance.AddRule(new DateRule(30, ActionData.ActionType.Boost, 0f, 10));
+        TEST_DAY.ApplyRules();
 
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
         m_dayDispay.FadeIn(true);

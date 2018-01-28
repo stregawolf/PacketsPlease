@@ -7,7 +7,7 @@ public class CustomerData : ScriptableObject {
 
     public static float noRulesWeight = 0.5f;
     public const float MAX_DATA_USAGE = 100.0f;
-    public const int MAX_DAYS_ACTIVE = 999;
+    public const int MAX_DAYS_ACTIVE = 10000;
     public static readonly string[] LOCATION_NAMES = {
             "North America",
             "South America",
