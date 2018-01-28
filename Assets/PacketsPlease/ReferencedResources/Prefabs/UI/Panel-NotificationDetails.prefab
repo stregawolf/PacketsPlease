@@ -48,7 +48,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1109428431015470
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -132,7 +132,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1439314023693346
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -263,7 +263,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: It's a message from your boss
+  m_text: ZzzFeed Daily Roundup
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c9cd5f308b6e4cc46bbd0f3abd2a1384, type: 2}
   m_sharedMaterial: {fileID: 21728997024309766, guid: c9cd5f308b6e4cc46bbd0f3abd2a1384,
@@ -331,10 +331,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114133258154420776}
-    characterCount: 29
+    characterCount: 21
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 2
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -485,7 +485,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is the second possible response
+  m_Text: Unsubscribe Harder
 --- !u!114 &114357560239238012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -597,7 +597,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is the first possible response
+  m_Text: Unsubscribe
 --- !u!114 &114421747827060936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -617,7 +617,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Mr. Bossman Your Boss
+  m_text: 'news@zzzfeed.net
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10ee3174101b3484aabc2334e1e5056d, type: 2}
   m_sharedMaterial: {fileID: 21192469059490242, guid: 10ee3174101b3484aabc2334e1e5056d,
@@ -645,8 +647,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -685,10 +687,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 46.958252, w: 0}
   m_textInfo:
     textComponent: {fileID: 114421747827060936}
-    characterCount: 21
+    characterCount: 17
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 1
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -855,8 +857,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: This is a message from your boss! Oh no! He's really angry about something
-    you just did.
+  m_text: "Welcome to your Daily Dose of ZzzFeed! We've got the hottest stories right
+    here!\r\n\r\n<b>Culture</b>\r\n<u>You Won't Believe What This Baby Did!</u>\r\n<u>Who's
+    Cheating On Who? Find Out Here!</u>\r\n<u>13 Hats That Look Like Celebrities</u>\r\n\n<b><u>Click
+    Here For More!!!</b></u>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10ee3174101b3484aabc2334e1e5056d, type: 2}
   m_sharedMaterial: {fileID: 21192469059490242, guid: 10ee3174101b3484aabc2334e1e5056d,
@@ -924,12 +928,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114962123257439100}
-    characterCount: 88
+    characterCount: 230
     spriteCount: 0
-    spaceCount: 16
-    wordCount: 17
+    spaceCount: 40
+    wordCount: 39
     linkCount: 0
-    lineCount: 2
+    lineCount: 9
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
@@ -1027,8 +1031,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224525883394083568}
-  m_Father: {fileID: 224252040281716564}
-  m_RootOrder: 0
+  m_Father: {fileID: 224597117696832450}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1050,7 +1054,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -84.21997, y: 432}
+  m_AnchoredPosition: {x: 100, y: -77}
   m_SizeDelta: {x: 170.44, y: 114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224216822189846858
@@ -1081,8 +1085,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224155651638149136}
-  - {fileID: 224499320720399420}
   - {fileID: 224597117696832450}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1178,12 +1180,12 @@ RectTransform:
   m_Children:
   - {fileID: 224280756859450194}
   - {fileID: 224384917075493514}
-  m_Father: {fileID: 224252040281716564}
-  m_RootOrder: 1
+  m_Father: {fileID: 224597117696832450}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 5}
+  m_AnchoredPosition: {x: 0, y: -40}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224525883394083568
@@ -1217,8 +1219,10 @@ RectTransform:
   - {fileID: 224378129884932896}
   - {fileID: 224852236242560810}
   - {fileID: 224172160087289746}
+  - {fileID: 224499320720399420}
+  - {fileID: 224155651638149136}
   m_Father: {fileID: 224252040281716564}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

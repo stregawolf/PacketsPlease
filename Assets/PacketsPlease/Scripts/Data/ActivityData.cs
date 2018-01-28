@@ -24,6 +24,26 @@ public class ActivityData {
         }
     }
 
+    public static Activity GetActivity(string name)
+    {
+        if (name != "")
+        {
+            for (int i = 0; i < Activies.Length; i++)
+            {
+                if (name.ToLower() == Activies[i].m_name.ToLower())
+                {
+                    return Activies[i];
+                }
+            }
+        }
+        return GetActivity();
+    }
+
+    public static Activity GetActivity()
+    {
+        return Activies[Random.Range(0, ActivityData.Activies.Length)];
+    }
+
     public static Activity[] Activies =
     {
         new Activity("Tremblr",                     Activity.Type.SITE),

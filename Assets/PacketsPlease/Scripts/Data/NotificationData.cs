@@ -14,7 +14,9 @@ public class NotificationData : ScriptableObject
     {
         public enum CorrectResponse
         {
-            CHOICE_A = 0, CHOICE_B, NONE
+            NONE=0,
+            CHOICE_A,
+            CHOICE_B
         };
 
         public string m_ChoiceA;

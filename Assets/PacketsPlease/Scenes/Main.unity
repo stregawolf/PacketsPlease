@@ -945,6 +945,121 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114962123257439100, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_text
+      value: "Welcome to your Daily Dose of ZzzFeed! We've got the hottest stories
+        right here!\r\n\r\n<b>Culture</b>\r\n<u>You Won't Believe What This Baby Did!</u>\r\n<u>Who's
+        Cheating On Who? Find Out Here!</u>\r\n<u>13 Hats That Look Like Celebrities</u>\r\n\n<b><u>Click
+        Here For More!!!</b></u>"
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962123257439100, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962123257439100, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962123257439100, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962123257439100, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 114962123257439100, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_text
+      value: 'news@zzzfeed.net
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224172160087289746, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -77
+      objectReference: {fileID: 0}
+    - target: {fileID: 224172160087289746, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_fontSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_fontSizeBase
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421747827060936, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133258154420776, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_text
+      value: ZzzFeed Daily Roundup
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133258154420776, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133258154420776, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114133258154420776, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114398588332563562, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_Text
+      value: Unsubscribe
+      objectReference: {fileID: 0}
+    - target: {fileID: 114211200853340086, guid: 1df972e6ad8f82848aa6b7c4027ebba3,
+        type: 2}
+      propertyPath: m_Text
+      value: Unsubscribe Harder
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1df972e6ad8f82848aa6b7c4027ebba3, type: 2}
   m_IsPrefabParent: 0

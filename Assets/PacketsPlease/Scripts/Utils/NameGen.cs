@@ -22,6 +22,16 @@ public static class NameGen {
         public string LastFirst { get { return m_last + ", " + m_first; } }
         public string FirstLast { get { return m_first + ", " + m_last; } }
 
+        public void Set(string name)
+        {
+            string[] split = name.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries );
+            m_last = split[split.Length - 1];
+            m_first = "";
+            for(int i=0; i<split.Length-1; i++)
+            {
+                m_first += split[0];
+            }
+        }
     }
 
     static NameGen() {
