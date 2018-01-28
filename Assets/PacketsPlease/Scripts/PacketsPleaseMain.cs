@@ -32,8 +32,10 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     public enum GameState
     {
+        Title,
         Transitioning,
         GameStarted,
+        EndOfDay,
         GameOver,
     }
 
@@ -85,10 +87,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         switch(m_currentGameState)
         {
+            case GameState.Title:
+                break;
             case GameState.Transitioning:
                 break;
             case GameState.GameStarted:
                 UpdateGame();
+                break;
+            case GameState.EndOfDay:
                 break;
             case GameState.GameOver:
                 break;
