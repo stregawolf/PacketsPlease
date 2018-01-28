@@ -136,8 +136,8 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected IEnumerator HandleBoostingTopCustomer()
     {
         m_isHandlingCustomer = true;
-        if (m_customerListUI.GetTopCustomer().m_data.m_dataUsage >= 50.0f)
-         {
+        if (RuleManager.Instance.GetHighestViolatedRule(m_customerListUI.GetTopCustomer().m_data, ActionType.Boost) != null)
+        {
             GiveStrike();
         }
         m_actionPanelUI.DoBoostFeedback();
