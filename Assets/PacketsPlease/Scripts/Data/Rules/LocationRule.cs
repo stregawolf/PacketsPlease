@@ -47,4 +47,14 @@ public class LocationRule : RuleData
         customer.m_location = m_location;
         base.MakeFail(customer);
     }
+
+    public override string TriggerReason(CustomerData customer)
+    {
+        string response = string.Format("Location was <color=#FFAAAA>{0}</color>", CustomerData.LOCATION_NAMES[(int)customer.m_location]);
+        if (m_usageLimit > 0)
+        {
+            response += string.Format(", Usage <color=#FFAAAA>{0} GBs </color> ", customer.m_dataUsage);
+        }
+        return response;
+    }
 }

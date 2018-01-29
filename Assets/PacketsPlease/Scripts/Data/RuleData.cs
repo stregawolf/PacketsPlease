@@ -63,4 +63,9 @@ public class RuleData : ScriptableObject {
     {
         return string.Format("Base Rule: How Are You Using This?");
     }
+
+    public virtual string TriggerReason(CustomerData customer)
+    {
+        return "";
+    }
 }

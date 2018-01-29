@@ -38,6 +38,7 @@ public class CustomerData : ScriptableObject {
         public List<ResponseAction> m_responseActions = new List<ResponseAction>();
         public bool m_ForcePassFail = true;
         public string m_activityName;
+        public NotificationData m_strikeNotification;
     }
 
 

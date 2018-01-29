@@ -51,4 +51,14 @@ public class DateRule : RuleData
         customer.m_daysActive = Random.Range(0, m_daysActive);
         base.MakeFail(customer);
     }
+
+    public override string TriggerReason(CustomerData customer)
+    {
+        string response = string.Format("Days active was <color=#FFAAAA>{0}</color>", customer.m_daysActive);
+        if (m_usageLimit > 0)
+        {
+            response += string.Format(", Usage <color=#FFAAAA>{0} GBs </color> ", customer.m_dataUsage);
+        }
+        return response;
+    }
 }

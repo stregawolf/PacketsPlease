@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public class RuleResponse
+{
+    public RuleData m_rule;
+    public ActionData.ActionType m_requiredResponse;
+}
+
 [ExecuteInEditMode]
 public class RuleManager : Singleton<RuleManager> {
 
@@ -40,30 +46,23 @@ public class RuleManager : Singleton<RuleManager> {
         m_rules.Add(rule);
     }
 
-
-    // Determine whether the rules have been violated by an action`
-    // Also populates actionTaken with sorted list of passed and violated rules
-    public bool DoesViolateRules(ActionData actionTaken)
+    
+    public RuleResponse GetRuleForCustomer(CustomerData customer)
     {
-        ActionData.ActionType requiredAction = GetRequiredAction(actionTaken.customer);
-
-        return requiredAction != actionTaken.actionType;
-    }
-
-    public ActionData.ActionType GetRequiredAction(CustomerData customer)
-    {
-        ActionData.ActionType requiredAction = ActionData.ActionType.None;
+        RuleResponse response = new RuleResponse();
+        response.m_requiredResponse = ActionData.ActionType.None;
         int currPriority = int.MinValue;
         foreach(RuleData rule in Rules)
         {
             ActionData.ActionType thisReqAction = rule.ActionRequired(customer);
             if (thisReqAction != ActionData.ActionType.None && rule.m_priority > currPriority)
             {
-                requiredAction = thisReqAction;
+                response.m_requiredResponse = thisReqAction;
+                response.m_rule = rule;
                 currPriority = rule.m_priority;
             }
         }
-        return requiredAction;
+        return response;
     }
     
     public void ApplyRandomRules(int day)
