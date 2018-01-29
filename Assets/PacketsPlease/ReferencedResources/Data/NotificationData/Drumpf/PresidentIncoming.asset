@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
   m_Name: PresidentIncoming
   m_EditorClassIdentifier: 
-  m_title: Drumpf Birbsite Appearance
+  m_title: President Dumps Birbsite Appearance
   m_message: President Donny Dumps is going to be making some "yuge" announcements
     on Birbsite today. Make sure he gets all the bandwidth he needs.
   m_sender: pr@cosmocast.com
