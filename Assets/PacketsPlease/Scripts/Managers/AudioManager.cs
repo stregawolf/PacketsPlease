@@ -85,6 +85,12 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnBoost.Unregister(PlayBoost);
         EventManager.OnThrottle.Unregister(PlayThrottle);
         EventManager.OnDisconnect.Unregister(PlayDisconnect);
+
+        Destroy(m_audioTrack1);
+        Destroy(m_audioTrack2);
+        Destroy(m_lowIntensityTrack);
+        Destroy(m_medIntensityTrack);
+        Destroy(m_highIntensityTrack);
     }
 
     public void PlayAudioClip(AudioClip clip)
