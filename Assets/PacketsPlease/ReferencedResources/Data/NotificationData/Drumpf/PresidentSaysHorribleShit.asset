@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Name: PresidentSaysHorribleShit
   m_EditorClassIdentifier: 
   m_title: Breitfart Daily Update
-  m_message: President Drumpf took to Birbsite today to enlighten the masses on policy.
+  m_message: President Dumps took to Birbsite today to enlighten the masses on policy.
     We are fortunate to have such a brilliant and forward-looking leader at the reigns
     of this great nation.
   m_sender: alerts@breitfart.com
   m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
+  m_autoOpen: 0
   m_parentStory: {fileID: 0}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
@@ -28,4 +29,4 @@ MonoBehaviour:
     m_ChoiceB: 
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
-    m_clearMe: 1
+    m_clearMe: 0

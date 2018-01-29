@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Name: PresidentHorribleShit2
   m_EditorClassIdentifier: 
   m_title: Breaking News
-  m_message: President Drumpf has announced via Birbsite that Europe is a "Boot licking
+  m_message: 'President Dumps has announced via Birbsite that Europe is a "Boot licking
     scumhole"(sic) and that he plans to "Give America the best time, really the greatest,
-    you won't believe how great of a time, believe me."
+    you won''t believe how great of a time, believe me."
+
+
+    We''ll keep covering this developing story.'
   m_sender: alerts@bss.com
   m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
+  m_autoOpen: 0
   m_parentStory: {fileID: 0}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
@@ -28,4 +32,4 @@ MonoBehaviour:
     m_ChoiceB: 
     m_correctResponse: 0
     m_strikeOnIncorrect: 0
-    m_clearMe: 1
+    m_clearMe: 0
