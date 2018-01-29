@@ -9,12 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc390669c56f8e94181db9c4f45294c0, type: 3}
-  m_Name: DonnyDrumpf
+  m_Name: DonnyDumps
   m_EditorClassIdentifier: 
   m_name:
     m_first: President Donny
-    m_last: Drumpf
-  m_dataUsage: 71.08744
+    m_last: Dumps
+  m_dataUsage: 71.64121
   m_daysActive: 20030
   m_ignoreRules: 1
   m_StoryParameters:
