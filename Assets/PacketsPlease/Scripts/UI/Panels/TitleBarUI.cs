@@ -24,6 +24,7 @@ public class TitleBarUI : MonoBehaviour {
     {
         GameDate = new DateTime(2018, 1, 27, START_HOUR, 0, 0).AddDays(day);
         MinutesSinceDayStart = (GameDate.Hour - START_HOUR) * 60 + GameDate.Minute;
+        m_date.text = string.Format("{0:M/dd/yyyy}", GameDate);
     }
 
     public void UpdateTime()
@@ -36,7 +37,7 @@ public class TitleBarUI : MonoBehaviour {
         { 
             GameDate = GameDate.AddSeconds(Time.deltaTime * m_timeScaler);
         }
-        m_date.text = string.Format("{0:MM/dd/yyyy h:mm tt}", GameDate);
+        m_date.text = string.Format("{0:M/dd/yyyy}", GameDate);
         MinutesSinceDayStart = (GameDate.Hour - START_HOUR) * 60 + GameDate.Minute;
         if(GameDate.Hour >= END_HOUR)
         {

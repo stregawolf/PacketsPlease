@@ -133,6 +133,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
 
         m_currentGameState = GameState.EndOfDayReport;
+        EventManager.OnEndOfDayReport.Dispatch();
 
         m_notificationUI.EmptyList();
         m_customerListUI.EmptyList();
@@ -195,11 +196,11 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             story.SetDay(m_currentDay);
         }
-        m_loginButton.gameObject.SetActive(true);
         m_dayDisplay.SetDay(m_currentDay);
         m_titleBar.SetDay(m_currentDay);
         m_dayDisplay.FadeIn();
         yield return new WaitForSeconds(m_dayTransitionTime);
+        m_loginButton.gameObject.SetActive(true);
         SetupDay();
         m_dayDisplay.FadeOut();
     }

@@ -144,7 +144,7 @@ public class NotificationData : ScriptableObject
         m_title = "Credits";
         m_sender = "Global Game Jam 2018 - Transmission";
         m_message =
-            "Cosmic Adventure Squad\nwww.cosmicadventuresquad.com\n@squad_cosmic)\n\n" +
+            "Cosmic Adventure Squad (@squad_cosmic)\nwww.cosmicadventuresquad.com\n\n" +
             "Gameplay Code - Vu Ha (@stregawolf)\n" +
             "Artist - Rose Peng (@ouroborose)\n" +
             "System Design & Code - Ted DiNola (@esdin)\n" +

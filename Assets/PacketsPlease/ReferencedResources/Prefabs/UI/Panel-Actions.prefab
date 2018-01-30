@@ -980,7 +980,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: www.website.com
+  m_text: 'www.website.com
+
+    second line'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d8f2f1602d0b40d4db4607f4128ceeb3, type: 2}
   m_sharedMaterial: {fileID: 21802349062715312, guid: d8f2f1602d0b40d4db4607f4128ceeb3,
@@ -1048,12 +1050,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114198193603373762}
-    characterCount: 15
+    characterCount: 27
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 3
+    spaceCount: 2
+    wordCount: 5
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 1
@@ -2780,7 +2782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -5, y: 60}
+  m_AnchoredPosition: {x: -5, y: 65}
   m_SizeDelta: {x: 100, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224274266120908366
@@ -2962,7 +2964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -5, y: 65}
+  m_AnchoredPosition: {x: -5, y: 67}
   m_SizeDelta: {x: 40, y: 24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224635125983462304

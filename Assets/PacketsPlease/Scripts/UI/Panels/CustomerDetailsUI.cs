@@ -54,7 +54,7 @@ public class CustomerDetailsUI : CustomerUI {
         m_dataUsage.text = string.Format("{0:N2} GB", data.m_dataUsage);
 
         System.DateTime dateStarted = TitleBarUI.GameDate.AddDays(-1 * data.m_daysActive);
-        m_customerStartDate.text = string.Format("{0}/{1}/{2}", dateStarted.Month, dateStarted.Day, dateStarted.Year);
+        m_customerStartDate.text = string.Format("{0:M/dd/yyyy}", dateStarted);
 
         m_activityName.text = data.m_activity.m_name;
         m_locationName.text = CustomerData.LOCATION_NAMES[(int)data.m_location];

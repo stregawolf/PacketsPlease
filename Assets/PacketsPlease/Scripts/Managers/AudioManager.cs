@@ -68,7 +68,7 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnStrike.Register(OnStrikeGiven);
         EventManager.OnStartOfDay.Register(PlayStartOfDay);
         EventManager.OnStartGameplay.Register(StartGameplayTrack);
-        EventManager.OnEndOfDay.Register(PlayEndOfDay);
+        EventManager.OnEndOfDayReport.Register(PlayEndOfDay);
         EventManager.OnLose.Register(PlayEndOfDay);
         EventManager.OnButtonClick.Register(PlayButtonClick);
         EventManager.OnBoost.Register(PlayBoost);
@@ -85,7 +85,7 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnStrike.Unregister(OnStrikeGiven);
         EventManager.OnStartOfDay.Unregister(PlayStartOfDay);
         EventManager.OnStartGameplay.Unregister(StartGameplayTrack);
-        EventManager.OnEndOfDay.Unregister(PlayEndOfDay);
+        EventManager.OnEndOfDayReport.Unregister(PlayEndOfDay);
         EventManager.OnLose.Unregister(PlayEndOfDay);
         EventManager.OnButtonClick.Unregister(PlayButtonClick);
         EventManager.OnBoost.Unregister(PlayBoost);
