@@ -6,6 +6,8 @@ using System;
 
 public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
+    public bool IntroTime { get; private set; }
+
     public DayData[] m_days;
     public List<StoryData> m_stories;
     public CustomerListUI m_customerListUI;
@@ -134,7 +136,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_actionPanelUI.SetCustomer(null);
 
         NotificationData endOfDayData = ScriptableObject.CreateInstance<NotificationData>();
-        endOfDayData.GenerateEndOfDay(m_currentDay, m_numCorrectChoices, m_customerListUI.m_totelCustomers);
+        endOfDayData.GenerateEndOfDay(m_currentDay, m_numCorrectChoices, m_customerListUI.m_totalCustomers);
         m_notificationUI.AddNotification(endOfDayData);
     }
 
@@ -163,6 +165,11 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         m_notificationUI.ResetList();
 
         m_currentDay++;
+
+        if(m_currentDay == 1)
+        {
+            IntroTime = true;
+        }
 
         for(int i=0; i<m_activeStories.Count; i++)
         {
@@ -261,8 +268,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         m_titleBar.UpdateTime();
         CustomerUI topCustomer = m_customerListUI.GetTopCustomer();
-
-
+        
         if(m_customerListUI.GetNumCustomers() >= UnityEngine.Random.Range(3,5))
         {
             fastTrack = false;
@@ -272,8 +278,14 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             fastTrack = true;
         }
 
+        if(!IntroTime || m_customerListUI.m_totalCustomers < 3)
+            m_customerTimer += Time.deltaTime * (fastTrack ? 4.0f : 1f);
 
-        m_customerTimer += Time.deltaTime * (fastTrack ? 4.0f : 1f);
+        if(IntroTime && m_customerListUI.m_totalCustomers >= 3 && m_customerListUI.GetNumCustomers() == 0)
+        {
+            IntroTime = false;
+        }
+
 
         m_notificationTimer += Time.deltaTime;
         if (m_customerTimer >= 0)
