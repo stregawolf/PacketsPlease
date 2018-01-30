@@ -11,14 +11,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
   m_Name: Day4TwatchPartner
   m_EditorClassIdentifier: 
+  m_ruleIndex: 0
   m_title: TWatch Partnership
   m_message: TWatch has stepped up as a partner to provide high quality streaming
     to oour users. Our users now get unfettered access to TWatch's video service.
   m_sender: partners@cosmocast.com
-  m_pinned: 0
+  m_pinned: 1
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
   m_autoOpen: 0
   m_isStrike: 0
+  m_forceToTop: 0
   m_parentStory: {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
