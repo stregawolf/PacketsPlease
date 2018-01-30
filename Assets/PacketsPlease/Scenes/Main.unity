@@ -1406,6 +1406,21 @@ Prefab:
       propertyPath: m_loginButton
       value: 
       objectReference: {fileID: 2143871894}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_lowIntensityClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f010776a544a11418c190db9426e922, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_highIntensityClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a0e15f07a8c528d408925aba0d917842, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_medIntensityClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1c535859532e1dd408497b9ac114b018, type: 3}
     m_RemovedComponents:
     - {fileID: 82027822187503766, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
     - {fileID: 82918568053146012, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
