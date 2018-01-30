@@ -86,7 +86,7 @@ public class RuleManager : Singleton<RuleManager> {
         companyPolicy.m_pinned = true;
         companyPolicy.m_title = string.Format("Company Policy for {0}", TitleBarUI.GameDate.ToShortDateString());
         companyPolicy.m_sender = "policy@cosmocast.com";
-        companyPolicy.m_message = "These are the latest active policies. Please follow them to ensure the best experience for our customers.\n\n";
+        companyPolicy.m_message = "These are the latest active policies. See company memos for additional information.\n\n";
         companyPolicy.m_autoOpen = true;
         m_dailyNotifications.Add(companyPolicy);
         Dictionary<RuleData.Type, Dictionary<ActionData.ActionType,NotificationData>> checkoff = new Dictionary<RuleData.Type, Dictionary<ActionData.ActionType, NotificationData>>();
@@ -110,7 +110,7 @@ public class RuleManager : Singleton<RuleManager> {
                             bandwidthMemo.m_sender = "policy@cosmocast.com";
                             bandwidthMemo.m_message = "At CosmoCast, we pride ourselves on offering service that can fit each and every customer. Here are the following <b>Usage Allotments</b> for our customer tiers.\n\n"
                                 + string.Format("• <color=#FFD700>Gold</color> {0}\n• <color=#C0C0C0>Silver</color> {1}\n• <color=#CD7F32>Bronze</color> {2}", br.m_usageLimit * 4, br.m_usageLimit * 2, br.m_usageLimit);
-                            companyPolicy.m_message += "• <color=red>Throttle</color> all users exceeding their usage limits\n";
+                            companyPolicy.m_message += "• <color=#FFAAAA>Throttle</color> all users exceeding their usage limits\n";
                             m_dailyNotifications.Add(bandwidthMemo);
                             #endregion
                         }
@@ -134,14 +134,14 @@ public class RuleManager : Singleton<RuleManager> {
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are prohibited:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Disconnect</color> prohibited users and activities\n";
+                                        companyPolicy.m_message += "• <color=#FFAAAA>Disconnect</color> prohibited users and activities\n";
                                         break;
                                     case ActionData.ActionType.Throttle:
                                         n.m_title = "Restricted Services";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following activities are restricted:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Throttle</color> restricted users and activities\n";
+                                        companyPolicy.m_message += "• <color=#FFAAAA>Throttle</color> restricted users and activities\n";
                                         break;
                                     case ActionData.ActionType.Boost:
                                         n.m_title = "Promotions";
@@ -185,14 +185,14 @@ public class RuleManager : Singleton<RuleManager> {
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are prohibited:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Disconnect</color> prohibited users and activities\n";
+                                        companyPolicy.m_message += "• <color=#FFAAAA>Disconnect</color> prohibited users and activities\n";
                                         break;
                                     case ActionData.ActionType.Throttle:
                                         n.m_title = "Restricted Services";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are restricted:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Throttle</color> restricted users and activities\n";
+                                        companyPolicy.m_message += "• <color=#FFAAAA>Throttle</color> restricted users and activities\n";
                                         break;
                                     case ActionData.ActionType.Boost:
                                         n.m_title = "Promotions";
@@ -267,14 +267,14 @@ public class RuleManager : Singleton<RuleManager> {
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are prohibited:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Disconnect</color> prohibited users and activities\n";
+                                        companyPolicy.m_message += "• <color=#FFAAAA>Disconnect</color> prohibited users and activities\n";
                                         break;
                                     case ActionData.ActionType.Throttle:
                                         n.m_title = "Restricted Services";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are restricted:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Throttle</color> restricted users and activities\n";
+                                        companyPolicy.m_message += "• <color=#FFAAAA>Throttle</color> restricted users and activities\n";
                                         break;
                                     case ActionData.ActionType.Boost:
                                         n.m_title = "Promotions";
@@ -322,9 +322,9 @@ public class RuleManager : Singleton<RuleManager> {
                                     break;
                                 case ActionData.ActionType.Disconnect:
                                     {
-                                        n.m_title = "<color=red>SERVICE CESSATION</color>";
+                                        n.m_title = "<color=#FFAAAA>SERVICE CESSATION</color>";
                                         n.m_sender = "discoBot@cosmocast.net";
-                                        n.m_message = string.Format("<color=red>HIGH PRIORITY</color>: DISCONNECTION OF ALL SERVICES FOR {0} EFFECTIVE IMMEDIATELY.", ir.name.ToUpper());
+                                        n.m_message = string.Format("<color=#FFAAAA>HIGH PRIORITY</color>: DISCONNECTION OF ALL SERVICES FOR {0} EFFECTIVE IMMEDIATELY.", ir.name.ToUpper());
                                     }
                                     break;
                             }
