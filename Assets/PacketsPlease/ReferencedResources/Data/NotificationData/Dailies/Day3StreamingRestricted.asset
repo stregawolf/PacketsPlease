@@ -13,14 +13,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ruleIndex: 0
   m_title: Realigning Our Goals on Streaming
-  m_message: We're launching a new initiate to reserve more bandwidth for things that
-    ccount. Check your daily memos for more details.
+  m_message: We're launching a new initiative to reserve more bandwidth for things
+    that ccount. Check your daily memos for more details.
   m_sender: policy@cosmocast.net
-  m_pinned: 1
+  m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
   m_autoOpen: 0
   m_isStrike: 0
-  m_forceToTop: 0
+  m_forceToTop: 1
   m_parentStory: {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0

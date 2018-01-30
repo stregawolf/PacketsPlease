@@ -17,11 +17,11 @@ MonoBehaviour:
     accessible option, we'll be switching Bronze users over to WebPlan. WenPlan allows
     fast connections to leading websites, while restricting Gaming and Streaming services.
   m_sender: 
-  m_pinned: 1
+  m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
   m_autoOpen: 0
   m_isStrike: 0
-  m_forceToTop: 0
+  m_forceToTop: 1
   m_parentStory: {fileID: 0}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
