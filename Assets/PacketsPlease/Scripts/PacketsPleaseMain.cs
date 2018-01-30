@@ -417,9 +417,20 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         RuleResponse rule = RuleManager.Instance.GetRuleForCustomer(data);
         if (!data.m_ignoreRules && rule.m_requiredResponse != actionTaken)
         {
+            string policyIdentifier;
+            if (rule.m_rule.m_subIndex >= 0)
+            {
+                policyIdentifier = string.Format("{0}{1}", rule.m_rule.m_policyIndex, (char)(rule.m_rule.m_subIndex + (int)'a'));
+            }
+            else
+                policyIdentifier = rule.m_rule.m_policyIndex.ToString();
             GiveStrike(NotificationData.StrikeReason.WrongAction,
-                string.Format("<b>{0}</b>\n<b>Customer</b>: {1}\n<b>Required action</b>: {2}\n<b>Performed action</b>: <color=#FFAAAA>{3}</color>",
-                rule.m_rule.TriggerReason(data), data.m_name.FirstLast, rule.m_requiredResponse.ToString(), actionTaken.ToString()));
+                string.Format("<b><u>{0}</u></b>: <b>{1}</b>\n<b>Customer</b>: {2}\n<b>Required action</b>: {3}\n<b>Performed action</b>: <color=#FFAAAA>{4}</color>",
+                policyIdentifier,
+                rule.m_rule.TriggerReason(data), 
+                data.m_name.FirstLast, 
+                rule.m_requiredResponse.ToString(), 
+                actionTaken.ToString()));
         }
         else
         {

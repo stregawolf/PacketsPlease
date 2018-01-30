@@ -9,6 +9,8 @@ public class NotificationData : ScriptableObject
     public const string SENDER_HR = "hr@cosmocast.com";
     public const string SENDER_COMPLIANCE = "compliance@cosmocast.com";
 
+    public int m_ruleIndex = 0;
+
     public string m_title;
     [HideInInspector]
     public string m_message;
@@ -104,7 +106,7 @@ public class NotificationData : ScriptableObject
                 break;
         }
 
-        m_message = string.Format("<color=#FFAAAA>WARNING</color>: Performance Dismerit <color=#FFAAAA>{0}</color>/<color=#FFAAAA>{1}</color>. Failure to correct performance will result in immediate termination.\n\n{2}",
+        m_message = string.Format("<color=#FFAAAA>WARNING</color>: Performance dismerit <color=#FFAAAA>{0}</color>/<color=#FFAAAA>{1}</color>. Failure to correct performance will result in immediate termination.\n\n{2}",
             number, PacketsPleaseMain.Instance.m_maxStrikes, reasonString);
         m_iconColor = Color.red;
         m_autoOpen = true;
