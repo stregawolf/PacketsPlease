@@ -18,6 +18,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
+    public UnityEngine.UI.Button m_loginButton;
 
     public float m_readRulesGracePeriod = 15f;
     public int m_maxStrikes = 3;
@@ -184,22 +185,22 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             story.SetDay(m_currentDay);
         }
-
+        m_loginButton.gameObject.SetActive(true);
         m_dayDisplay.SetDay(m_currentDay);
         m_titleBar.SetDay(m_currentDay);
         m_dayDisplay.FadeIn();
         yield return new WaitForSeconds(m_dayTransitionTime);
         SetupDay();
         m_dayDisplay.FadeOut();
+    }
 
-        // Wait and start gameplay
-        float t = 0;
-        while(t < m_readRulesGracePeriod && !Input.GetKeyDown(KeyCode.Space)) {
-            t += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
+    public void StartDay()
+    {
+        // TODO: Make this less shitty looking
+        m_loginButton.gameObject.SetActive(false);
         EventManager.OnStartGameplay.Dispatch();
         m_currentGameState = GameState.GameStarted;
+        m_customerTimer = 0f;
     }
 
     protected void SetupDay()
