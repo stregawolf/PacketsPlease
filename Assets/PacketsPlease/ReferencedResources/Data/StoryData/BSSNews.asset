@@ -17,7 +17,7 @@ MonoBehaviour:
     m_customers: []
     m_notifications:
     - m_data: {fileID: 11400000, guid: 8f93e0ed23a39d041a19bdb94bbb987c, type: 2}
-      m_time: 0
+      m_time: 1
   - m_name: Day3
     m_customers: []
     m_notifications: []
