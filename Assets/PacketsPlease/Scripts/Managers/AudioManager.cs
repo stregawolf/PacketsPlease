@@ -20,6 +20,7 @@ public class AudioManager : Singleton<AudioManager> {
     public AudioClip m_computerShutDown;
     public AudioClip m_strikeClip;
     public AudioClip m_loseClip;
+    public AudioClip m_buttonClip;
     public AudioClip m_boostClip;
     public AudioClip m_throttleClip;
     public AudioClip m_disconnectClip;
@@ -66,6 +67,7 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnStartGameplay.Register(StartGameplayTrack);
         EventManager.OnEndOfDay.Register(PlayEndOfDay);
         EventManager.OnLose.Register(PlayEndOfDay);
+        EventManager.OnButtonClick.Register(PlayButtonClick);
         EventManager.OnBoost.Register(PlayBoost);
         EventManager.OnThrottle.Register(PlayThrottle);
         EventManager.OnDisconnect.Register(PlayDisconnect);
@@ -82,6 +84,7 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnStartGameplay.Unregister(StartGameplayTrack);
         EventManager.OnEndOfDay.Unregister(PlayEndOfDay);
         EventManager.OnLose.Unregister(PlayEndOfDay);
+        EventManager.OnButtonClick.Unregister(PlayButtonClick);
         EventManager.OnBoost.Unregister(PlayBoost);
         EventManager.OnThrottle.Unregister(PlayThrottle);
         EventManager.OnDisconnect.Unregister(PlayDisconnect);
@@ -95,12 +98,14 @@ public class AudioManager : Singleton<AudioManager> {
 
     public void PlayAudioClip(AudioClip clip)
     {
+        if(clip == null) return;
         m_audioTrack1.clip = clip;
         m_audioTrack1.Play();
     }
 
     public void PlayAudioClip2(AudioClip clip)
     {
+        if(clip == null) return;
         m_audioTrack2.clip = clip;
         m_audioTrack2.Play();
     }
@@ -160,6 +165,13 @@ public class AudioManager : Singleton<AudioManager> {
         PlayAudioClip(m_loseClip);
     }
 
+    // Generic button click
+    public void PlayButtonClick()
+    {
+        PlayAudioClip(m_buttonClip);
+    }
+
+    // Special button clicks
     public void PlayBoost()
     {
         PlayAudioClip(m_boostClip);
