@@ -35,6 +35,7 @@ public class AudioManager : Singleton<AudioManager> {
 
     private AudioSource m_audioTrack1;
     private AudioSource m_audioTrack2;
+    private AudioSource m_audioTrack3;
 
 #if UNITY_WEBGL
 
@@ -47,6 +48,8 @@ public class AudioManager : Singleton<AudioManager> {
         m_audioTrack1.loop = false;
         m_audioTrack2 = gameObject.AddComponent<AudioSource>();
         m_audioTrack2.loop = false;
+        m_audioTrack3 = gameObject.AddComponent<AudioSource>();
+        m_audioTrack3.loop = false;
 
         m_lowIntensityTrack = gameObject.AddComponent<AudioSource>();
         m_lowIntensityTrack.clip = m_lowIntensityClip;
@@ -91,6 +94,7 @@ public class AudioManager : Singleton<AudioManager> {
 
         Destroy(m_audioTrack1);
         Destroy(m_audioTrack2);
+        Destroy(m_audioTrack3);
         Destroy(m_lowIntensityTrack);
         Destroy(m_medIntensityTrack);
         Destroy(m_highIntensityTrack);
@@ -108,6 +112,13 @@ public class AudioManager : Singleton<AudioManager> {
         if(clip == null) return;
         m_audioTrack2.clip = clip;
         m_audioTrack2.Play();
+    }
+
+    public void PlayAudioClip3(AudioClip clip)
+    {
+        if(clip == null) return;
+        m_audioTrack3.clip = clip;
+        m_audioTrack3.Play();
     }
 
     public void StartGameplayTrack()
@@ -149,8 +160,8 @@ public class AudioManager : Singleton<AudioManager> {
 
     public void PlayStartOfDay()
     {
-        PlayAudioClip(m_keyboardClip);
-        PlayAudioClip2(m_computerStartUp);
+        PlayAudioClip2(m_keyboardClip);
+        PlayAudioClip3(m_computerStartUp);
     }
 
     public void PlayEndOfDay()
