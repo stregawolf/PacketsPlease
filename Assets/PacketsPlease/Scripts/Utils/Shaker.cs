@@ -9,7 +9,7 @@ public class Shaker : MonoBehaviour {
 
     protected Vector3 m_originalPos;
 
-    protected void Awake()
+    protected void Start()
     {
         m_originalPos = transform.localPosition;
     }
@@ -24,7 +24,7 @@ public class Shaker : MonoBehaviour {
 
             if (m_shakeTime <= 0.0f)
             {
-                transform.localPosition = m_originalPos;
+                transform.localPosition = toPos;
             }
             else
             {

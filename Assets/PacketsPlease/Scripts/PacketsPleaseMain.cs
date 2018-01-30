@@ -20,6 +20,9 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
+    public Shaker m_actionStrikeShaker;
+    public Shaker m_customerQueueStrikeShaker;
+    public Shaker m_notificationStrikeShaker;
     public UnityEngine.UI.Button m_loginButton;
 
     public float m_readRulesGracePeriod = 15f;
@@ -85,7 +88,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             return;
         }
-
+        
         m_currentGameState = GameState.GameOver;
     }
     
@@ -365,8 +368,20 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
         else
         {
+            switch (reason)
+            {
+                case NotificationData.StrikeReason.HRViolation:
+                    m_notificationStrikeShaker.Shake();
+                    break;
+                case NotificationData.StrikeReason.QueueFull:
+                    m_customerQueueStrikeShaker.Shake();
+                    break;
+                case NotificationData.StrikeReason.WrongAction:
+                    m_actionStrikeShaker.Shake();
+                    break;
+            }
+
             m_notificationUI.AddStrikeNotification(m_currentStrike, reason, customMessage);
-            m_canvasShaker.Shake();
             EventManager.OnStrike.Dispatch(m_currentStrike);
         }
     }
@@ -382,7 +397,6 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             data.m_iconColor = Color.red;
             m_notificationUI.AddNotification(data);
-            m_canvasShaker.Shake();
             EventManager.OnStrike.Dispatch(m_currentStrike);
         }
     }

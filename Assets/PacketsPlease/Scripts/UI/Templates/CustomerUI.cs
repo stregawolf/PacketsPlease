@@ -12,6 +12,7 @@ public class CustomerUI : MonoBehaviour {
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_dataUsage;
 
+    public Sprite m_vipSprite;
     public Sprite[] m_raceSprites;
     public Sprite[] m_tierSprites;
 
@@ -28,7 +29,14 @@ public class CustomerUI : MonoBehaviour {
 
     public virtual void UpdateProfileImg()
     {
-        m_profileImg.sprite = m_raceSprites[(int)m_data.m_race];
+        if(m_data.m_race == CustomerData.Race.VIP)
+        {
+            m_profileImg.sprite = m_vipSprite;
+        }
+        else
+        {
+            m_profileImg.sprite = m_raceSprites[(int)m_data.m_race];
+        }
     }
 
     public void SetNameColor(Color c)

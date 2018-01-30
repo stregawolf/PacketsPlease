@@ -80,6 +80,7 @@ public class CustomerData : ScriptableObject {
         SmallMammal,
         LargeMammal,
         NUM_RACES,
+        VIP,
     }
     public Race m_race;
 
@@ -92,6 +93,10 @@ public class CustomerData : ScriptableObject {
         NONE,
     }
     public SpeedTier m_speedTier;
+
+    public Sprite m_neutralSprite;
+    public Sprite m_positiveSprite;
+    public Sprite m_negativeSprite;
 
     // Generate new customer that somehow fits into one of the rule categories
     public void Generate()

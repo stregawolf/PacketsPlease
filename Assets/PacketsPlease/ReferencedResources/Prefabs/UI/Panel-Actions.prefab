@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222233093740880578}
   - component: {fileID: 114983333368869834}
   - component: {fileID: 114475863105199564}
+  - component: {fileID: 114139969179484670}
   m_Layer: 5
   m_Name: Panel-Actions
   m_TagString: Untagged
@@ -837,6 +838,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114139969179484670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1008779483600804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd47b0f78f9c1204bbc9ea363419a596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114149146229064954
 MonoBehaviour:
   m_ObjectHideFlags: 1

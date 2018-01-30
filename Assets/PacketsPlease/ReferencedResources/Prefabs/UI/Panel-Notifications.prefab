@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224950097097146142}
   - component: {fileID: 222068625822520684}
   - component: {fileID: 114842239650578040}
+  - component: {fileID: 114634957956644270}
   m_Layer: 5
   m_Name: Panel-Notifications
   m_TagString: Untagged
@@ -28,6 +29,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114634957956644270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762231681866420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd47b0f78f9c1204bbc9ea363419a596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114842239650578040
 MonoBehaviour:
   m_ObjectHideFlags: 1

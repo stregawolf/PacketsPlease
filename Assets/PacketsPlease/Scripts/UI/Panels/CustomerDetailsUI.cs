@@ -64,12 +64,28 @@ public class CustomerDetailsUI : CustomerUI {
 
     public override void UpdateProfileImg()
     {
-        CharacterData characterData;
-        if(m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        if(m_data.m_neutralSprite != null)
         {
-            m_seed = (int)(Random.value * 10000.0f);
-            characterData.GenerateCharacter(m_seed, m_profileImg, m_head, m_face, m_hair);
+            SetCustomSprite(m_data.m_neutralSprite);
         }
+        else
+        {
+            CharacterData characterData;
+            if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+            {
+                m_seed = (int)(Random.value * 10000.0f);
+                characterData.GenerateCharacter(m_seed, m_profileImg, m_head, m_face, m_hair);
+            }
+        }
+    }
+
+    public void SetCustomSprite(Sprite sprite)
+    {
+        m_profileImg.sprite = sprite;
+        m_profileImg.enabled = true;
+        m_head.enabled = false;
+        m_face.enabled = false;
+        m_hair.enabled = false;
     }
 
     protected void Update()
@@ -118,10 +134,17 @@ public class CustomerDetailsUI : CustomerUI {
 
     public void OnDisconnectChoice()
     {
-        CharacterData characterData;
-        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        if (m_data.m_negativeSprite != null)
         {
-            m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
+            SetCustomSprite(m_data.m_negativeSprite);
+        }
+        else
+        {
+            CharacterData characterData;
+            if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+            {
+                m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
+            }
         }
 
         ShowDialog(m_disconnectReactions[Random.Range(0, m_disconnectReactions.Length)]);
@@ -129,10 +152,17 @@ public class CustomerDetailsUI : CustomerUI {
 
     public void OnThrottleChoice()
     {
-        CharacterData characterData;
-        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        if (m_data.m_negativeSprite != null)
         {
-            m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
+            SetCustomSprite(m_data.m_negativeSprite);
+        }
+        else
+        {
+            CharacterData characterData;
+            if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+            {
+                m_face.sprite = characterData.GetSprite(characterData.m_negativeFaces, m_seed);
+            }
         }
 
         ShowDialog(m_throttleReactions[Random.Range(0, m_throttleReactions.Length)]);
@@ -140,10 +170,17 @@ public class CustomerDetailsUI : CustomerUI {
 
     public void OnBoostChoice()
     {
-        CharacterData characterData;
-        if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+        if (m_data.m_positiveSprite != null)
         {
-            m_face.sprite = characterData.GetSprite(characterData.m_positiveFaces, m_seed);
+            SetCustomSprite(m_data.m_positiveSprite);
+        }
+        else
+        {
+            CharacterData characterData;
+            if (m_characterDataMapping.TryGetValue(m_data.m_race, out characterData))
+            {
+                m_face.sprite = characterData.GetSprite(characterData.m_positiveFaces, m_seed);
+            }
         }
         ShowDialog(m_boostReactions[Random.Range(0, m_boostReactions.Length)]);
     }
