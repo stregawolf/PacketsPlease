@@ -11,12 +11,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
   m_Name: Day1Welcome
   m_EditorClassIdentifier: 
+  m_ruleIndex: 0
   m_title: Welcome to CosmoCast
-  m_message: Welcome to CosmoCast, where "Our Mission is Superior Transmission". Please
-    review the rules at the start of each day, and handle customers appropriately.
+  m_message: 'Welcome to CosmoCast, where "Our Mission is Superior Transmission".
+    Please review the rules at the start of each day, and handle customers appropriately.
+
+
+    Your job will be to <i><b>Boost</i></b>, <i><b>Throttle</i>,</b>, or <i></b>Disconnect</i></b>
+    users on a case-by-case basis. Read all company memos, and press <b>Start</b>
+    when you''re ready to start resolving issues!'
   m_sender: hr@cosmocast.com
   m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
+  m_autoOpen: 0
+  m_isStrike: 0
   m_parentStory: {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
