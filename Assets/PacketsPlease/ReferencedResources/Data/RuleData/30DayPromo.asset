@@ -13,6 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_priority: 10
   m_skipAutoNotice: 0
+  m_policyIndex: 2
+  m_subIndex: -1
   m_action: 2
   m_usageLimit: 0
   m_daysActive: 30

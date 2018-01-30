@@ -47,4 +47,16 @@ public class IndividualRule : RuleData
         customer.m_name.Set(m_name);
         base.MakeFail(customer);
     }
+
+
+
+    public override string TriggerReason(CustomerData customer)
+    {
+        string response = string.Format("<b>SPECIAL INDIVIDUAL</b>", customer.m_activity.m_type.ToString());
+        if (m_usageLimit > 0)
+        {
+            response += string.Format(", Usage <color=#FFAAAA>{0} GBs </color> ", customer.m_dataUsage);
+        }
+        return response;
+    }
 }

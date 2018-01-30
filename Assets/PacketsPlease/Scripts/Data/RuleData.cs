@@ -11,6 +11,9 @@ public class RuleData : ScriptableObject {
     public const int LOWEST_PRIORITY = 0;
     public bool m_skipAutoNotice = false;
 
+    public int m_policyIndex;
+    public int m_subIndex = -1;
+
     public RuleData(ActionData.ActionType correctResponse, float usageLimit = 0f, int priority = LOWEST_PRIORITY)
     {
         m_usageLimit = usageLimit;
@@ -62,5 +65,10 @@ public class RuleData : ScriptableObject {
     public override string ToString()
     {
         return string.Format("Base Rule: How Are You Using This?");
+    }
+
+    public virtual string TriggerReason(CustomerData customer)
+    {
+        return "";
     }
 }

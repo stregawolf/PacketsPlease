@@ -51,4 +51,14 @@ public class ActivityRule : RuleData
         customer.m_activity = ActivityData.GetActivityByName(m_activityName);
         base.MakeFail(customer);
     }
+
+    public override string TriggerReason(CustomerData customer)
+    {
+        string response = string.Format("Activity was <color=#FFAAAA>{0}</color>", customer.m_activity.m_name);
+        if (m_usageLimit > 0)
+        {
+            response += string.Format(", Usage <color=#FFAAAA>{0} GBs </color> ", customer.m_dataUsage);
+        }
+        return response;
+    }
 }

@@ -89,4 +89,18 @@ public class ActivityTypeRule : RuleData {
 
         base.MakeFail(customer);
     }
+
+    public override string TriggerReason(CustomerData customer)
+    {
+        string response = string.Format("Activity Type was <color=#FFAAAA>{0}</color>", customer.m_activity.m_type.ToString());
+        if(m_tier != CustomerData.SpeedTier.NONE)
+        {
+            response += string.Format(", Tier <color=#FFAAAA>{0}</color>", customer.m_speedTier);
+        }
+        if (m_usageLimit > 0)
+        {
+            response += string.Format(", Usage <color=#FFAAAA>{0} GBs </color>", customer.m_dataUsage);
+        }
+        return response;
+    }
 }

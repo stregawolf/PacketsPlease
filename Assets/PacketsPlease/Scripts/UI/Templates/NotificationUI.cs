@@ -63,6 +63,18 @@ public class NotificationUI : MonoBehaviour {
 
     public void SelectSelf()
     {
+        StartCoroutine(SelectSelfDelay());
+    }
+
+    public void Select()
+    {
+        EventManager.OnNotificationSelected.Dispatch(this);
+    }
+
+    private IEnumerator SelectSelfDelay()
+    {
+        EventManager.OnNotificationSelected.Dispatch(null);
+        yield return new WaitForSeconds(0.5f);
         EventManager.OnNotificationSelected.Dispatch(this);
     }
 

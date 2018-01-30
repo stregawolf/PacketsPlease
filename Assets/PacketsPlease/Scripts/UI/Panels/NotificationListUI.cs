@@ -56,12 +56,12 @@ public class NotificationListUI : MonoBehaviour {
         notification.DestroySelf();
     }
 
-    public NotificationUI AddStrikeNotification(int number)
+    public NotificationUI AddStrikeNotification(int number, NotificationData.StrikeReason reason = NotificationData.StrikeReason.None, string customMessage = "")
     {
         GameObject notificationUiObj = Instantiate(m_notificationPrefab, transform);
         NotificationUI ui = notificationUiObj.GetComponent<NotificationUI>();
         NotificationData data = ScriptableObject.CreateInstance<NotificationData>();
-        data.GenerateStrike(number);
+        data.GenerateStrike(number, reason, customMessage);
         ui.Init(data);
         m_notificationUIs.Add(ui);
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;

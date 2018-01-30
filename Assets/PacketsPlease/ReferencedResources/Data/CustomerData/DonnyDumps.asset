@@ -14,24 +14,26 @@ MonoBehaviour:
   m_name:
     m_first: President Donny
     m_last: Dumps
-  m_dataUsage: 71.64121
+  m_dataUsage: 63.00033
   m_daysActive: 20030
   m_ignoreRules: 1
   m_StoryParameters:
     m_story: {fileID: 11400000, guid: a804fbe43ba84dc4fbce0c1021b00334, type: 2}
     m_responseActions:
+    - m_action: 1
+      resolution: 4
     - m_action: 2
       resolution: 6
     - m_action: 2
       resolution: 7
     - m_action: 3
-      resolution: 4
-    - m_action: 3
       resolution: 5
-    - m_action: 1
+    - m_action: 3
       resolution: 4
     m_ForcePassFail: 1
     m_activityName: Birbsite
+    m_strikeNotification: {fileID: 11400000, guid: b9db0e2ef38e4014e87c58079d016d44,
+      type: 2}
   m_responseNotifications:
   - {fileID: 11400000, guid: 6cea6a7c27c1fb24f87678d3a4ab6736, type: 2}
   - {fileID: 11400000, guid: 535db7b0b149045478ae2789508e1dbb, type: 2}

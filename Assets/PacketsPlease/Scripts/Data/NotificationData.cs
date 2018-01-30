@@ -6,6 +6,10 @@ using UnityEngine;
 public class NotificationData : ScriptableObject
 {
     public const string SENDER_BOSS = "Mr. Bossman Your Boss";
+    public const string SENDER_HR = "hr@cosmocast.com";
+    public const string SENDER_COMPLIANCE = "compliance@cosmocast.com";
+
+    public int m_ruleIndex = 0;
 
     public string m_title;
     [HideInInspector]
@@ -14,6 +18,7 @@ public class NotificationData : ScriptableObject
     public bool m_pinned;         // Pinned notifications go back to the top of the stack when closed
     public Color m_iconColor = Color.white;
     public bool m_autoOpen = false;
+    public bool m_isStrike = false;
 
     [HideInInspector]
     public StoryData m_parentStory;
@@ -31,6 +36,14 @@ public class NotificationData : ScriptableObject
         PostCustomerA,
         PostCustomerB,
         PostCustomerC
+    }
+
+    public enum StrikeReason
+    {
+        None = 0,
+        WrongAction,
+        QueueFull,
+        HRViolation
     }
 
     public ResolutionAction m_correctResponseAction = ResolutionAction.None;
@@ -63,15 +76,41 @@ public class NotificationData : ScriptableObject
 
     public Response m_response = null;
     
-    public void GenerateStrike(int number)
+    public void GenerateStrike(int number, StrikeReason reason = StrikeReason.None, string customMessage = "")
     {
-        m_title = string.Format("This is strike #{0}", number);
-        m_sender = SENDER_BOSS;
-        m_message = string.Format("You've got #{0} strikes!.\n\n{1} strikes and you're fired!", number, PacketsPleaseMain.Instance.m_maxStrikes);
-        m_response = new Response("I'm sorry", "Eat my butt", Response.CorrectResponse.CHOICE_A);
-        m_response.m_strikeOnIncorrect = true;
+        string reasonString = "";
+        switch (reason)
+        {
+            case StrikeReason.QueueFull:
+                {
+                    m_title = "Queue Full Violation";
+                    reasonString = "Resolution queue full. Please process customers in a more timely manner.";
+                    m_sender = SENDER_COMPLIANCE;
+                }
+                break;
+            case StrikeReason.HRViolation:
+                {
+                    m_title = "HR Violation";
+                    reasonString = "CosmoCast Employees are expected to behave respectfully and courteously to all staff.";
+                    m_sender = SENDER_HR;
+                }
+                break;
+            case StrikeReason.WrongAction:
+                {
+                    m_title = "Rule Compliance Violation";
+                    reasonString = customMessage;
+                    m_sender = SENDER_COMPLIANCE;
+                    m_response = new Response("Acknowledged", "Eat my butt", Response.CorrectResponse.CHOICE_A);
+                    m_response.m_strikeOnIncorrect = true;
+                }
+                break;
+        }
+
+        m_message = string.Format("<color=#FFAAAA>WARNING</color>: Performance dismerit <color=#FFAAAA>{0}</color>/<color=#FFAAAA>{1}</color>. Failure to correct performance will result in immediate termination.\n\n{2}",
+            number, PacketsPleaseMain.Instance.m_maxStrikes, reasonString);
         m_iconColor = Color.red;
-        m_autoOpen = false;
+        m_autoOpen = true;
+        m_isStrike = true;
     }
 
     public void GenerateEndOfDay(int day, int numCorrectChoices, int totalNumCustomers)
@@ -118,6 +157,7 @@ public class NotificationData : ScriptableObject
         m_pinned = true;
         m_correctResponseAction = ResolutionAction.None;
         m_incorrectResponseAction = ResolutionAction.None;
+        m_autoOpen = true;
     }
     
 }

@@ -92,6 +92,7 @@ public class StoryData : ScriptableObject {
                 m_customersToShow.Add(sc.m_data);
             }
         }
+
         m_lastMinutesPassed = minutesPassed;
     }
         

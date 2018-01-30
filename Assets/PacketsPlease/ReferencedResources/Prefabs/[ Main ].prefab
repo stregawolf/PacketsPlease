@@ -543,11 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d352a57c7c550b94d8ef15c75c7bab11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rules:
-  - {fileID: 11400000, guid: d91d24eac4d114247b93617857315c3e, type: 2}
-  m_dailyNotifications:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_rules: []
+  m_dailyNotifications: []
   rulesForRandomGeneration:
     m_NormalRules:
     - {fileID: 11400000, guid: 0ab3c179fd038eb40bfb041264ddd1f6, type: 2}
@@ -571,8 +568,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_days:
   - {fileID: 11400000, guid: 5f8769d4c0471004e9628e8bd5506f8c, type: 2}
+  - {fileID: 11400000, guid: aa09eff9d1d15c94fa4d380079a270dc, type: 2}
   - {fileID: 11400000, guid: 350a47409635e8a42b683809cc866905, type: 2}
-  - {fileID: 11400000, guid: 7ebc916e8aa952f44aec4118584f15d2, type: 2}
   - {fileID: 11400000, guid: 71a6b89b649169143ab6a2a913e09555, type: 2}
   - {fileID: 11400000, guid: 2de255b30eafbfa409d46017708774ed, type: 2}
   - {fileID: 11400000, guid: 41c7643d8125a9546929dabd1c8603b7, type: 2}
@@ -592,7 +589,7 @@ MonoBehaviour:
   m_minTimeBetweenCustomers: 1
   m_maxTimeBetweenCustomers: 10
   m_canvasShaker: {fileID: 0}
-  m_readRulesGracePeriod: 5
+  m_readRulesGracePeriod: 15
   m_maxStrikes: 5
   m_timeBetweenCustomers: 1
   m_customerTimer: -8.712546

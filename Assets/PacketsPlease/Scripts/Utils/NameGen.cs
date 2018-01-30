@@ -16,7 +16,7 @@ public static class NameGen {
         }
 
         public string LastFirst { get { return m_last + ", " + m_first; } }
-        public string FirstLast { get { return m_first + ", " + m_last; } }
+        public string FirstLast { get { return m_first + " " + m_last; } }
 
 
         public void Set(string name)

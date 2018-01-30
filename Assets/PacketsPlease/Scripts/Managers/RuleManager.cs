@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public class RuleResponse
+{
+    public RuleData m_rule;
+    public ActionData.ActionType m_requiredResponse;
+}
+
 [ExecuteInEditMode]
 public class RuleManager : Singleton<RuleManager> {
 
@@ -40,30 +46,23 @@ public class RuleManager : Singleton<RuleManager> {
         m_rules.Add(rule);
     }
 
-
-    // Determine whether the rules have been violated by an action`
-    // Also populates actionTaken with sorted list of passed and violated rules
-    public bool DoesViolateRules(ActionData actionTaken)
+    
+    public RuleResponse GetRuleForCustomer(CustomerData customer)
     {
-        ActionData.ActionType requiredAction = GetRequiredAction(actionTaken.customer);
-
-        return requiredAction != actionTaken.actionType;
-    }
-
-    public ActionData.ActionType GetRequiredAction(CustomerData customer)
-    {
-        ActionData.ActionType requiredAction = ActionData.ActionType.None;
+        RuleResponse response = new RuleResponse();
+        response.m_requiredResponse = ActionData.ActionType.None;
         int currPriority = int.MinValue;
         foreach(RuleData rule in Rules)
         {
             ActionData.ActionType thisReqAction = rule.ActionRequired(customer);
             if (thisReqAction != ActionData.ActionType.None && rule.m_priority > currPriority)
             {
-                requiredAction = thisReqAction;
+                response.m_requiredResponse = thisReqAction;
+                response.m_rule = rule;
                 currPriority = rule.m_priority;
             }
         }
-        return requiredAction;
+        return response;
     }
     
     public void ApplyRandomRules(int day)
@@ -87,11 +86,11 @@ public class RuleManager : Singleton<RuleManager> {
         companyPolicy.m_pinned = true;
         companyPolicy.m_title = string.Format("Company Policy for {0}", TitleBarUI.GameDate.ToShortDateString());
         companyPolicy.m_sender = "policy@cosmocast.com";
-        companyPolicy.m_message = "These are the latest active policies. Please follow them to ensure the best experience for our customers.\n\n";
+        companyPolicy.m_message = "These are the latest active policies. See company memos for additional information.\n\n";
         companyPolicy.m_autoOpen = true;
         m_dailyNotifications.Add(companyPolicy);
         Dictionary<RuleData.Type, Dictionary<ActionData.ActionType,NotificationData>> checkoff = new Dictionary<RuleData.Type, Dictionary<ActionData.ActionType, NotificationData>>();
-
+        
         foreach(RuleData rule in Rules)
         {
             if(rule.m_priority < RuleData.HIGHEST_PRIORITY)
@@ -111,7 +110,10 @@ public class RuleManager : Singleton<RuleManager> {
                             bandwidthMemo.m_sender = "policy@cosmocast.com";
                             bandwidthMemo.m_message = "At CosmoCast, we pride ourselves on offering service that can fit each and every customer. Here are the following <b>Usage Allotments</b> for our customer tiers.\n\n"
                                 + string.Format("• <color=#FFD700>Gold</color> {0}\n• <color=#C0C0C0>Silver</color> {1}\n• <color=#CD7F32>Bronze</color> {2}", br.m_usageLimit * 4, br.m_usageLimit * 2, br.m_usageLimit);
-                            companyPolicy.m_message += "• <color=red>Throttle</color> all users exceeding their usage limits\n";
+
+                            companyPolicy.m_ruleIndex++;
+                            rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                            companyPolicy.m_message += string.Format("{0})  <color=#FFAAAA>Throttle</color> all users exceeding their usage limits\n", companyPolicy.m_ruleIndex);
                             m_dailyNotifications.Add(bandwidthMemo);
                             #endregion
                         }
@@ -135,21 +137,27 @@ public class RuleManager : Singleton<RuleManager> {
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are prohibited:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Disconnect</color> prohibited users and activities\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#FFAAAA>Disconnect</color> prohibited users and activities\n", companyPolicy.m_ruleIndex);
                                         break;
                                     case ActionData.ActionType.Throttle:
                                         n.m_title = "Restricted Services";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following activities are restricted:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Throttle</color> restricted users and activities\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#FFAAAA>Throttle</color> restricted users and activities\n", companyPolicy.m_ruleIndex);
                                         break;
                                     case ActionData.ActionType.Boost:
                                         n.m_title = "Promotions";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are in promotion due to partnerships and acquisition!\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=#00FFFF>Boost</color> according to all promotions\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#00FFFF>Boost</color> according to all promotions\n", companyPolicy.m_ruleIndex);
                                         break;
                                 }
                                 checkoff[RuleData.Type.Activity].Add(ar.m_action, n);
@@ -158,11 +166,15 @@ public class RuleManager : Singleton<RuleManager> {
                             NotificationData notification = checkoff[RuleData.Type.Activity][rule.m_action];
                             if (rule.m_usageLimit > 0f)
                             {
-                                notification.m_message += string.Format("• {0} above {1} GB\n", ar.m_activityName, ar.m_usageLimit);
+                                rule.m_subIndex = notification.m_ruleIndex;
+                                notification.m_message += string.Format("{0})  {1} above {2} GB\n", (char)(rule.m_subIndex + (int)'a'), ar.m_activityName, ar.m_usageLimit);
+                                notification.m_ruleIndex++;
                             }
                             else
                             {
-                                notification.m_message += string.Format("• {0}\n", ar.m_activityName);
+                                rule.m_subIndex = notification.m_ruleIndex;
+                                notification.m_message += string.Format("{0})  {1}\n", (char)(rule.m_subIndex + (int)'a'), ar.m_activityName);
+                                notification.m_ruleIndex++;
                             }
                             #endregion
                         }
@@ -186,21 +198,27 @@ public class RuleManager : Singleton<RuleManager> {
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are prohibited:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Disconnect</color> prohibited users and activities\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#FFAAAA>Disconnect</color> prohibited users and activities\n", rule.m_policyIndex);
                                         break;
                                     case ActionData.ActionType.Throttle:
                                         n.m_title = "Restricted Services";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are restricted:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Throttle</color> restricted users and activities\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#FFAAAA>Throttle</color> restricted users and activities\n", rule.m_policyIndex);
                                         break;
                                     case ActionData.ActionType.Boost:
                                         n.m_title = "Promotions";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are in promotion due to partnerships and acquisition!\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=#00FFFF>Boost</color> according to all promotions\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#00FFFF>Boost</color> according to all promotions\n", rule.m_policyIndex);
                                         break;
                                 }
                                 checkoff[RuleData.Type.Activity].Add(at.m_action, n);
@@ -228,16 +246,22 @@ public class RuleManager : Singleton<RuleManager> {
 
                             if (at.m_tier != CustomerData.SpeedTier.NONE)
                             {
-                                notification.m_message += string.Format("• {0}{1} for users in the {2} tier or below\n", 
+                                rule.m_subIndex = notification.m_ruleIndex;
+                                notification.m_message += string.Format("{0})  {1}{2} for users in the {3} tier or below\n", (char)(rule.m_subIndex + (int)'a'),
                                     at.m_inverseOfActivity? "All services EXCEPT " : "", nameForMessage.ToString(), at.m_tier);
+                                notification.m_ruleIndex++;
                             }
                             else if (rule.m_usageLimit > 0f)
                             {
-                                notification.m_message += string.Format("• {0} above {1} GB\n", nameForMessage, at.m_usageLimit);
+                                rule.m_subIndex = notification.m_ruleIndex;
+                                notification.m_message += string.Format("{0})  {1} above {2} GB\n", (char)(rule.m_subIndex + (int)'a'), nameForMessage, at.m_usageLimit);
+                                notification.m_ruleIndex++;
                             }
                             else
                             {
-                                notification.m_message += string.Format("• {0}\n", nameForMessage.ToString());
+                                rule.m_subIndex = notification.m_ruleIndex;
+                                notification.m_message += string.Format("{0})  {1}\n", (char)(rule.m_subIndex + (int)'a'), nameForMessage.ToString());
+                                notification.m_ruleIndex++;
                             }
                             #endregion
                         }
@@ -246,7 +270,9 @@ public class RuleManager : Singleton<RuleManager> {
                         if (!checkoff.ContainsKey(RuleData.Type.Date))
                         {
                             checkoff.Add(RuleData.Type.Date, null);
-                            companyPolicy.m_message += string.Format("• <color=#00FFFF>Boost</color> users who started in the last {0} days\n", ((DateRule)rule).m_daysActive);
+                            companyPolicy.m_ruleIndex++;
+                            rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                            companyPolicy.m_message += string.Format("{0})  <color=#00FFFF>Boost</color> users who started in the last {1} days\n", companyPolicy.m_ruleIndex, ((DateRule)rule).m_daysActive);
                         }
                         break;
                     case RuleData.Type.Location:
@@ -268,21 +294,27 @@ public class RuleManager : Singleton<RuleManager> {
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are prohibited:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Disconnect</color> prohibited users and activities\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#FFAAAA>Disconnect</color> prohibited users and activities\n",rule.m_policyIndex);
                                         break;
                                     case ActionData.ActionType.Throttle:
                                         n.m_title = "Restricted Services";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are restricted:\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=red>Throttle</color> restricted users and activities\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#FFAAAA>Throttle</color> restricted users and activities\n", rule.m_policyIndex);
                                         break;
                                     case ActionData.ActionType.Boost:
                                         n.m_title = "Promotions";
                                         n.m_sender = "policy@cosmocast.com";
                                         n.m_message = "The following are in promotion due to partnerships and acquisition!\n";
                                         n.m_pinned = true;
-                                        companyPolicy.m_message += "• <color=#00FFFF>Boost</color> according to all promotions\n";
+                                        companyPolicy.m_ruleIndex++;
+                                        rule.m_policyIndex = companyPolicy.m_ruleIndex;
+                                        companyPolicy.m_message += string.Format("{0})  <color=#00FFFF>Boost</color> according to all promotions\n", rule.m_policyIndex);
                                         break;
                                 }
                                 checkoff[RuleData.Type.Activity].Add(lr.m_action, n);
@@ -291,11 +323,15 @@ public class RuleManager : Singleton<RuleManager> {
                             NotificationData notification = checkoff[RuleData.Type.Activity][rule.m_action];
                             if (rule.m_usageLimit > 0f)
                             {
-                                notification.m_message += string.Format("• Connections from {0} over {1}", CustomerData.LOCATION_NAMES[(int)lr.m_location], lr.m_usageLimit);
+                                rule.m_subIndex = notification.m_ruleIndex;
+                                notification.m_message += string.Format("{0})  Connections from {1} over {2}", (char)(rule.m_subIndex + (int)'a'), CustomerData.LOCATION_NAMES[(int)lr.m_location], lr.m_usageLimit);
+                                notification.m_ruleIndex++;
                             }
                             else
                             {
-                                notification.m_message += string.Format("• All connections from {0}\n", CustomerData.LOCATION_NAMES[(int)lr.m_location]);
+                                rule.m_subIndex = notification.m_ruleIndex;
+                                notification.m_message += string.Format("{0})  All connections from {1}\n", (char)(rule.m_subIndex + (int)'a'), CustomerData.LOCATION_NAMES[(int)lr.m_location]);
+                                notification.m_ruleIndex++;
                             }
                             #endregion
                         }
@@ -323,9 +359,9 @@ public class RuleManager : Singleton<RuleManager> {
                                     break;
                                 case ActionData.ActionType.Disconnect:
                                     {
-                                        n.m_title = "<color=red>SERVICE CESSATION</color>";
+                                        n.m_title = "<color=#FFAAAA>SERVICE CESSATION</color>";
                                         n.m_sender = "discoBot@cosmocast.net";
-                                        n.m_message = string.Format("<color=red>HIGH PRIORITY</color>: DISCONNECTION OF ALL SERVICES FOR {0} EFFECTIVE IMMEDIATELY.", ir.name.ToUpper());
+                                        n.m_message = string.Format("<color=#FFAAAA>HIGH PRIORITY</color>: DISCONNECTION OF ALL SERVICES FOR {0} EFFECTIVE IMMEDIATELY.", ir.name.ToUpper());
                                     }
                                     break;
                             }

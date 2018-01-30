@@ -62,4 +62,19 @@ public class BandwidthRule : RuleData
             customer.m_dataUsage += m_usageLimit * multiplier + Random.Range(0.1f, 10f);
         }
     }
+
+    public override string TriggerReason(CustomerData customer)
+    {
+        float multiplier = 1f;
+        switch (customer.m_speedTier)
+        {
+            case CustomerData.SpeedTier.Gold:
+                multiplier = 4;
+                break;
+            case CustomerData.SpeedTier.Silver:
+                multiplier = 2;
+                break;
+        }
+        return string.Format("Usage was <color=#FFAAAA>{0}</color>/{1} GB for {2} tier", (int)customer.m_dataUsage, (int)(m_usageLimit * multiplier), customer.m_speedTier);
+    }
 }

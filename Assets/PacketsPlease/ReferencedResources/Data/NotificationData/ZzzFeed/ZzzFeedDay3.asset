@@ -22,7 +22,7 @@ MonoBehaviour:
 
     Which Country Are You? Take this Quiz!
 
-    President Drumpf EXPOSE!</u>
+    President Dumps EXPOSE!</u>
 
 
     <b><u>CLICK HERE FOR MORE</u></b>'
@@ -33,8 +33,7 @@ MonoBehaviour:
   m_parentStory: {fileID: 11400000, guid: 480b2e0705bce4b469c2015d04fb01d5, type: 2}
   m_correctResponseAction: 5
   m_incorrectResponseAction: 5
-  m_responseNotifications:
-  - {fileID: 11400000, guid: 0637ba4a3b10da74a82e04c04b305339, type: 2}
+  m_responseNotifications: []
   m_responseCustomers: []
   m_response:
     m_ChoiceA: Go Away

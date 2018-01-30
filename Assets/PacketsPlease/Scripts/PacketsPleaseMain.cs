@@ -18,6 +18,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
+    public UnityEngine.UI.Button m_loginButton;
 
     public float m_readRulesGracePeriod = 15f;
     public int m_maxStrikes = 3;
@@ -184,22 +185,22 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             story.SetDay(m_currentDay);
         }
-
+        m_loginButton.gameObject.SetActive(true);
         m_dayDisplay.SetDay(m_currentDay);
         m_titleBar.SetDay(m_currentDay);
         m_dayDisplay.FadeIn();
         yield return new WaitForSeconds(m_dayTransitionTime);
         SetupDay();
         m_dayDisplay.FadeOut();
+    }
 
-        // Wait and start gameplay
-        float t = 0;
-        while(t < m_readRulesGracePeriod && !Input.GetKeyDown(KeyCode.Space)) {
-            t += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
+    public void StartDay()
+    {
+        // TODO: Make this less shitty looking
+        m_loginButton.gameObject.SetActive(false);
         EventManager.OnStartGameplay.Dispatch();
         m_currentGameState = GameState.GameStarted;
+        m_customerTimer = 0f;
     }
 
     protected void SetupDay()
@@ -218,6 +219,16 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         foreach(NotificationData n in RuleManager.Instance.m_dailyNotifications)
         {
             m_notificationUI.AddNotification(n);
+        }
+
+        foreach (StoryData story in m_activeStories)
+        {
+            story.Update();
+            foreach (NotificationData nd in story.m_notificationsToShow)
+            {
+                m_notificationUI.AddNotification(nd);
+            }
+            story.m_notificationsToShow.Clear();
         }
     }
 
@@ -277,7 +288,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
             else
             {
                 // give strike for max customers reached
-                GiveStrike();
+                GiveStrike(NotificationData.StrikeReason.QueueFull);
             }
         }
 
@@ -333,7 +344,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
     }
 
-    protected void GiveStrike()
+    protected void GiveStrike(NotificationData.StrikeReason reason = NotificationData.StrikeReason.None, string customMessage = "")
     {
         m_currentStrike++;
         if(m_currentStrike >= m_maxStrikes)
@@ -342,7 +353,23 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
         else
         {
-            m_notificationUI.AddStrikeNotification(m_currentStrike);
+            m_notificationUI.AddStrikeNotification(m_currentStrike, reason, customMessage);
+            m_canvasShaker.Shake();
+            EventManager.OnStrike.Dispatch(m_currentStrike);
+        }
+    }
+    
+    protected void GiveStrike(NotificationData data)
+    {
+        m_currentStrike++;
+        if (m_currentStrike >= m_maxStrikes)
+        {
+            HandleGameOver();
+        }
+        else
+        {
+            data.m_iconColor = Color.red;
+            m_notificationUI.AddNotification(data);
             m_canvasShaker.Shake();
             EventManager.OnStrike.Dispatch(m_currentStrike);
         }
@@ -375,20 +402,33 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         StartCoroutine(HandleChoice(m_actionPanelUI.m_currentCustomer.m_data, ActionData.ActionType.Disconnect));
     }
 
-    protected IEnumerator HandleChoice(CustomerData data, ActionData.ActionType actionType)
+    protected IEnumerator HandleChoice(CustomerData data, ActionData.ActionType actionTaken)
     {
         m_isHandlingCustomer = true;
-        ActionData action = new ActionData(data, actionType);
-        if (!data.m_ignoreRules && RuleManager.Instance.DoesViolateRules(action))
+        RuleResponse rule = RuleManager.Instance.GetRuleForCustomer(data);
+        if (!data.m_ignoreRules && rule.m_requiredResponse != actionTaken)
         {
-            GiveStrike();
+            string policyIdentifier;
+            if (rule.m_rule.m_subIndex >= 0)
+            {
+                policyIdentifier = string.Format("{0}{1}", rule.m_rule.m_policyIndex, (char)(rule.m_rule.m_subIndex + (int)'a'));
+            }
+            else
+                policyIdentifier = rule.m_rule.m_policyIndex.ToString();
+            GiveStrike(NotificationData.StrikeReason.WrongAction,
+                string.Format("<b>{0}</b> <color=#CCCCCC><i>(see {1})</i></color>\n<b>Customer</b>: {2}\n<b>Required action</b>: {3}\n<b>Performed action</b>: <color=#FFAAAA>{4}</color>",
+                rule.m_rule.TriggerReason(data),
+                policyIdentifier,
+                data.m_name.FirstLast,
+                rule.m_requiredResponse.ToString(),
+                actionTaken.ToString()));
         }
         else
         {
             m_numCorrectChoices++;
         }
 
-        switch(actionType)
+        switch(actionTaken)
         {
             case ActionData.ActionType.Boost:
                 m_actionPanelUI.DoBoostFeedback();
@@ -405,12 +445,19 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             foreach(CustomerData.ParentStory.ResponseAction response in data.m_StoryParameters.m_responseActions)
             {
-                if(response.m_action == actionType)
+                if(response.m_action == actionTaken)
                 {
                     switch (response.resolution)
                     {
                         case CustomerData.ResolutionAction.Strike:
-                            GiveStrike();
+                            if (data.m_StoryParameters.m_strikeNotification != null)
+                            {
+                                GiveStrike(data.m_StoryParameters.m_strikeNotification);
+                            }
+                            else
+                            {
+                                GiveStrike(NotificationData.StrikeReason.HRViolation);
+                            }
                             break;
                         case CustomerData.ResolutionAction.TransitionDay:
                             TransitionDay();
@@ -533,7 +580,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         {
             if(notification.m_data.m_response != null && notification.m_data.m_response.m_strikeOnIncorrect)
             {
-                GiveStrike();
+                GiveStrike(NotificationData.StrikeReason.HRViolation);
             }
 
             switch (notification.m_data.m_incorrectResponseAction)
