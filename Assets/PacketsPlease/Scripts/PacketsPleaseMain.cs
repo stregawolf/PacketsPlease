@@ -223,21 +223,11 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         foreach (StoryData story in m_activeStories)
         {
             story.Update();
-            foreach (CustomerData cd in story.m_customersToShow)
-            {
-                cd.m_activity = ActivityData.GetActivityByName(cd.m_StoryParameters.m_activityName);
-                if (cd.m_StoryParameters.m_ForcePassFail)
-                {
-                    cd.ForcePassFail();
-                }
-                m_customerListUI.AddCustomer(cd);
-            }
             foreach (NotificationData nd in story.m_notificationsToShow)
             {
                 m_notificationUI.AddNotification(nd);
             }
             story.m_notificationsToShow.Clear();
-            story.m_customersToShow.Clear();
         }
     }
 
