@@ -19,6 +19,7 @@ public class NotificationData : ScriptableObject
     public Color m_iconColor = Color.white;
     public bool m_autoOpen = false;
     public bool m_isStrike = false;
+    public bool m_forceToTop;
 
     [HideInInspector]
     public StoryData m_parentStory;

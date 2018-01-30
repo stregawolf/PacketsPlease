@@ -41,8 +41,17 @@ public class NotificationListUI : MonoBehaviour {
         if (data.m_response != null && (data.m_response.m_ChoiceA.Trim() == "" && data.m_response.m_ChoiceB.Trim() == ""))
             data.m_response = null;
         ui.Init(data);
-        m_notificationUIs.Add(ui);
+        if (data.m_forceToTop)
+        {
+            m_notificationUIs.Insert(0, ui);
+        }
+        else
+        { 
+            m_notificationUIs.Add(ui);
+        }
         ui.transform.localPosition = Vector3.up * -Screen.height * 2;
+
+
         if(data.m_autoOpen)
         {
             ui.SelectSelf();
