@@ -424,7 +424,7 @@ MonoBehaviour:
   m_tierImg: {fileID: 114090785000725862}
   m_name: {fileID: 114179941963274918}
   m_dataUsage: {fileID: 114115769342845972}
-  m_vipSprite: {fileID: 21300000, guid: 70141d51621e24facbca9196bbde84b4, type: 3}
+  m_vipSprite: {fileID: 21300000, guid: b21231fe9df8f4e02b0c187215686586, type: 3}
   m_raceSprites:
   - {fileID: 21300000, guid: c77383638af744c768e6ed14b5707b26, type: 3}
   - {fileID: 21300000, guid: cf4aeaaef96d04e12978c575fe9af859, type: 3}

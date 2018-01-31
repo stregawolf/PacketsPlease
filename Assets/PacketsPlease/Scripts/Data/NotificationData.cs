@@ -144,21 +144,21 @@ public class NotificationData : ScriptableObject
         m_title = "Credits";
         m_sender = "Global Game Jam 2018 - Transmission";
         m_message =
-            "Cosmic Adventure Squad\nwww.cosmicadventuresquad.com\n@squad_cosmic)\n\n" +
+            "Cosmic Adventure Squad (@squad_cosmic)\nwww.cosmicadventuresquad.com\n\n" +
             "Gameplay Code - Vu Ha (@stregawolf)\n" +
             "Artist - Rose Peng (@ouroborose)\n" +
             "System Design & Code - Ted DiNola (@esdin)\n" +
-            "Code & Testing - Jordan Cazamias (@JordanCazamias)\n" +
-            "Intern - Andrew Lee (@alee12131415)\n" +
+            "Code & Testing - Jordan Cazamias (jaycaz.carbonmade.com​)\n" +
             "Audio - Niko Korolog (www.soundcloud.com/nikokorolog)\n" +
-            "Character Artist - Chris Palacios\n";
+            "Character Artist - Chris Palacios (www.christopherjpalacios.com)\n" +
+            "Intern - Andrew Lee (@alee12131415)";
 
         m_response = null;
         m_iconColor = Color.red;
         m_pinned = true;
         m_correctResponseAction = ResolutionAction.None;
         m_incorrectResponseAction = ResolutionAction.None;
-        m_autoOpen = true;
+        m_autoOpen = false;
     }
     
 }

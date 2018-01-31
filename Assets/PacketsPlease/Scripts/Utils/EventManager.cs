@@ -14,6 +14,7 @@ public class EventManager {
     public static readonly CallBack<int> OnStartOfDay = new CallBack<int>();
     public static readonly CallBack<int> OnStartGameplay = new CallBack<int>();
     public static readonly CallBack<int> OnEndOfDay = new CallBack<int>();
+    public static readonly CallBack<int> OnEndOfDayReport = new CallBack<int>();
     public static readonly CallBack OnLose = new CallBack();
 }
 

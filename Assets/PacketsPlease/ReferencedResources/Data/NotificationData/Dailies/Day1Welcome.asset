@@ -13,13 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ruleIndex: 0
   m_title: Welcome to CosmoCast
-  m_message: 'Welcome to CosmoCast, where "Our Mission is Superior Transmission".
-    Please review the rules at the start of each day, and handle customers appropriately.
-
-
-    Your job will be to <i><b>Boost</i></b>, <i><b>Throttle</i>,</b>, or <i></b>Disconnect</i></b>
-    users on a case-by-case basis. Read all company memos, and press <b>Start</b>
-    when you''re ready to start resolving issues!'
+  m_message: "Please review the rules at the start of each day, and handle customers
+    appropriately.\n\nYour job will be to <i><b>Boost</i></b>, <i><b>Throttle</i></b>,
+    or <i><b>Disconnect</i></b> users on a case-by-case basis. \n\nRead all company
+    memos, and press <b>Start</b> when you're ready to handle customers!"
   m_sender: hr@cosmocast.com
   m_pinned: 0
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}

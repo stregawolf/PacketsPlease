@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b95c9664aa54bf44b00befabcc94d21, type: 3}
   m_Name: Day5SouthAmericaBlock
   m_EditorClassIdentifier: 
+  m_ruleIndex: 0
   m_title: South American Situation
   m_message: Due to the conflicting information coming from South America today, we'll
     be blocking all connections from that region for the time being in order to prevent
@@ -20,6 +21,7 @@ MonoBehaviour:
   m_iconColor: {r: 1, g: 1, b: 1, a: 1}
   m_autoOpen: 0
   m_isStrike: 0
+  m_forceToTop: 1
   m_parentStory: {fileID: 11400000, guid: 49358b5833a412e4d8f3ab2d8f742fb7, type: 2}
   m_correctResponseAction: 0
   m_incorrectResponseAction: 0
