@@ -11,6 +11,7 @@ public class TitleBarUI : MonoBehaviour {
     private static int START_HOUR = 9;
     private static int END_HOUR = 17;
     public static int MinutesSinceDayStart { get; private set; }
+    private int m_day;
 
     protected float m_timeScaler;
 
@@ -22,6 +23,7 @@ public class TitleBarUI : MonoBehaviour {
 
     public void SetDay(int day)
     {
+        m_day = day;
         GameDate = new DateTime(2018, 1, 27, START_HOUR, 0, 0).AddDays(day);
         MinutesSinceDayStart = (GameDate.Hour - START_HOUR) * 60 + GameDate.Minute;
         m_date.text = string.Format("{0:M/dd/yyyy}", GameDate);
@@ -41,7 +43,7 @@ public class TitleBarUI : MonoBehaviour {
         MinutesSinceDayStart = (GameDate.Hour - START_HOUR) * 60 + GameDate.Minute;
         if(GameDate.Hour >= END_HOUR)
         {
-            EventManager.OnEndOfDay.Dispatch();
+            EventManager.OnEndOfDay.Dispatch(m_day);
         }
     }
 

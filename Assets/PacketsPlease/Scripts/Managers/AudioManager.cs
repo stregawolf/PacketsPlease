@@ -25,9 +25,15 @@ public class AudioManager : Singleton<AudioManager> {
     public AudioClip m_throttleClip;
     public AudioClip m_disconnectClip;
 
-    public AudioClip m_lowIntensityClip;
-    public AudioClip m_medIntensityClip;
-    public AudioClip m_highIntensityClip;
+    public AudioClip m_lowIntensityClip1;
+    public AudioClip m_medIntensityClip1;
+    public AudioClip m_highIntensityClip1;
+    public AudioClip m_lowIntensityClip2;
+    public AudioClip m_medIntensityClip2;
+    public AudioClip m_highIntensityClip2;
+    public AudioClip m_lowIntensityClip3;
+    public AudioClip m_medIntensityClip3;
+    public AudioClip m_highIntensityClip3;
 
     private AudioSource m_lowIntensityTrack;
     private AudioSource m_medIntensityTrack;
@@ -52,15 +58,15 @@ public class AudioManager : Singleton<AudioManager> {
         m_audioTrack3.loop = false;
 
         m_lowIntensityTrack = gameObject.AddComponent<AudioSource>();
-        m_lowIntensityTrack.clip = m_lowIntensityClip;
+        m_lowIntensityTrack.clip = m_lowIntensityClip1;
         m_lowIntensityTrack.loop = true;
 
         m_medIntensityTrack = gameObject.AddComponent<AudioSource>();
-        m_medIntensityTrack.clip = m_medIntensityClip;
+        m_medIntensityTrack.clip = m_medIntensityClip1;
         m_medIntensityTrack.loop = true;
 
         m_highIntensityTrack = gameObject.AddComponent<AudioSource>();
-        m_highIntensityTrack.clip = m_highIntensityClip;
+        m_highIntensityTrack.clip = m_highIntensityClip1;
         m_highIntensityTrack.loop = true;
 
         EventManager.OnNotificationSelected.Register(PlayNotificationSelected);
@@ -68,8 +74,8 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnStrike.Register(OnStrikeGiven);
         EventManager.OnStartOfDay.Register(PlayStartOfDay);
         EventManager.OnStartGameplay.Register(StartGameplayTrack);
-        EventManager.OnEndOfDayReport.Register(PlayEndOfDay);
-        EventManager.OnLose.Register(PlayEndOfDay);
+        EventManager.OnEndOfDay.Register(PlayEndOfDay);
+        EventManager.OnLose.Register(PlayLose);
         EventManager.OnButtonClick.Register(PlayButtonClick);
         EventManager.OnBoost.Register(PlayBoost);
         EventManager.OnThrottle.Register(PlayThrottle);
@@ -85,8 +91,8 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnStrike.Unregister(OnStrikeGiven);
         EventManager.OnStartOfDay.Unregister(PlayStartOfDay);
         EventManager.OnStartGameplay.Unregister(StartGameplayTrack);
-        EventManager.OnEndOfDayReport.Unregister(PlayEndOfDay);
-        EventManager.OnLose.Unregister(PlayEndOfDay);
+        EventManager.OnEndOfDay.Unregister(PlayEndOfDay);
+        EventManager.OnLose.Unregister(PlayLose);
         EventManager.OnButtonClick.Unregister(PlayButtonClick);
         EventManager.OnBoost.Unregister(PlayBoost);
         EventManager.OnThrottle.Unregister(PlayThrottle);
@@ -121,8 +127,30 @@ public class AudioManager : Singleton<AudioManager> {
         m_audioTrack3.Play();
     }
 
-    public void StartGameplayTrack()
+    public void StartGameplayTrack(int day)
     {
+        // TODO(jcazamias): You hacked in the -1 to make this work. C'mon. Get it together.
+        int groupNumber = ((day - 1) % 3) + 1;
+
+        if(groupNumber == 1)
+        {
+            m_lowIntensityTrack.clip = m_lowIntensityClip1;
+            m_medIntensityTrack.clip = m_medIntensityClip1;
+            m_highIntensityTrack.clip = m_highIntensityClip1;
+        }
+        else if(groupNumber == 2)
+        {
+            m_lowIntensityTrack.clip = m_lowIntensityClip2;
+            m_medIntensityTrack.clip = m_medIntensityClip2;
+            m_highIntensityTrack.clip = m_highIntensityClip2;
+        }
+        else if(groupNumber == 3)
+        {
+            m_lowIntensityTrack.clip = m_lowIntensityClip3;
+            m_medIntensityTrack.clip = m_medIntensityClip3;
+            m_highIntensityTrack.clip = m_highIntensityClip3;
+        }
+
         m_lowIntensityTrack.Play();
         m_medIntensityTrack.Play();
         m_highIntensityTrack.Play();
@@ -158,13 +186,13 @@ public class AudioManager : Singleton<AudioManager> {
         PlayAudioClip(m_notificationClosedClip);
     }
 
-    public void PlayStartOfDay()
+    public void PlayStartOfDay(int day)
     {
         PlayAudioClip2(m_keyboardClip);
         PlayAudioClip3(m_computerStartUp);
     }
 
-    public void PlayEndOfDay()
+    public void PlayEndOfDay(int day)
     {
         StopGameplayTrack();
         PlayAudioClip(m_keyboardClip);
