@@ -7,8 +7,12 @@ using TMPro;
 public class NotificationUI : MonoBehaviour {
     public Image m_bg;
     public Image m_icon;
+    public Image m_pinnedIcon;
     public TextMeshProUGUI m_title;
     public NotificationData m_data { get; protected set; }
+
+    public Sprite[] m_iconSprites;
+
     protected Button button;
 
     protected Color m_originalTitleColor;
@@ -23,17 +27,20 @@ public class NotificationUI : MonoBehaviour {
     public virtual void Init(NotificationData data)
     {
         m_data = data;
-        Init(m_data.m_title, m_data.m_iconColor);
-        if(m_data.m_pinned)
+        Init(m_data.m_title, m_data.m_iconType);
+        if(m_pinnedIcon != null)
         {
-            SetIconColor(Color.cyan);
+            m_pinnedIcon.enabled = m_data.m_pinned;
         }
     }
 
-    public void Init(string title, Color iconColor)
+    public void Init(string title, NotificationData.IconType iconType)
     {
         m_title.text = title;
-        SetIconColor(iconColor);
+        if(m_icon != null)
+        {
+            m_icon.sprite = m_iconSprites[(int)iconType];
+        }
     }
 
     public void ResetColors()
@@ -59,6 +66,11 @@ public class NotificationUI : MonoBehaviour {
         {
             m_icon.color = c;
         }
+    }
+
+    public void SetIcon(Sprite sprite)
+    {
+        m_icon.sprite = sprite;
     }
 
     public void SelectSelf()

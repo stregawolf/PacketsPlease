@@ -354,7 +354,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bg: {fileID: 114378540430654106}
   m_icon: {fileID: 0}
+  m_pinnedIcon: {fileID: 0}
   m_title: {fileID: 114278133332748406}
+  m_iconSprites: []
   responseA: {fileID: 114398588332563562}
   responseB: {fileID: 114211200853340086}
   responseParent: {fileID: 1109428431015470}

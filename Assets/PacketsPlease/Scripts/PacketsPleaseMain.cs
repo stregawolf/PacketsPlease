@@ -407,7 +407,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
         else
         {
-            data.m_iconColor = Color.red;
+            data.m_iconType = NotificationData.IconType.strike;
             m_notificationUI.AddNotification(data);
             EventManager.OnStrike.Dispatch(m_currentStrike);
         }

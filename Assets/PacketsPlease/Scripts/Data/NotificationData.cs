@@ -16,7 +16,16 @@ public class NotificationData : ScriptableObject
     public string m_message;
     public string m_sender;
     public bool m_pinned;         // Pinned notifications go back to the top of the stack when closed
-    public Color m_iconColor = Color.white;
+    
+    public enum IconType
+    {
+        regular = 0,
+        strike,
+        endOfDay,
+        gameOver,
+    }
+    public IconType m_iconType = IconType.regular;
+
     public bool m_autoOpen = false;
     public bool m_isStrike = false;
     public bool m_forceToTop;
@@ -109,7 +118,7 @@ public class NotificationData : ScriptableObject
 
         m_message = string.Format("<color=#FFAAAA>WARNING</color>: Performance dismerit <color=#FFAAAA>{0}</color>/<color=#FFAAAA>{1}</color>. Failure to correct performance will result in immediate termination.\n\n{2}",
             number, PacketsPleaseMain.Instance.m_maxStrikes, reasonString);
-        m_iconColor = Color.red;
+        m_iconType = IconType.strike;
         m_autoOpen = true;
         m_isStrike = true;
     }
@@ -121,7 +130,7 @@ public class NotificationData : ScriptableObject
         float performance = (float)numCorrectChoices / (float)totalNumCustomers;
         m_message = string.Format("You have completed day {0}.\n\nPerformance report:\n{1:P0}\n\nCorrect choices:\n{2}\nTotal customers:\n{3}", day, performance, numCorrectChoices, totalNumCustomers);
         m_response = null;
-        m_iconColor = Color.green;
+        m_iconType = IconType.endOfDay;
         m_correctResponseAction = ResolutionAction.TransitionDay;
         m_incorrectResponseAction = ResolutionAction.None;
         m_autoOpen = true;
@@ -133,7 +142,7 @@ public class NotificationData : ScriptableObject
         m_sender = SENDER_BOSS;
         m_message = "That's the last strike!\n\nYou're not cut out to work at this company.\n\nYOU ARE FIRED!!!";
         m_response = null;
-        m_iconColor = Color.red;
+        m_iconType = IconType.gameOver;
         m_correctResponseAction = ResolutionAction.GameOver;
         m_incorrectResponseAction = ResolutionAction.None;
         m_autoOpen = true;
@@ -154,7 +163,7 @@ public class NotificationData : ScriptableObject
             "Intern - Andrew Lee (@alee12131415)";
 
         m_response = null;
-        m_iconColor = Color.red;
+        m_iconType = IconType.regular;
         m_pinned = true;
         m_correctResponseAction = ResolutionAction.None;
         m_incorrectResponseAction = ResolutionAction.None;

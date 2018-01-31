@@ -207,7 +207,8 @@ public class AudioManager : Singleton<AudioManager> {
 
     public void PlayLose()
     {
-        PlayAudioClip(m_loseClip);
+        StopGameplayTrack();
+        PlayAudioClip2(m_loseClip);
     }
 
     // Generic button click
