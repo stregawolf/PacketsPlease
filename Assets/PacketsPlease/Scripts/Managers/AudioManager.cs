@@ -183,6 +183,12 @@ public class AudioManager : Singleton<AudioManager> {
 
     private void PlayNotificationClosed(NotificationUI obj, bool arg2)
     {
+        PlayNotificationClosed();
+    }
+
+    public void PlayNotificationClosed()
+    {
+
         PlayAudioClip(m_notificationClosedClip);
     }
 
