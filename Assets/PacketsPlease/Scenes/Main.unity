@@ -1363,6 +1363,51 @@ Prefab:
       propertyPath: m_loginButton
       value: 
       objectReference: {fileID: 2143871894}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_lowIntensityClip1
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d8385e28fa554746baa618497f7a4b5, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_medIntensityClip1
+      value: 
+      objectReference: {fileID: 8300000, guid: 217edbc92c6f3b64a95672730fe93720, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_highIntensityClip1
+      value: 
+      objectReference: {fileID: 8300000, guid: 0a30207f3c332d0408a12770015b353f, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_lowIntensityClip2
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ee9af25f88779f4cb38a1c86f8cf79f, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_medIntensityClip2
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c59dd6724e367d4d91e8a38677f8dd8, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_highIntensityClip2
+      value: 
+      objectReference: {fileID: 8300000, guid: 623c80f748cd64745bd0911870df7763, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_lowIntensityClip3
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a2bd75897ae0e34e9a8d4ea0567a0d8, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_medIntensityClip3
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cafae55988d9ed4d85ba8d505ed8344, type: 3}
+    - target: {fileID: 114505973659767696, guid: 09ffc066ff838db4a83cb0367cc52c4c,
+        type: 2}
+      propertyPath: m_highIntensityClip3
+      value: 
+      objectReference: {fileID: 8300000, guid: ccdf7458cc6fd5a4f991888c3ccc180d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09ffc066ff838db4a83cb0367cc52c4c, type: 2}
   m_IsPrefabParent: 0

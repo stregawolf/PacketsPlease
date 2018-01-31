@@ -40,7 +40,10 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected bool m_isHandlingCustomer = false;
     protected int m_currentStrike = 0;
+
+    public int CurrentDay { get { return m_currentDay; } }
     protected int m_currentDay = 0;
+
     protected int m_numCorrectChoices = 0;
     protected List<StoryData> m_activeStories = new List<StoryData>();
 
@@ -116,7 +119,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         EventManager.OnLose.Dispatch();
     }
 
-    public void HandleEndOfDay()
+    public void HandleEndOfDay(int day)
     {
         if (m_currentGameState == GameState.EndOfDay || m_currentGameState == GameState.EndOfDayReport)
         {
@@ -145,7 +148,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     public void TransitionDay()
     {
-        EventManager.OnStartOfDay.Dispatch();
+        EventManager.OnStartOfDay.Dispatch(m_currentDay);
         StartCoroutine(HandleDayTransition());
     }
 
@@ -208,7 +211,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     {
         // TODO: Make this less shitty looking
         m_loginButton.gameObject.SetActive(false);
-        EventManager.OnStartGameplay.Dispatch();
+        EventManager.OnStartGameplay.Dispatch(m_currentDay);
         m_currentGameState = GameState.GameStarted;
         m_customerTimer = 0f;
     }
