@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/PacketsPlease/ReferencedResources/Sprites/UI/NotificationIcons/EmailNotif.png.meta
 guid: d2f3b085ca5a7421caf7e9fb93b49b2d
 timeCreated: 1517391523
+=======
+guid: c97b3b9dc7a892349a8b7f45509d81dc
+timeCreated: 1517391565
+>>>>>>> 20614bfd655314940225425a02eef443a12a36e2:Assets/PacketsPlease/ReferencedResources/Sprites/UI/NotificationIcons/EmailNotif.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}

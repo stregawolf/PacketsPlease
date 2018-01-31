@@ -125,9 +125,18 @@ MonoBehaviour:
   m_boostClip: {fileID: 8300000, guid: 40552c47f3b29e647a4d8b703d0cb121, type: 3}
   m_throttleClip: {fileID: 8300000, guid: 7bb389e078cd4b14ea92385fafbb0269, type: 3}
   m_disconnectClip: {fileID: 8300000, guid: 7010524246b6f12489ed7fc45ce0cd4b, type: 3}
-  m_lowIntensityClip: {fileID: 8300000, guid: 0f010776a544a11418c190db9426e922, type: 3}
-  m_medIntensityClip: {fileID: 8300000, guid: 1c535859532e1dd408497b9ac114b018, type: 3}
-  m_highIntensityClip: {fileID: 8300000, guid: a0e15f07a8c528d408925aba0d917842, type: 3}
+  m_lowIntensityClip1: {fileID: 8300000, guid: 6d8385e28fa554746baa618497f7a4b5, type: 3}
+  m_medIntensityClip1: {fileID: 8300000, guid: 217edbc92c6f3b64a95672730fe93720, type: 3}
+  m_highIntensityClip1: {fileID: 8300000, guid: 0a30207f3c332d0408a12770015b353f,
+    type: 3}
+  m_lowIntensityClip2: {fileID: 8300000, guid: 9ee9af25f88779f4cb38a1c86f8cf79f, type: 3}
+  m_medIntensityClip2: {fileID: 8300000, guid: 4c59dd6724e367d4d91e8a38677f8dd8, type: 3}
+  m_highIntensityClip2: {fileID: 8300000, guid: 623c80f748cd64745bd0911870df7763,
+    type: 3}
+  m_lowIntensityClip3: {fileID: 8300000, guid: 4a2bd75897ae0e34e9a8d4ea0567a0d8, type: 3}
+  m_medIntensityClip3: {fileID: 8300000, guid: 4cafae55988d9ed4d85ba8d505ed8344, type: 3}
+  m_highIntensityClip3: {fileID: 8300000, guid: ccdf7458cc6fd5a4f991888c3ccc180d,
+    type: 3}
 --- !u!114 &114589807016016592
 MonoBehaviour:
   m_ObjectHideFlags: 1
