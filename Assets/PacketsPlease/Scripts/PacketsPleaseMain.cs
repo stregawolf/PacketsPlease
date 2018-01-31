@@ -17,6 +17,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     public TitleBarUI m_titleBar;
     public DayDisplayUI m_dayDisplay;
     public TitleUI m_title;
+    public RectTransform m_mouse;
     public float m_minTimeBetweenCustomers = 1f;
     public float m_maxTimeBetweenCustomers = 30f;
     public Shaker m_canvasShaker;
@@ -64,6 +65,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
     protected override void Awake()
     {
         base.Awake();
+        Cursor.visible = false;
         m_title.gameObject.SetActive(true);
         EventManager.OnNotificationResolved.Register(HandleResolveNotification);
         EventManager.OnEndOfDay.Register(HandleEndOfDay);
@@ -245,7 +247,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
 
     protected void Update()
     {
-        switch(m_currentGameState)
+        switch (m_currentGameState)
         {
             case GameState.GameStarted:
                 UpdateGame();
@@ -267,6 +269,12 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
         
     }
+
+    protected void LateUpdate()
+    {
+        m_mouse.position = Input.mousePosition;
+    }
+
     private bool fastTrack = false;
     protected void UpdateGame()
     {

@@ -182,6 +182,7 @@ MonoBehaviour:
   m_titleBar: {fileID: 0}
   m_dayDisplay: {fileID: 0}
   m_title: {fileID: 0}
+  m_mouse: {fileID: 0}
   m_minTimeBetweenCustomers: 1
   m_maxTimeBetweenCustomers: 10
   m_canvasShaker: {fileID: 0}
