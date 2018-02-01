@@ -8,7 +8,6 @@ public class BandwidthRule : RuleData
 
     public BandwidthRule(float usageLimit, ActionData.ActionType correctResponse, int priority = 0) : base(correctResponse, usageLimit, priority)
     {
-        
         m_action = correctResponse;
     }
 
@@ -62,9 +61,10 @@ public class BandwidthRule : RuleData
 
     public override string TriggerReason(CustomerData customer)
     {
-        return string.Format("Usage was <color=#FFAAAA>{0}</color>/{1} GB for {2} tier", 
+        return string.Format("Usage was <color=#FFAAAA>{0}</color>/{1} GB for <sprite={2}> {3} tier", 
             (int)customer.m_dataUsage, 
             GetBandwidthForTier(customer.m_speedTier), 
+            (int)customer.m_speedTier,
             customer.m_speedTier);
     }
 }

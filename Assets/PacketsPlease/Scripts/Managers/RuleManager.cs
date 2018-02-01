@@ -109,7 +109,7 @@ public class RuleManager : Singleton<RuleManager> {
                             bandwidthMemo.m_title = string.Format("Bandwidth Memo", TitleBarUI.GameDate.ToShortDateString());
                             bandwidthMemo.m_sender = "policy@cosmocast.com";
                             bandwidthMemo.m_message = "At CosmoCast, we pride ourselves on offering service that can fit each and every customer. Here are the following <b>Usage Allotments</b> for our customer tiers.\n\n"
-                                + string.Format("• <color=#FFD700>Gold</color> {0}\n• <color=#C0C0C0>Silver</color> {1}\n• <color=#CD7F32>Bronze</color> {2}", br.m_usageLimit * 4, br.m_usageLimit * 2, br.m_usageLimit);
+                                + string.Format("• <sprite=2> <color=#FFD700>Gold</color> {0}\n• <sprite=1> <color=#C0C0C0>Silver</color> {1}\n• <sprite=0> <color=#CD7F32>Bronze</color> {2}", br.m_usageLimit * 4, br.m_usageLimit * 2, br.m_usageLimit);
 
                             companyPolicy.m_ruleIndex++;
                             rule.m_policyIndex = companyPolicy.m_ruleIndex;

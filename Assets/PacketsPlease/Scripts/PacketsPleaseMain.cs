@@ -452,7 +452,10 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
                 policyIdentifier = string.Format("{0}{1}", rule.m_rule.m_policyIndex, (char)(rule.m_rule.m_subIndex + (int)'a'));
             }
             else
+            {
                 policyIdentifier = rule.m_rule.m_policyIndex.ToString();
+            }
+
             GiveStrike(NotificationData.StrikeReason.WrongAction,
                 string.Format("<b>{0}</b> <color=#CCCCCC><i>(see {1})</i></color>\n<b>Customer</b>: {2}\n<b>Required action</b>: {3}\n<b>Performed action</b>: <color=#FFAAAA>{4}</color>",
                 rule.m_rule.TriggerReason(data),
@@ -463,6 +466,7 @@ public class PacketsPleaseMain : Singleton<PacketsPleaseMain> {
         }
         else
         {
+            EventManager.OnCorrectChoice.Dispatch();
             m_numCorrectChoices++;
         }
 

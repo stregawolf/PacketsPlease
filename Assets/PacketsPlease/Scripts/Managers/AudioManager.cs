@@ -24,7 +24,9 @@ public class AudioManager : Singleton<AudioManager> {
     public AudioClip m_boostClip;
     public AudioClip m_throttleClip;
     public AudioClip m_disconnectClip;
+    public AudioClip m_positiveFeedbackClip;
 
+    public AudioClip m_menuClip;
     public AudioClip m_lowIntensityClip1;
     public AudioClip m_medIntensityClip1;
     public AudioClip m_highIntensityClip1;
@@ -35,6 +37,8 @@ public class AudioManager : Singleton<AudioManager> {
     public AudioClip m_medIntensityClip3;
     public AudioClip m_highIntensityClip3;
 
+    private AudioSource m_menuTrack;
+
     private AudioSource m_lowIntensityTrack;
     private AudioSource m_medIntensityTrack;
     private AudioSource m_highIntensityTrack;
@@ -42,8 +46,6 @@ public class AudioManager : Singleton<AudioManager> {
     private AudioSource m_audioTrack1;
     private AudioSource m_audioTrack2;
     private AudioSource m_audioTrack3;
-
-#if UNITY_WEBGL
 
     private const float LERP_TIME = 1.0f;
 
@@ -69,12 +71,18 @@ public class AudioManager : Singleton<AudioManager> {
         m_highIntensityTrack.clip = m_highIntensityClip1;
         m_highIntensityTrack.loop = true;
 
+        m_menuTrack = gameObject.AddComponent<AudioSource>();
+        m_menuTrack.clip = m_menuClip;
+        m_menuTrack.loop = true;
+        m_menuTrack.Play();
+
         EventManager.OnNotificationSelected.Register(PlayNotificationSelected);
         EventManager.OnNotificationResolved.Register(PlayNotificationClosed);
         EventManager.OnStrike.Register(OnStrikeGiven);
+        EventManager.OnCorrectChoice.Register(OnCorrectChoice);
         EventManager.OnStartOfDay.Register(PlayStartOfDay);
         EventManager.OnStartGameplay.Register(StartGameplayTrack);
-        EventManager.OnEndOfDay.Register(PlayEndOfDay);
+        EventManager.OnEndOfDayReport.Register(PlayEndOfDay);
         EventManager.OnLose.Register(PlayLose);
         EventManager.OnButtonClick.Register(PlayButtonClick);
         EventManager.OnBoost.Register(PlayBoost);
@@ -89,9 +97,10 @@ public class AudioManager : Singleton<AudioManager> {
         EventManager.OnNotificationSelected.Unregister(PlayNotificationSelected);
         EventManager.OnNotificationResolved.Unregister(PlayNotificationClosed);
         EventManager.OnStrike.Unregister(OnStrikeGiven);
+        EventManager.OnCorrectChoice.Unregister(OnCorrectChoice);
         EventManager.OnStartOfDay.Unregister(PlayStartOfDay);
         EventManager.OnStartGameplay.Unregister(StartGameplayTrack);
-        EventManager.OnEndOfDay.Unregister(PlayEndOfDay);
+        EventManager.OnEndOfDayReport.Unregister(PlayEndOfDay);
         EventManager.OnLose.Unregister(PlayLose);
         EventManager.OnButtonClick.Unregister(PlayButtonClick);
         EventManager.OnBoost.Unregister(PlayBoost);
@@ -151,6 +160,7 @@ public class AudioManager : Singleton<AudioManager> {
             m_highIntensityTrack.clip = m_highIntensityClip3;
         }
 
+        m_menuTrack.Stop();
         m_lowIntensityTrack.Play();
         m_medIntensityTrack.Play();
         m_highIntensityTrack.Play();
@@ -188,12 +198,15 @@ public class AudioManager : Singleton<AudioManager> {
 
     public void PlayNotificationClosed()
     {
-
         PlayAudioClip(m_notificationClosedClip);
     }
 
     public void PlayStartOfDay(int day)
     {
+        if(!m_menuTrack.isPlaying)
+        {
+            m_menuTrack.Play();
+        }
         PlayAudioClip2(m_keyboardClip);
         PlayAudioClip3(m_computerStartUp);
     }
@@ -247,6 +260,11 @@ public class AudioManager : Singleton<AudioManager> {
         SetIntensity(intensity);
     }
 
+    public void OnCorrectChoice()
+    {
+        PlayAudioClip2(m_positiveFeedbackClip);
+    }
+
     private void SetIntensity(float intensity) {
         StartCoroutine(HandleSetIntensity(intensity, LERP_TIME));
     }
@@ -272,60 +290,4 @@ public class AudioManager : Singleton<AudioManager> {
             yield return new WaitForEndOfFrame();
         }
     }
-
-    public void Update() {
-        
-    }
-
-#elif !UNITY_WEBGL
-    private FMODUnity.StudioEventEmitter m_emitter;
-
-    #region FMOD Project Parameters
-
-    private const string INTENSITY_PARAM_NAME = "Intensity";
-
-    private const float LOOP_WAIT_TIME = 10.0f;
-    private const string LOSE_TRIGGER_NAME = "Lose";
-    private const string MELODY_TRIGGER_NAME = "Melody";
-    private const string START_GAME_TRIGGER_NAME = "StartGame";
-    private const string HIGH_INTENSITY_TRIGGER_NAME = "HighIntensity";
-    private const string LOW_INTENSITY_TRIGGER_NAME = "LowIntensity";
-
-    public void SetIntensity() {
-    //TODO
-    }
-
-    public void TriggerLose()
-    {
-        m_emitter.SetParameter(LOSE_TRIGGER_NAME, 1f);
-    }
-
-    public void TriggerMelody()
-    {
-        m_emitter.SetParameter(MELODY_TRIGGER_NAME, 1f);
-    }
-
-    public void TriggerStartGame()
-    {
-        m_emitter.SetParameter(START_GAME_TRIGGER_NAME, 1f);
-    }
-    #endregion
-
-    protected override void Awake()
-    {
-        base.Awake();
-        m_emitter = AddComponent<FMODUnity.StudioEventEmitter>();
-    }
-
-    public void PlayEvent(FMODUnity.EmitterGameEvent playEvent)
-    {
-        m_emitter.PlayEvent = playEvent;
-        m_emitter.Play();
-    }
-
-    public void Stop()
-    {
-        m_emitter.Stop();
-    }
-#endif
 }

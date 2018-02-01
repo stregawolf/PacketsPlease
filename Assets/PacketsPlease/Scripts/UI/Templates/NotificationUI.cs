@@ -5,9 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 
 public class NotificationUI : MonoBehaviour {
+
     public Image m_bg;
     public Image m_icon;
     public Image m_pinnedIcon;
+    public Color m_pinnedColor = Color.white;
+
     public TextMeshProUGUI m_title;
     public NotificationData m_data { get; protected set; }
 
@@ -31,6 +34,10 @@ public class NotificationUI : MonoBehaviour {
         if(m_pinnedIcon != null)
         {
             m_pinnedIcon.enabled = m_data.m_pinned;
+            if(m_data.m_pinned)
+            {
+                m_icon.color = m_pinnedColor;
+            }
         }
     }
 

@@ -125,6 +125,9 @@ MonoBehaviour:
   m_boostClip: {fileID: 8300000, guid: 40552c47f3b29e647a4d8b703d0cb121, type: 3}
   m_throttleClip: {fileID: 8300000, guid: 7bb389e078cd4b14ea92385fafbb0269, type: 3}
   m_disconnectClip: {fileID: 8300000, guid: 7010524246b6f12489ed7fc45ce0cd4b, type: 3}
+  m_positiveFeedbackClip: {fileID: 8300000, guid: 5b273365f7152be4f8ee842e4fb06f48,
+    type: 3}
+  m_menuClip: {fileID: 8300000, guid: f7a2b0f94900401419336690094c3bf9, type: 3}
   m_lowIntensityClip1: {fileID: 8300000, guid: 6d8385e28fa554746baa618497f7a4b5, type: 3}
   m_medIntensityClip1: {fileID: 8300000, guid: 217edbc92c6f3b64a95672730fe93720, type: 3}
   m_highIntensityClip1: {fileID: 8300000, guid: 0a30207f3c332d0408a12770015b353f,
