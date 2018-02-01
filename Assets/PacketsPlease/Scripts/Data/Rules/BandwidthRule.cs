@@ -18,9 +18,24 @@ public class BandwidthRule : RuleData
         m_type = Type.Bandwidth;
     }
 
+    private float GetBandwidthForTier(CustomerData.SpeedTier tier)
+    {
+        float multiplier = 1f;
+        switch (tier)
+        {
+            case CustomerData.SpeedTier.Gold:
+                multiplier = 4;
+                break;
+            case CustomerData.SpeedTier.Silver:
+                multiplier = 2;
+                break;
+        }
+        return m_usageLimit * multiplier;
+    }
+
     public override ActionData.ActionType ActionRequired(CustomerData customer)
     {
-        if (customer.m_dataUsage > m_usageLimit)
+        if (customer.m_dataUsage > GetBandwidthForTier(customer.m_speedTier))
         {
             return m_action;
         }
@@ -29,52 +44,27 @@ public class BandwidthRule : RuleData
 
     public override void MakePass(CustomerData customer)
     {
-        float multiplier = 1f;
-        switch(customer.m_speedTier)
+        float limit = GetBandwidthForTier(customer.m_speedTier);
+        if (customer.m_dataUsage > limit)
         {
-            case CustomerData.SpeedTier.Gold:
-                multiplier = 4;
-                break;
-            case CustomerData.SpeedTier.Silver:
-                multiplier = 2;
-                break;
-        }
-        if (customer.m_dataUsage > m_usageLimit * multiplier)
-        {
-            customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), m_usageLimit * multiplier);
+            customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), limit);
         }
     }
 
     public override void MakeFail(CustomerData customer)
     {
-        float multiplier = 1f;
-        switch (customer.m_speedTier)
-        {
-            case CustomerData.SpeedTier.Gold:
-                multiplier = 4;
-                break;
-            case CustomerData.SpeedTier.Silver:
-                multiplier = 2;
-                break;
-        }
         if (m_usageLimit > 0)
         {
-            customer.m_dataUsage += m_usageLimit * multiplier + Random.Range(0.1f, 10f);
+            float limit = GetBandwidthForTier(customer.m_speedTier);
+            customer.m_dataUsage += limit + Random.Range(0.1f, 10f);
         }
     }
 
     public override string TriggerReason(CustomerData customer)
     {
-        float multiplier = 1f;
-        switch (customer.m_speedTier)
-        {
-            case CustomerData.SpeedTier.Gold:
-                multiplier = 4;
-                break;
-            case CustomerData.SpeedTier.Silver:
-                multiplier = 2;
-                break;
-        }
-        return string.Format("Usage was <color=#FFAAAA>{0}</color>/{1} GB for {2} tier", (int)customer.m_dataUsage, (int)(m_usageLimit * multiplier), customer.m_speedTier);
+        return string.Format("Usage was <color=#FFAAAA>{0}</color>/{1} GB for {2} tier", 
+            (int)customer.m_dataUsage, 
+            GetBandwidthForTier(customer.m_speedTier), 
+            customer.m_speedTier);
     }
 }
