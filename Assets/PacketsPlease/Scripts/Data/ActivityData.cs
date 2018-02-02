@@ -51,7 +51,7 @@ public class ActivityData {
             {
                 if(((Activity)exclude).m_name == Activities[i].m_name)
                 {
-                    return Activities[(i + Random.Range(1, Activities.Length - 2)) % Activities.Length];
+                    return Activities[(i + Random.Range(1, Activities.Length - 3)) % Activities.Length];
                 }
             }
         }

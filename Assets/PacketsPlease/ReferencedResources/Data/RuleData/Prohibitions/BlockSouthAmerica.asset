@@ -11,7 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ba8dc989cceac4c8870ae26c48c6eb, type: 3}
   m_Name: BlockSouthAmerica
   m_EditorClassIdentifier: 
-  m_priority: 0
+  m_priority: 8
+  m_skipAutoNotice: 0
+  m_policyIndex: 0
+  m_subIndex: 0
   m_action: 3
   m_usageLimit: 0
   m_location: 1

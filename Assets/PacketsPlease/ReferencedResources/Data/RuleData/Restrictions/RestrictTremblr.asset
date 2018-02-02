@@ -11,8 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b685b2d82318a44ea348d8932d9aa60, type: 3}
   m_Name: RestrictTremblr
   m_EditorClassIdentifier: 
-  m_priority: 0
+  m_priority: 4
   m_skipAutoNotice: 0
+  m_policyIndex: 0
+  m_subIndex: 0
   m_action: 1
   m_usageLimit: 0
   m_activityName: Tremblr

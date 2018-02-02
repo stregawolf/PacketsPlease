@@ -33,16 +33,13 @@ public class ActivityRule : RuleData
 
     public override void MakePass(CustomerData customer)
     {
-        if(customer.m_activity.m_name == m_activityName)
+        if(ActivityData.GetActivityByName(m_activityName).m_name == customer.m_activity.m_name)
         {
             if (m_usageLimit > 0 && Random.value < 0.5f)
             {
                 customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), m_usageLimit);
             }
-            else
-            {
-                customer.m_activity = ActivityData.GetActivity(customer.m_activity);
-            }
+            customer.m_activity = ActivityData.GetActivity(customer.m_activity);
         }
     }
 

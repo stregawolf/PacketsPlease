@@ -23,6 +23,8 @@ public class CustomerData : ScriptableObject {
     public ActivityData.Activity m_activity;
     public bool m_ignoreRules;
 
+    public RuleData m_failTrigger = null;
+
     [System.Serializable]
     public class ParentStory
     {
@@ -122,8 +124,8 @@ public class CustomerData : ScriptableObject {
             }
 
             // Make character fail one rule.
-            // TODO: Exclude Special Character Rules at some point
-            RuleManager.Instance.Rules[Random.Range(0, RuleManager.Instance.Rules.Count)].MakeFail(this);
+            m_failTrigger = RuleManager.Instance.Rules[Random.Range(0, RuleManager.Instance.Rules.Count)];
+            m_failTrigger.MakeFail(this);
         }
     }
 

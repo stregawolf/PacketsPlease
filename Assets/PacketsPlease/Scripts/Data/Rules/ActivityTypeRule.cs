@@ -53,7 +53,8 @@ public class ActivityTypeRule : RuleData {
     public override ActionData.ActionType ActionRequired(CustomerData customer)
     {
         bool dataRequirement = (m_usageLimit <= 0 || customer.m_dataUsage > m_usageLimit);
-        if (activityMatch(customer.m_activity) && dataRequirement)
+        bool tierRequirement = (m_tier == CustomerData.SpeedTier.NONE || (int)m_tier >= (int)customer.m_speedTier);
+        if (activityMatch(customer.m_activity) && dataRequirement && tierRequirement)
         {
             return m_action;
         }
@@ -62,29 +63,28 @@ public class ActivityTypeRule : RuleData {
 
     public override void MakePass(CustomerData customer)
     {
+            customer.m_speedTier = CustomerData.SpeedTier.Gold;// (CustomerData.SpeedTier)Random.Range((int)m_tier + 1, (int)CustomerData.SpeedTier.Gold + 1);
+        
+
         if (activityMatch(customer.m_activity))
         {
-            if(m_usageLimit > 0 && Random.value < 0.5f)
+
+            if (m_usageLimit > 0 && Random.value < 0.5f)
             {
                 customer.m_dataUsage = Random.Range(Mathf.Min(m_usageLimit, 0.1f), m_usageLimit);
             }
-            else
-            {
-                customer.m_activity = passingActivities[Random.Range(0, passingActivities.Count)];
-            }
+
+            customer.m_activity = passingActivities[Random.Range(0, passingActivities.Count)];
         }
 
-        if (m_tier != CustomerData.SpeedTier.NONE) {
-            customer.m_speedTier = (CustomerData.SpeedTier) Random.Range((int) CustomerData.SpeedTier.Bronze, (int) m_tier + 1);
-        }
     }
 
     public override void MakeFail(CustomerData customer)
     {
         customer.m_activity = failingActivities[Random.Range(0, failingActivities.Count)];
-        
-        if(m_tier != CustomerData.SpeedTier.NONE) {
-            customer.m_speedTier = (CustomerData.SpeedTier) Random.Range( (int) CustomerData.SpeedTier.Bronze, (int) m_tier + 1);
+        if (m_tier != CustomerData.SpeedTier.NONE)
+        {
+            customer.m_speedTier = (CustomerData.SpeedTier)Random.Range((int)CustomerData.SpeedTier.Bronze, (int)m_tier + 1);
         }
 
         base.MakeFail(customer);
